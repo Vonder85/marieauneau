@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Navbar } from "./Components/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { LoginPage } from "./Pages/LoginPage/LoginPage";
+import { Home } from "./Pages/Home/Home";
+import firebase from "./FirebaseConfig";
+import VerticalTabs from "./Pages/Admin/HomeAdmin/HomeAdmin";
+
+const firebaseAuth = firebase.auth().currentUser;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <Route path="/Connexion">
+          <LoginPage />
+        </Route>
+        <Route exact path="/Admin" component={VerticalTabs} />
+      </Router>
     </div>
   );
 }
