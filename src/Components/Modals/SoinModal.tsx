@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { Button } from "@material-ui/core";
 import { NewSoinForm } from "../../Pages/Admin/HomeAdmin/Soins/NewSoin/NewSoinForm";
+import { Soin } from "../../Models/Soin";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -11,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "5px",
       backgroundColor: "#DB997E",
       color: "white",
+      "&:hover": {
+        backgroundColor: "rgba(219, 153, 126, 0.6)",
+      },
     },
     modal: {
       display: "flex",
@@ -42,6 +46,8 @@ interface SoinModalProps {
    * texte du bouton
    */
   text: string;
+
+  soin?: Soin;
 }
 
 export const SoinModal = (props: SoinModalProps) => {
@@ -91,7 +97,7 @@ export const SoinModal = (props: SoinModalProps) => {
         }}
       >
         <div className={classes.paper}>
-          <NewSoinForm />
+          <NewSoinForm soin={props.soin as Soin} />
         </div>
       </Modal>
     </div>

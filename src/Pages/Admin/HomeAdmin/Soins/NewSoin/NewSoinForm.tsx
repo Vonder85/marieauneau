@@ -1,8 +1,34 @@
-import { Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import {
+  Button,
+  createStyles,
+  makeStyles,
+  TextField,
+  Theme,
+} from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import * as firebase from "firebase";
+
 import { Soin } from "../../../../../Models/Soin";
 
-export const NewSoinForm = () => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      marginLeft: "5px",
+      backgroundColor: "#DB997E",
+      color: "white",
+      marginTop: "10px",
+      "&:hover": {
+        backgroundColor: "rgba(219, 153, 126, 0.6)",
+      },
+    },
+  })
+);
+
+interface NewSoinFormProps {
+  soin: Soin;
+}
+export const NewSoinForm = (props: NewSoinFormProps) => {
+  const classes = useStyles();
   const [soin, setSoin] = useState<Soin>({
     nom: "",
     description: "",
@@ -10,11 +36,19 @@ export const NewSoinForm = () => {
     prix: 0,
   });
 
-  const handleSubmit = () => {};
+  useEffect(() => {
+    if (props.soin) {
+      setSoin(props.soin);
+    }
+  });
+
+  const handleSubmit = () => {
+    firebase.database().ref("/soins").push(soin);
+  };
 
   return (
     <>
-      <h2>Nouveau soin :</h2>
+      <h2>{props.soin ? "Modification" : "Nouveau soin"} :</h2>
 
       <form
         noValidate
@@ -64,10 +98,10 @@ export const NewSoinForm = () => {
         />
         <Button
           type="submit"
-          style={{ background: "#DB997E", marginTop: "10px" }}
           variant="contained"
           size="large"
           fullWidth
+          className={classes.button}
         >
           Sauvegarder
         </Button>
