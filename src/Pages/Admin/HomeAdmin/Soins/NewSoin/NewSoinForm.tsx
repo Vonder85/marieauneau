@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 
 import { Soin } from "../../../../../Models/Soin";
+import { stringify } from "querystring";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,7 @@ interface NewSoinFormProps {
 export const NewSoinForm = (props: NewSoinFormProps) => {
   const classes = useStyles();
   const [soin, setSoin] = useState<Soin>({
+    id: "",
     nom: "",
     description: "",
     duree: 0,
@@ -40,16 +42,28 @@ export const NewSoinForm = (props: NewSoinFormProps) => {
     if (props.soin) {
       setSoin(props.soin);
     }
-  });
+  }, []);
 
   const handleSubmit = () => {
-    firebase.database().ref("/soins").push(soin);
+    if (props.soin) {
+      firebase
+        .database()
+        .ref("/soins/" + soin.id)
+        .update(soin);
+    } else {
+      const soinId = firebase.database().ref("/soins").push(soin).key;
+      firebase
+        .database()
+        .ref("/soins/" + soinId)
+        .update({
+          id: soinId,
+        });
+    }
   };
 
   return (
     <>
       <h2>{props.soin ? "Modification" : "Nouveau soin"} :</h2>
-
       <form
         noValidate
         onSubmit={(e) => {

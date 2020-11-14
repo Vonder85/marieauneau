@@ -22,13 +22,12 @@ export const ListeSoins = () => {
       .database()
       .ref("/soins")
       .on("value", function (snapshot) {
-        console.log(snapshot.val());
         snapshot.forEach(function (soin) {
           newSoins.push(soin.val());
         });
         setDatas(newSoins);
       });
-  }, []);
+  }, [...datas]);
 
   return (
     <div>

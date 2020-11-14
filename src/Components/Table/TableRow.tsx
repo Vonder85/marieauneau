@@ -1,5 +1,5 @@
 import React from "react";
-
+import * as firebase from "firebase";
 import {
   Button,
   createStyles,
@@ -7,7 +7,6 @@ import {
   TableCell,
   TableRow,
   Theme,
-  useTheme,
   withStyles,
 } from "@material-ui/core";
 
@@ -55,6 +54,13 @@ export const TableRowAdmin = (props: TableRowProps) => {
   const { datas } = props;
   const classes = useStyles();
 
+  const handleRemove = (id: string) => {
+    firebase
+      .database()
+      .ref("/soins/" + id)
+      .remove();
+  };
+
   return (
     <>
       {datas.map((soin: Soin) => (
@@ -72,6 +78,7 @@ export const TableRowAdmin = (props: TableRowProps) => {
               color="default"
               size="small"
               className={classes.button}
+              onClick={() => handleRemove(soin.id)}
             >
               Supprimer
             </Button>
