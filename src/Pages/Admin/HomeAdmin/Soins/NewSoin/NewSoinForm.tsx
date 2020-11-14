@@ -5,11 +5,11 @@ import {
   TextField,
   Theme,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as firebase from "firebase";
 
 import { Soin } from "../../../../../Models/Soin";
-import { stringify } from "querystring";
+import SoinContext from "../../SoinContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,16 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface NewSoinFormProps {
   soin: Soin;
+  handleClose: () => void;
 }
 export const NewSoinForm = (props: NewSoinFormProps) => {
   const classes = useStyles();
-  const [soin, setSoin] = useState<Soin>({
-    id: "",
-    nom: "",
-    description: "",
-    duree: 0,
-    prix: 0,
-  });
+  const context = useContext(SoinContext);
+
+  const { soin, setSoin, setSoins, soins } = context;
 
   useEffect(() => {
     if (props.soin) {
@@ -50,6 +47,12 @@ export const NewSoinForm = (props: NewSoinFormProps) => {
         .database()
         .ref("/soins/" + soin.id)
         .update(soin);
+      const indexUpdate = soins.findIndex(
+        (_soin: Soin) => _soin.id === soin.id
+      );
+      const newSoins = [...soins];
+      newSoins.splice(indexUpdate, 1, soin);
+      setSoins(newSoins);
     } else {
       const soinId = firebase.database().ref("/soins").push(soin).key;
       firebase
@@ -58,7 +61,10 @@ export const NewSoinForm = (props: NewSoinFormProps) => {
         .update({
           id: soinId,
         });
+      setSoins([...soins, soin]);
     }
+
+    props.handleClose();
   };
 
   return (

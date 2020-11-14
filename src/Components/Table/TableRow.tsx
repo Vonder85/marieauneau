@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import * as firebase from "firebase";
 import {
   Button,
@@ -13,10 +13,8 @@ import {
 import { Soin } from "../../Models/Soin";
 
 import { SoinModal } from "../Modals/SoinModal";
-
-interface TableRowProps {
-  datas: Soin[];
-}
+import { useHistory } from "react-router-dom";
+import SoinContext from "../../Pages/Admin/HomeAdmin/SoinContext";
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -50,20 +48,28 @@ const useStyles = makeStyles({
     },
   },
 });
-export const TableRowAdmin = (props: TableRowProps) => {
-  const { datas } = props;
+export const TableRowAdmin = () => {
   const classes = useStyles();
+  const context = useContext(SoinContext);
+
+  const { soins, setSoins } = context;
+  let history = useHistory();
 
   const handleRemove = (id: string) => {
     firebase
       .database()
       .ref("/soins/" + id)
       .remove();
+    const newSoins = [...soins];
+    const indexDelete = newSoins.findIndex((soin: Soin) => soin.id === id);
+    newSoins.splice(indexDelete, 1);
+    setSoins(newSoins);
+    history.push("/Admin");
   };
 
   return (
     <>
-      {datas.map((soin: Soin) => (
+      {soins.map((soin: Soin) => (
         <StyledTableRow key={soin.nom}>
           <StyledTableCell component="th" scope="row">
             {soin.nom}

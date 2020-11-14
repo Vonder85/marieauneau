@@ -97,7 +97,7 @@ export const SoinModal = (props: SoinModalProps) => {
         }}
       >
         <div className={classes.paper}>
-          <NewSoinForm soin={props.soin as Soin} />
+          <NewSoinForm soin={props.soin as Soin} handleClose={handleClose} />
         </div>
       </Modal>
     </div>
