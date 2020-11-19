@@ -7,6 +7,13 @@ import { Home } from "./Pages/Home/Home";
 import VerticalTabs from "./Pages/Admin/HomeAdmin/HomeAdmin";
 import { Massage } from "./Models/Massage";
 import MassageContext from "./Components/Context/MassageContext";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["BillySignature", "cursive"].join(","),
+  },
+});
 
 export const App = () => {
   const context = useContext(MassageContext);
@@ -14,30 +21,33 @@ export const App = () => {
   const [massages, setMassages] = useState<Massage[]>(context.massages);
 
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <MassageContext.Provider
-          value={{
-            massage,
-            massages,
-            setMassage,
-            setMassages,
-          }}
-        >
-          <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-          <Route path="/Connexion">
-            <LoginPage />
-          </Route>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Navbar />
+          <MassageContext.Provider
+            value={{
+              massage,
+              massages,
+              setMassage,
+              setMassages,
+            }}
+          >
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
 
-          <Route exact path="/Admin" component={VerticalTabs} />
-        </MassageContext.Provider>
-      </Router>
-    </div>
+              <Route path="/Connexion">
+                <LoginPage />
+              </Route>
+
+              <Route exact path="/Admin" component={VerticalTabs} />
+            </Switch>
+          </MassageContext.Provider>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 };
 
