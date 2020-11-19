@@ -2,8 +2,7 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import * as firebase from "firebase";
 import "./Login.css";
-import InputText from "../../Forms/InputText/InputText";
-import { useHistory, Router, withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 const Login = () => {
   let history = useHistory();

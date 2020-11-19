@@ -3,17 +3,16 @@ import {
   Button,
   createStyles,
   Grid,
-  IconButton,
   makeStyles,
   Tab,
   Tabs,
   Theme,
   Toolbar,
-  Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as firebase from "firebase";
+import Logo from "../../Images/logo.png";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    logo: {
+      width: "80px",
+    },
   })
 );
 
@@ -46,52 +48,45 @@ export const Navbar = () => {
     }
   });
   //const user = firebase.auth().currentUser;
-  console.log(user);
   function logout() {
     firebase.auth().signOut();
   }
 
   return (
     <Grid container>
-      <AppBar position="static" style={{ background: "#DB997E" }}>
-        <Toolbar>
-          <Grid item md={4}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              aria-label="menu"
-            ></IconButton>
-            <Typography variant="h6" className={classes.title}>
-              <Link to="/">Logo</Link>
-            </Typography>
-          </Grid>
-          <Grid item md={7}>
-            <Tabs>
-              <Tab label="Les soins" />
-              <Tab label="A propos" />
-              <Tab label="Contact" />
-              {user && (
-                <Button color="inherit">
-                  <Link to="/Admin" className={classes.liens}>
-                    <Tab label="Admin" />
-                  </Link>
-                </Button>
-              )}
-            </Tabs>
-          </Grid>
-          <Grid item md={1}>
+      <AppBar
+        position="static"
+        style={{ background: "#D19D8E", alignItems: "center" }}
+      >
+        <Toolbar style={{ marginLeft: "190px" }}>
+          <Tabs>
+            <Tab label="Les massages" />
+            <Tab label="A propos" />
+            <Link to="/">
+              <img src={Logo} alt="logo" className={classes.logo} />
+            </Link>
+
+            <Tab label="Contact" />
+            <Tab label="Autre" />
+          </Tabs>
+          {user && (
             <Button color="inherit">
-              {user ? (
-                <Link to="/" className={classes.liens} onClick={logout}>
-                  Déconnexion
-                </Link>
-              ) : (
-                <Link to="/Connexion" className={classes.liens}>
-                  Connexion
-                </Link>
-              )}
+              <Link to="/Admin" className={classes.liens}>
+                Admin
+              </Link>
             </Button>
-          </Grid>
+          )}
+          {/*<Button color="inherit">
+            {user ? (
+              <Link to="/" className={classes.liens} onClick={logout}>
+                Déconnexion
+              </Link>
+            ) : (
+              <Link to="/Connexion" className={classes.liens}>
+                Connexion
+              </Link>
+            )}
+            </Button>*/}
         </Toolbar>
       </AppBar>
     </Grid>

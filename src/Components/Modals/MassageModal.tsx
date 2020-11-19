@@ -3,8 +3,8 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { Button } from "@material-ui/core";
-import { NewSoinForm } from "../../Pages/Admin/HomeAdmin/Soins/NewSoin/NewSoinForm";
-import { Soin } from "../../Models/Soin";
+import { MassageForm } from "../../Pages/Admin/HomeAdmin/Soins/NewMassage/MassageForm";
+import { Massage } from "../../Models/Massage";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,22 +35,16 @@ const useStyles = makeStyles((theme: Theme) =>
 /**
  * props du composant
  */
-interface SoinModalProps {
-  /**
-   * metaProperty retournée au composant parent
-   * @param value
-   */
-  //handleChange: (value: Soin) => void;
-
+interface MassageModalProps {
   /**
    * texte du bouton
    */
   text: string;
 
-  soin?: Soin;
+  massage?: Massage;
 }
 
-export const SoinModal = (props: SoinModalProps) => {
+export const MassageModal = (props: MassageModalProps) => {
   const classes = useStyles();
 
   /**
@@ -97,7 +91,10 @@ export const SoinModal = (props: SoinModalProps) => {
         }}
       >
         <div className={classes.paper}>
-          <NewSoinForm soin={props.soin as Soin} handleClose={handleClose} />
+          <MassageForm
+            massage={props.massage as Massage}
+            handleClose={handleClose}
+          />
         </div>
       </Modal>
     </div>

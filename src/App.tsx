@@ -4,40 +4,38 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { LoginPage } from "./Pages/LoginPage/LoginPage";
 import { Home } from "./Pages/Home/Home";
-import firebase from "./FirebaseConfig";
 import VerticalTabs from "./Pages/Admin/HomeAdmin/HomeAdmin";
-import SoinContext from "./Pages/Admin/HomeAdmin/SoinContext";
-import { Soin } from "./Models/Soin";
+import { Massage } from "./Models/Massage";
+import MassageContext from "./Components/Context/MassageContext";
 
 export const App = () => {
-  const firebaseAuth = firebase.auth().currentUser;
-
-  const context = useContext(SoinContext);
-  const [soin, setSoin] = useState<Soin>(context.soin);
-  const [soins, setSoins] = useState<Soin[]>(context.soins);
+  const context = useContext(MassageContext);
+  const [massage, setMassage] = useState<Massage>(context.massage);
+  const [massages, setMassages] = useState<Massage[]>(context.massages);
 
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-        <Route path="/Connexion">
-          <LoginPage />
-        </Route>
-        <SoinContext.Provider
+        <MassageContext.Provider
           value={{
-            soin,
-            soins,
-            setSoin,
-            setSoins,
+            massage,
+            massages,
+            setMassage,
+            setMassages,
           }}
         >
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+          <Route path="/Connexion">
+            <LoginPage />
+          </Route>
+
           <Route exact path="/Admin" component={VerticalTabs} />
-        </SoinContext.Provider>
+        </MassageContext.Provider>
       </Router>
     </div>
   );
