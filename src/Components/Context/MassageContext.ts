@@ -11,6 +11,7 @@ export default React.createContext<MassageState>({
     resume: "",
     duree: 0,
     prix: 0,
+    image: "",
   },
   setMassage: (massage: Massage) => {},
 

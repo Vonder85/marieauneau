@@ -2,12 +2,10 @@ import React, { useContext, useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { LoginPage } from "./Pages/LoginPage/LoginPage";
-import { Home } from "./Pages/Home/Home";
-import VerticalTabs from "./Pages/Admin/HomeAdmin/HomeAdmin";
 import { Massage } from "./Models/Massage";
 import MassageContext from "./Components/Context/MassageContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Routes from "./Routes";
 
 const theme = createMuiTheme({
   typography: {
@@ -33,17 +31,7 @@ export const App = () => {
               setMassages,
             }}
           >
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-
-              <Route path="/Connexion">
-                <LoginPage />
-              </Route>
-
-              <Route exact path="/Admin" component={VerticalTabs} />
-            </Switch>
+            <Routes />
           </MassageContext.Provider>
         </Router>
       </div>

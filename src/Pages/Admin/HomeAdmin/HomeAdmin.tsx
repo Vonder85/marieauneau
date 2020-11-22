@@ -4,7 +4,7 @@ import * as firebase from "firebase";
 import { LoginPage } from "../../LoginPage/LoginPage";
 import { useFetchMassages } from "../../../Components/Hooks/Fetch/UseFetchMassage";
 
-export default function VerticalMenu() {
+export default function HomeAdmin() {
   const [user, setUser] = useState<boolean>(false);
 
   firebase.auth().onAuthStateChanged(function (User) {

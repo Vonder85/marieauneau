@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 
 export const Tableau = () => {
   const classes = useStyles();
-  const libelles = ["id", "Nom", "Description", "Durée", "Prix", "Actions"];
+  const libelles = ["Nom", "Description", "Résumé", "Durée", "Prix", "Actions"];
   const context = useContext(MassageContext);
 
   const handleRemove = (id: string) => {
@@ -77,13 +77,13 @@ export const Tableau = () => {
             {context.massages?.map((massage: Massage) => (
               <StyledTableRow key={massage.id}>
                 <StyledTableCell component="th" scope="row">
-                  {massage.id}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
                   {massage.nom}
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   {massage.description}
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  {massage.resume}
                 </StyledTableCell>
                 <StyledTableCell component="th">
                   {massage.duree} min

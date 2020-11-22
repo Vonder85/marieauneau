@@ -5,4 +5,5 @@ export interface Massage {
   resume: string;
   duree: number;
   prix: number;
+  image: string;
 }

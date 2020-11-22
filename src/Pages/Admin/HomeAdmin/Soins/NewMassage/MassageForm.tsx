@@ -12,6 +12,8 @@ import MassageContext from "../../../../../Components/Context/MassageContext";
 
 import MassageService from "../../../../../Components/Services/MassageService";
 
+import ImageUploader from "react-images-upload";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -41,6 +43,7 @@ export const MassageForm = (props: MassageFormProps) => {
     resume: "",
     duree: 0,
     prix: 0,
+    image: "",
   });
 
   useEffect(() => {
@@ -129,6 +132,14 @@ export const MassageForm = (props: MassageFormProps) => {
           fullWidth
           size="medium"
         />
+        {/*<ImageUploader
+          withIcon={true}
+          buttonText="Choisir une image"
+          //onChange={onDrop}
+          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+          maxFileSize={5242880}
+          singleImage
+        />*/}
         <Button
           type="submit"
           variant="contained"

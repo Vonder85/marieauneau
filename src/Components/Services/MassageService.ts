@@ -11,6 +11,7 @@ class MassageService {
   async createMassage(data: Massage) {
     const id = (await this.db.ref("/massages").push(data)).key;
     await this.db.ref("/massages/" + id).update({ id: id });
+    this.getMassages();
   }
 
   /**

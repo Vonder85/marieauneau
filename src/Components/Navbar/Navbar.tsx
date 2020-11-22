@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
     liens: {
       textDecoration: "none",
       color: "rgba(255, 255, 255, 0.8)",
+      marginTop: "14px",
     },
     root: {
       flexGrow: 1,
@@ -121,12 +122,14 @@ export const Navbar = () => {
       >
         <Toolbar style={{ marginLeft: "190px" }}>
           <Tabs>
-            <Tab
-              label="Les massages"
-              aria-controls="customized-menu"
-              aria-haspopup="true"
-              onMouseEnter={handleClick}
-            />
+            <Link to="/Massages" className={classes.liens}>
+              <Tab
+                label="Les massages"
+                aria-controls="customized-menu"
+                aria-haspopup="true"
+                onMouseEnter={handleClick}
+              />
+            </Link>
             <StyledMenu
               id="customized-menu"
               anchorEl={anchorEl}
@@ -139,7 +142,9 @@ export const Navbar = () => {
                 </StyledMenuItem>
               ))}
             </StyledMenu>
-            <Tab label="A propos" />
+            <Link to="/APropos" className={classes.liens}>
+              <Tab label="A propos" />
+            </Link>
             <Link to="/">
               <img src={Logo} alt="logo" className={classes.logo} />
             </Link>
