@@ -4,18 +4,11 @@ import MassageContext from "../../Context/MassageContext";
 import MassageService from "../../Services/MassageService";
 
 export const useFetchMassages = () => {
-  const context = useContext(MassageContext);
-
-  const getMassages = async () => {
-    await MassageService.getMassages().then((massages: Massage[]) => {
-      console.log(massages);
-      context.setMassages(massages);
-    });
-  };
+  const setMassages = useContext(MassageContext).setMassages;
 
   useEffect(() => {
-    context.setMassages([]);
-    getMassages();
-    // eslint-disable-next-line
-  }, []);
+    MassageService.getMassages().then((massages: Massage[]) => {
+      setMassages(massages);
+    });
+  }, [setMassages]);
 };

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,9 +14,7 @@ const theme = createMuiTheme({
 });
 
 export const App = () => {
-  const context = useContext(MassageContext);
-  const [massage, setMassage] = useState<Massage>(context.massage);
-  const [massages, setMassages] = useState<Massage[]>(context.massages);
+  const [massages, setMassages] = useState<Massage[]>([]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -24,9 +22,7 @@ export const App = () => {
         <Router>
           <MassageContext.Provider
             value={{
-              massage,
               massages,
-              setMassage,
               setMassages,
             }}
           >

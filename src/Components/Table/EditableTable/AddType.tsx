@@ -60,7 +60,7 @@ export const AddType = (props: AddTypeProps) => {
   const optionsContreIndications = [
     { label: "générale", value: "générale" },
     { label: "relative", value: "relative" },
-    { label: "aboslue", value: "absolue" },
+    { label: "absolue", value: "absolue" },
   ];
   /**
    * Etat pour afficher le message d'erreur

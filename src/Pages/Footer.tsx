@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   liens: {
     textDecoration: "none",
-    color: "rgb(209, 157, 142)",
+    color: "white",
   },
 });
 
@@ -56,7 +56,10 @@ export const Footer = () => {
               Une question, une remarque ?
               <br />
               <br />
-              Retrouvez notre FAQ
+              Retrouvez notre{" "}
+              <Link to="/FAQ" className={classes.liens}>
+                FAQ
+              </Link>
               <br />
               <br />
               Ou contactez moi <br />

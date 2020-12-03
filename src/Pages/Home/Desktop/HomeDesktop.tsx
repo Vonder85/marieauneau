@@ -70,8 +70,6 @@ const useStyles = makeStyles({
 export const HomeDesktop = () => {
   const classes = useStyles();
   const context = useContext(MassageContext);
-  console.log(context);
-
   return (
     <div className={classes.root}>
       <Grid container>

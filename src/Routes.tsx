@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Home } from "./Pages/Home/Home";
 import { LoginPage } from "./Pages/LoginPage/LoginPage";
@@ -10,9 +10,17 @@ import { MassageDetail } from "./Pages/Massages/MassageDetail";
 import { MassageForm } from "./Pages/Admin/HomeAdmin/Soins/NewMassage/MassageForm";
 import { FAQ } from "./Pages/FAQ";
 import { Contact } from "./Pages/Contact";
-import { useFetchMassages } from "./Components/Hooks/Fetch/UseFetchMassage";
+import MassageService from "./Components/Services/MassageService";
+import MassageContext from "./Components/Context/MassageContext";
 function Routes() {
-  useFetchMassages();
+  const context = useContext(MassageContext);
+
+  useEffect(() => {
+    MassageService.getMassages().then((result) => {
+      context.setMassages(result);
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Switch>

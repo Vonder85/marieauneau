@@ -94,7 +94,7 @@ export const TableRowType = (props: TableRowTypeProps) => {
   const optionsContreIndications = [
     { label: "générale", value: "générale" },
     { label: "relative", value: "relative" },
-    { label: "aboslue", value: "absolue" },
+    { label: "absolue", value: "absolue" },
   ];
 
   /**

@@ -90,6 +90,7 @@ export const MassageForm = () => {
     if (nomMassage.nom !== undefined && nomMassage.nom !== null) {
       MassageService.getMassageByName(nomMassage.nom).then(
         (result: Massage[]) => {
+          console.log(result);
           setMassage(result[0]);
         }
       );

@@ -1,14 +1,11 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-
-import MassageService from "../../Components/Services/MassageService";
-
-import { Massage } from "../../Models/Massage";
 
 import logo from "../../Images/homePage/fond1.png";
 import photoMassage from "../../Images/Massages/massage.jpg";
 import { Type } from "../../Models/Type";
+import MassageContext from "../../Components/Context/MassageContext";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -29,9 +26,6 @@ const useStyles = makeStyles({
     height: "100%",
     marginTop: "100px",
     textAlign: "center",
-    backgroundImage: `url(${logo})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
     fontFamily: theme.fontFamily,
   },
   liste: {
@@ -49,32 +43,14 @@ export const MassageDetail = () => {
   //Récupération du nom du massage dans l'url
   const nomMassage: any = useParams();
 
-  const [massage, setMassage] = useState<Massage>({
-    id: "",
-    nom: "",
-    adjectif: "",
-    zone: "",
-    description: "",
-    resume: "",
-    duree: 0,
-    prix: 0,
-    image: "",
-    actions: [],
-    bienFaits: [],
-    contreIndications: [],
-    supplement: { description: "", prix: 0, duree: 0 },
-  });
+  const context = useContext(MassageContext);
 
-  useEffect(() => {
-    if (nomMassage !== undefined) {
-      MassageService.getMassageByName(nomMassage.nom).then(
-        (result: Massage[]) => {
-          setMassage(result[0]);
-        }
-      );
-    }
-  }, [nomMassage]);
+  //Récupération du massage
+  const massage = context.massages.find(
+    (massage) => massage.nom === nomMassage.nom
+  );
 
+  if (!massage) return null;
   return (
     <div className={classes.root}>
       <Grid container>
@@ -89,12 +65,12 @@ export const MassageDetail = () => {
           </h1>
           <div>
             <h2>En quoi consiste ce soin</h2>
-            <p style={{ whiteSpace: "pre-wrap" }}>{massage.description}</p>
+            <p style={{ whiteSpace: "pre-wrap" }}>{massage?.description}</p>
           </div>
           <div>
             <h2>Les bienfaits</h2>
             <ul className={classes.liste}>
-              {massage.bienFaits?.map((bienfait: string, index: number) => (
+              {massage?.bienFaits?.map((bienfait: string, index: number) => (
                 <li key={index}>{bienfait}</li>
               ))}
             </ul>
@@ -102,7 +78,7 @@ export const MassageDetail = () => {
           <div>
             <h2 style={{ fontFamily: theme.fontFamily }}>Les actions</h2>
             <ul className={classes.liste}>
-              {massage.actions?.map((action: Type, index: number) => (
+              {massage?.actions?.map((action: Type, index: number) => (
                 <li key={index}>{action.texte}</li>
               ))}
             </ul>

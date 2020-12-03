@@ -28,13 +28,17 @@ class MassageService {
    * Fonction qui récupère les massages
    */
   async getMassages() {
-    const initMassages: Massage[] = [];
-    await this.db.ref("/massages").on("value", function (snapshot) {
-      snapshot.forEach(function (_massage) {
-        initMassages.push(_massage.val());
+    return this.db
+      .ref("/massages")
+      .once("value")
+      .then((data) => {
+        const array: Massage[] = [];
+        data.forEach((item) => {
+          array.push(item.val());
+        });
+
+        return array;
       });
-    });
-    return initMassages;
   }
 
   async deleteMassage(id: string) {
@@ -46,17 +50,18 @@ class MassageService {
    * Fonction qui récupère les massages
    */
   async getMassageByName(name: string) {
-    const initMassages: Massage[] = [];
-    this.db
+    return this.db
       .ref("massages")
       .orderByChild("nom")
       .equalTo(name)
-      .on("value", function (snapshot) {
-        snapshot.forEach(function (_massage) {
-          initMassages.push(_massage.val());
+      .once("value")
+      .then((data) => {
+        const array: Massage[] = [];
+        data.forEach(function (_massage) {
+          array.push(_massage.val());
         });
+        return array;
       });
-    return initMassages;
   }
 }
 export default new MassageService();
