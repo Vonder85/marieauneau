@@ -19,7 +19,7 @@ import { Type } from "../../../Models/Type";
 
 const useStyles = makeStyles({
   icon: {
-    width: "3%",
+    width: "25px",
   },
 });
 
