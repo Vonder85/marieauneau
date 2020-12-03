@@ -9,12 +9,16 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import { TableHeadAdmin } from "./TableHead";
-import { Massage } from "../../Models/Massage";
-import { MassageModal } from "../Modals/MassageModal";
 import { Button, TableCell, TableRow } from "@material-ui/core";
+
+import { TableHeadAdmin } from "./TableHead";
+
+import { Massage } from "../../Models/Massage";
+
 import MassageContext from "../Context/MassageContext";
+
 import MassageService from "../Services/MassageService";
+import { Link } from "react-router-dom";
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +26,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
       "&:nth-of-type(odd)": {
         backgroundColor: theme.palette.action.hover,
       },
+      width: "100%",
     },
   })
 )(TableRow);
@@ -34,6 +39,7 @@ const StyledTableCell = withStyles((theme: Theme) =>
     },
     body: {
       fontSize: 14,
+      width: "11%",
     },
   })
 )(TableCell);
@@ -41,6 +47,7 @@ const StyledTableCell = withStyles((theme: Theme) =>
 const useStyles = makeStyles({
   table: {
     width: "100%",
+    tableLayout: "fixed",
   },
   button: {
     marginLeft: "5px",
@@ -51,11 +58,26 @@ const useStyles = makeStyles({
       backgroundColor: "rgba(209, 157, 142, 0.6)",
     },
   },
+  liens: {
+    textDecoration: "none",
+    color: "rgba(255, 255, 255, 0.8)",
+  },
 });
 
 export const Tableau = () => {
   const classes = useStyles();
-  const libelles = ["Nom", "Description", "Résumé", "Durée", "Prix", "Actions"];
+  const libelles = [
+    "Nom",
+    "Description",
+    "Résumé",
+    "Durée",
+    "Prix",
+    "Bienfaits",
+    "Contre indications",
+    "Actions",
+    "Supplément",
+    "Editer",
+  ];
   const context = useContext(MassageContext);
 
   const handleRemove = (id: string) => {
@@ -68,7 +90,11 @@ export const Tableau = () => {
   return (
     <>
       <div>
-        <MassageModal text="Ajouter un massage" />
+        <Link to="/Admin/Edition" className={classes.liens}>
+          <Button variant="contained" size="large" className={classes.button}>
+            Ajouter un massage
+          </Button>
+        </Link>
       </div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
@@ -77,20 +103,123 @@ export const Tableau = () => {
             {context.massages?.map((massage: Massage) => (
               <StyledTableRow key={massage.id}>
                 <StyledTableCell component="th" scope="row">
-                  {massage.nom}
+                  <p
+                    style={{
+                      overflow: "hidden",
+                      height: "20px",
+                      width: "100%",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {massage.nom}
+                  </p>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  {massage.description}
+                  <p
+                    style={{
+                      overflow: "hidden",
+                      height: "20px",
+                      width: "100%",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {massage.description}
+                  </p>
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
-                  {massage.resume}
+                  <p
+                    style={{
+                      overflow: "hidden",
+                      height: "20px",
+                      width: "100%",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {massage.resume}
+                  </p>
                 </StyledTableCell>
                 <StyledTableCell component="th">
-                  {massage.duree} min
+                  <p
+                    style={{
+                      overflow: "hidden",
+                      height: "20px",
+                      width: "100%",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {massage.duree} min
+                  </p>
                 </StyledTableCell>
                 <StyledTableCell>{massage.prix} €</StyledTableCell>
                 <StyledTableCell>
-                  <MassageModal text="Modifier" massage={massage} />
+                  <ul>
+                    {massage.bienFaits?.map(
+                      (bienfait: string, index: number) => (
+                        <li
+                          key={index}
+                          style={{
+                            overflow: "hidden",
+                            height: "20px",
+                            width: "100%",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {bienfait}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </StyledTableCell>
+                <StyledTableCell>
+                  <ul>
+                    {massage.contreIndications?.map(
+                      (contreIndication: string, index: number) => (
+                        <li
+                          key={index}
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            height: "20px",
+                            width: "100%",
+                          }}
+                        >
+                          {contreIndication}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </StyledTableCell>
+                <StyledTableCell>
+                  <ul>
+                    {massage.actions?.map((action: string, index: number) => (
+                      <li
+                        key={index}
+                        style={{
+                          overflow: "hidden",
+                          height: "20px",
+                          width: "100%",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {action}
+                      </li>
+                    ))}
+                  </ul>
+                </StyledTableCell>
+                <StyledTableCell>
+                  {massage.supplement?.description.trim() !== ""
+                    ? "Oui"
+                    : "Non"}
+                </StyledTableCell>
+                <StyledTableCell>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    size="small"
+                    className={classes.button}
+                  >
+                    Modifier
+                  </Button>
                   <Button
                     variant="contained"
                     color="default"

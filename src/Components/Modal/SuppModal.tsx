@@ -2,18 +2,20 @@ import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
+
+import { AjoutSupplement } from "../Table/EditableTable/AjoutSupplement";
 import { Button } from "@material-ui/core";
-import { MassageForm } from "../../Pages/Admin/HomeAdmin/Soins/NewMassage/MassageForm";
-import { Massage } from "../../Models/Massage";
+import { Supplement } from "../../Models/Supplement";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       marginLeft: "5px",
-      backgroundColor: "#DB997E",
+      backgroundColor: "#D19D8E",
       color: "white",
+      marginTop: "10px",
       "&:hover": {
-        backgroundColor: "rgba(219, 153, 126, 0.6)",
+        backgroundColor: "rgba(209, 157, 142, 0.6)",
       },
     },
     modal: {
@@ -32,36 +34,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-/**
- * props du composant
- */
-interface MassageModalProps {
-  /**
-   * texte du bouton
-   */
-  text: string;
-
-  massage?: Massage;
+interface SuppModalProps {
+  handleUpdate: (supp: Supplement) => void;
 }
-
-export const MassageModal = (props: MassageModalProps) => {
+export default function SuppModal(props: SuppModalProps) {
   const classes = useStyles();
-
-  /**
-   * Etat pour l'ouverture de la modal
-   */
   const [open, setOpen] = React.useState(false);
 
-  /**
-   * Ouvre la modal
-   */
   const handleOpen = () => {
     setOpen(true);
   };
 
-  /**
-   * ferme la modal
-   */
   const handleClose = () => {
     setOpen(false);
   };
@@ -72,18 +55,17 @@ export const MassageModal = (props: MassageModalProps) => {
         variant="contained"
         color="default"
         size="small"
-        onClick={handleOpen}
         className={classes.button}
+        onClick={handleOpen}
       >
-        {props.text}
+        Ajouter un supplément
       </Button>
-
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        className={classes.modal}
         open={open}
         onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className={classes.modal}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -91,12 +73,12 @@ export const MassageModal = (props: MassageModalProps) => {
         }}
       >
         <div className={classes.paper}>
-          <MassageForm
-            massage={props.massage as Massage}
+          <AjoutSupplement
+            handleChange={(value: Supplement) => props.handleUpdate(value)}
             handleClose={handleClose}
           />
         </div>
       </Modal>
     </div>
   );
-};
+}

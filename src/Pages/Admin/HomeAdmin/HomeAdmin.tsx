@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ListeSoins } from "./Soins/ListeMassages/ListeMassages";
 import * as firebase from "firebase";
+
+import { ListeSoins } from "./Soins/ListeMassages/ListeMassages";
 import { LoginPage } from "../../LoginPage/LoginPage";
 import { useFetchMassages } from "../../../Components/Hooks/Fetch/UseFetchMassage";
 
@@ -17,5 +18,9 @@ export default function HomeAdmin() {
 
   useFetchMassages();
 
-  return <div>{!user ? <LoginPage /> : <ListeSoins />}</div>;
+  return (
+    <div style={{ overflowY: "auto" }}>
+      {!user ? <LoginPage /> : <ListeSoins />}
+    </div>
+  );
 }

@@ -77,7 +77,10 @@ export const APropos = () => {
             Je vous propose {massages.length} massages :
             <ul>
               {massages?.map((massage: Massage) => (
-                <Link to="/Massages" className={classes.liens}>
+                <Link
+                  to={`/Massages/${massage?.nom}`}
+                  className={classes.liens}
+                >
                   <li key={massage.id}>{massage.nom}</li>
                 </Link>
               ))}

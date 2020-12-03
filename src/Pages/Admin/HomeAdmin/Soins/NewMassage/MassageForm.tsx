@@ -2,17 +2,22 @@ import {
   Button,
   createStyles,
   makeStyles,
+  TextareaAutosize,
   TextField,
   Theme,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Massage } from "../../../../../Models/Massage";
+
 import MassageContext from "../../../../../Components/Context/MassageContext";
 
 import MassageService from "../../../../../Components/Services/MassageService";
 
-import ImageUploader from "react-images-upload";
+import { AjoutListeString } from "../../../../../Components/Table/EditableTable/AjoutListeString";
+import SuppModal from "../../../../../Components/Modal/SuppModal";
+import { Supplement } from "../../../../../Models/Supplement";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,27 +30,48 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "rgba(209, 157, 142, 0.6)",
       },
     },
+    bienfaits: {
+      display: "inline-flex",
+    },
+    root: {
+      width: "70%",
+      marginRight: "auto",
+      marginLeft: "auto",
+      marginTop: "100px",
+    },
   })
 );
 
 interface MassageFormProps {
-  massage: Massage;
-  handleClose: () => void;
+  massage?: Massage;
 }
 export const MassageForm = (props: MassageFormProps) => {
   const classes = useStyles();
   const context = useContext(MassageContext);
+  const history = useHistory();
 
+  /**
+   * Etat d'un massage
+   */
   const [massage, setMassage] = useState<Massage>({
     id: "",
     nom: "",
+    adjectif: "",
+    zone: "",
     description: "",
     resume: "",
     duree: 0,
     prix: 0,
     image: "",
+    actions: [],
+    bienFaits: [],
+    contreIndications: [],
+    supplement: { description: "", prix: 0, duree: 0 },
   });
 
+  /**
+   * Attribue(s'il y en un) le massage passé en props
+   */
   useEffect(() => {
     if (props.massage) {
       setMassage(props.massage);
@@ -54,85 +80,119 @@ export const MassageForm = (props: MassageFormProps) => {
 
   const handleSubmit = () => {
     if (props.massage !== undefined) {
-      MassageService.updateMassage(massage);
-      MassageService.getMassages().then((massages: Massage[]) => {
-        context.setMassages(massages);
+      MassageService.updateMassage(massage).then((result) => {
+        MassageService.getMassages().then((massages: Massage[]) => {
+          context.setMassages(massages);
+          history.push("/Admin");
+        });
       });
     } else {
-      MassageService.createMassage(massage);
-      MassageService.getMassages().then((massages: Massage[]) => {
-        context.setMassages(massages);
+      MassageService.createMassage(massage).then((result) => {
+        MassageService.getMassages().then((massages: Massage[]) => {
+          context.setMassages(massages);
+        });
+        history.push("/Admin");
       });
     }
-    props.handleClose();
   };
 
   return (
     <>
-      <h2>{props.massage ? "Modification" : "Nouveau soin"} :</h2>
-      <form
-        noValidate
-        onSubmit={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          handleSubmit();
-        }}
-      >
-        <TextField
-          id="name"
-          label="Nom"
-          value={massage.nom}
-          onChange={(e) => setMassage({ ...massage, nom: e.target.value })}
-          fullWidth
-          size="medium"
-        />
-        <TextField
-          id="description"
-          label="Description"
-          value={massage.description}
-          onChange={(e) =>
-            setMassage({ ...massage, description: e.target.value })
-          }
-          fullWidth
-          size="medium"
-        />
-        <TextField
-          id="resume"
-          label="Résumé"
-          value={massage.resume}
-          onChange={(e) => setMassage({ ...massage, resume: e.target.value })}
-          fullWidth
-          size="medium"
-        />
-        <TextField
-          id="duree"
-          label="Durée"
-          type="number"
-          value={massage.duree}
-          onChange={(e) =>
-            setMassage({
-              ...massage,
-              duree: (e.target.value as unknown) as number,
-            })
-          }
-          fullWidth
-          size="medium"
-        />
-        <TextField
-          id="prix"
-          label="Prix"
-          type="number"
-          value={massage.prix}
-          onChange={(e) =>
-            setMassage({
-              ...massage,
-              prix: (e.target.value as unknown) as number,
-            })
-          }
-          fullWidth
-          size="medium"
-        />
-        {/*<ImageUploader
+      <div className={classes.root}>
+        <h2>{props.massage ? "Modification" : "Nouveau massage"} :</h2>
+        <form
+          noValidate
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleSubmit();
+          }}
+        >
+          <TextField
+            id="name"
+            label="Nom"
+            value={massage.nom}
+            onChange={(e) => setMassage({ ...massage, nom: e.target.value })}
+            fullWidth
+            size="medium"
+          />
+          <br />
+          <p style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+            <b>Description</b>
+          </p>
+          <TextareaAutosize
+            rowsMin={3}
+            id="description"
+            value={massage.description}
+            onChange={(e) =>
+              setMassage({ ...massage, description: e.target.value })
+            }
+            style={{ width: "100%" }}
+          />
+          <TextField
+            id="resume"
+            label="Résumé"
+            value={massage.resume}
+            onChange={(e) => setMassage({ ...massage, resume: e.target.value })}
+            fullWidth
+            size="medium"
+          />
+          <TextField
+            id="duree"
+            label="Durée"
+            type="number"
+            value={massage.duree}
+            onChange={(e) =>
+              setMassage({
+                ...massage,
+                duree: (e.target.value as unknown) as number,
+              })
+            }
+            fullWidth
+            size="medium"
+          />
+          <TextField
+            id="prix"
+            label="Prix"
+            type="number"
+            value={massage.prix}
+            onChange={(e) =>
+              setMassage({
+                ...massage,
+                prix: (e.target.value as unknown) as number,
+              })
+            }
+            fullWidth
+            size="medium"
+          />
+          <AjoutListeString
+            datas={massage.bienFaits}
+            label="Bienfaits"
+            handleChange={(value: string[]) =>
+              setMassage({ ...massage, bienFaits: value })
+            }
+          />
+          <AjoutListeString
+            datas={massage.contreIndications}
+            label="Contre indications"
+            handleChange={(value: string[]) =>
+              setMassage({ ...massage, contreIndications: value })
+            }
+          />
+          <AjoutListeString
+            datas={massage.actions}
+            label="Actions"
+            handleChange={(value: string[]) =>
+              setMassage({ ...massage, actions: value })
+            }
+          />
+          {massage.supplement && massage.supplement.description}
+          <SuppModal
+            handleUpdate={(value: Supplement) =>
+              setMassage({ ...massage, supplement: value })
+            }
+          />
+          {/*<ImageUploader
           withIcon={true}
           buttonText="Choisir une image"
           //onChange={onDrop}
@@ -140,16 +200,17 @@ export const MassageForm = (props: MassageFormProps) => {
           maxFileSize={5242880}
           singleImage
         />*/}
-        <Button
-          type="submit"
-          variant="contained"
-          size="large"
-          fullWidth
-          className={classes.button}
-        >
-          Sauvegarder
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            fullWidth
+            className={classes.button}
+          >
+            Sauvegarder
+          </Button>
+        </form>
+      </div>
     </>
   );
 };

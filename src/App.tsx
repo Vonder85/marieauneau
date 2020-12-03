@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Massage } from "./Models/Massage";
 import MassageContext from "./Components/Context/MassageContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
@@ -22,7 +22,6 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Router>
-          <Navbar />
           <MassageContext.Provider
             value={{
               massage,
@@ -31,6 +30,8 @@ export const App = () => {
               setMassages,
             }}
           >
+            <Navbar />
+
             <Routes />
           </MassageContext.Provider>
         </Router>

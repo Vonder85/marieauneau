@@ -1,6 +1,5 @@
 import {
   AppBar,
-  Button,
   createStyles,
   Grid,
   ListItemText,
@@ -12,12 +11,18 @@ import {
   Toolbar,
   withStyles,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import * as firebase from "firebase";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 import Logo from "../../Images/logo.png";
+
+import MassageContext from "../Context/MassageContext";
+
+import { Massage } from "../../Models/Massage";
 
 const StyledMenu = withStyles({
   paper: {
@@ -76,16 +81,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Navbar = () => {
   const classes = useStyles();
   const [user, setUser] = useState<boolean>(false);
+  const context = useContext(MassageContext);
 
-  const libellesMassages: string[] = [
-    "Relaxant",
-    "Détox",
-    "Stretching",
-    "Kobi-do",
-    "Gua sha",
-    "Carte des soins",
-    "Bon cadeau",
-  ];
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   firebase.auth().onAuthStateChanged(function (User) {
     if (User) {
@@ -109,6 +108,8 @@ export const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const urlCarteMassages =
+    "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";
   return (
     <Grid container>
       <AppBar
@@ -120,45 +121,78 @@ export const Navbar = () => {
         }}
         onMouseLeave={handleClose}
       >
-        <Toolbar style={{ marginLeft: "190px" }}>
-          <Tabs>
-            <Link to="/Massages" className={classes.liens}>
-              <Tab
-                label="Les massages"
-                aria-controls="customized-menu"
-                aria-haspopup="true"
-                onMouseEnter={handleClick}
-              />
-            </Link>
-            <StyledMenu
-              id="customized-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              {libellesMassages.map((libelle: string, index: number) => (
-                <StyledMenuItem key={index}>
-                  <ListItemText secondary={libelle} />
+        <Toolbar>
+          {!smScreen ? (
+            <Tabs>
+              <Link to="/Massages" className={classes.liens}>
+                <Tab
+                  label="Les massages"
+                  aria-controls="customized-menu"
+                  aria-haspopup="true"
+                  onMouseEnter={handleClick}
+                />
+              </Link>
+              <StyledMenu
+                id="customized-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                {context.massages.map((massage: Massage) => (
+                  <Link
+                    to={`/Massages/${massage?.nom}`}
+                    className={classes.liens}
+                  >
+                    <StyledMenuItem key={massage.id} onClick={handleClose}>
+                      <ListItemText secondary={massage.nom} />
+                    </StyledMenuItem>
+                  </Link>
+                ))}
+
+                <StyledMenuItem onClick={handleClose}>
+                  <a
+                    href={urlCarteMassages}
+                    target="_blank"
+                    className={classes.liens}
+                  >
+                    <ListItemText secondary="Carte des massages" />
+                  </a>
                 </StyledMenuItem>
-              ))}
-            </StyledMenu>
-            <Link to="/APropos" className={classes.liens}>
-              <Tab label="A propos" />
-            </Link>
+
+                <Link to={`/Offrir`} className={classes.liens}>
+                  <StyledMenuItem onClick={handleClose}>
+                    <ListItemText secondary="Bon cadeau" />
+                  </StyledMenuItem>
+                </Link>
+              </StyledMenu>
+              <Link to="/APropos" className={classes.liens}>
+                <Tab label="A propos" />
+              </Link>
+              <Link to="/Offrir" className={classes.liens}>
+                <Tab label="Offrir" />
+              </Link>
+              <Link to="/">
+                <img src={Logo} alt="logo" className={classes.logo} />
+              </Link>
+
+              <Link to="/FAQ" className={classes.liens}>
+                <Tab label="FAQ" />
+              </Link>
+              <Link to="/Contact" className={classes.liens}>
+                <Tab label="Contact" />
+              </Link>
+              {user && (
+                <Link to="/Admin" className={classes.liens}>
+                  <Tab label="Admin" />
+                </Link>
+              )}
+            </Tabs>
+          ) : (
             <Link to="/">
               <img src={Logo} alt="logo" className={classes.logo} />
             </Link>
-
-            <Tab label="Contact" />
-            <Tab label="Offrir" />
-          </Tabs>
-          {user && (
-            <Button color="inherit">
-              <Link to="/Admin" className={classes.liens}>
-                Admin
-              </Link>
-            </Button>
           )}
+
           {/*<Button color="inherit">
             {user ? (
               <Link to="/" className={classes.liens} onClick={logout}>

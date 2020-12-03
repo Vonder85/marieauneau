@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     float: "right",
   },
   root: {
-    width: "80%",
+    width: "90%",
     marginRight: "auto",
     marginLeft: "auto",
     marginTop: "100px",
