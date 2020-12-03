@@ -2,9 +2,13 @@ import { Grid, makeStyles } from "@material-ui/core";
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import logo from "../../Images/homePage/fond1.png";
+//Images
 import photoMassage from "../../Images/Massages/massage.jpg";
+
+//Models
 import { Type } from "../../Models/Type";
+
+//Context
 import MassageContext from "../../Components/Context/MassageContext";
 
 const theme = { fontFamily: "BillySignature" };
