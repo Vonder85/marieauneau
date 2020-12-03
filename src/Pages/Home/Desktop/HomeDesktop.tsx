@@ -1,17 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
 import { Link } from "react-router-dom";
 
+//Images
 import fond1 from "../../../Images/homePage/fond1.png";
 import cabinetJune from "../../../Images/homePage/cabinetJune.png";
 import chezJune from "../../../Images/homePage/chezJune.jpg";
 
+//Context
 import MassageContext from "../../../Components/Context/MassageContext";
 
+//Model
 import { Massage } from "../../../Models/Massage";
 
+//Component
 import { Footer } from "../../Footer";
 
 const theme = { fontFamily: "BillySignature" };

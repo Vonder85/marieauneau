@@ -135,7 +135,7 @@ export const ContactForm = () => {
    * Vérifie si le format de l'email est bon
    */
   function verifEmail(email: string) {
-    const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const regexEmail = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g;
     if (!regexEmail.test(email)) {
       setErrorEmail(true);
     } else {

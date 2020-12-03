@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
-import { Link } from "react-router-dom";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
 
+//Images
 import cabinetJune from "../../../Images/homePage/cabinetJune.png";
 import chezJune from "../../../Images/homePage/chezJune.jpg";
 
-import MassageContext from "../../../Components/Context/MassageContext";
-
-import { Massage } from "../../../Models/Massage";
-
+//Component
 import { Footer } from "../../Footer";
 
 const theme = { fontFamily: "BillySignature" };
@@ -66,9 +61,6 @@ const useStyles = makeStyles({
 
 export const HomeMobile = () => {
   const classes = useStyles();
-  const context = useContext(MassageContext);
-
-  const { massages } = context;
 
   return (
     <div>

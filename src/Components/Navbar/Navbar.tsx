@@ -94,9 +94,9 @@ export const Navbar = () => {
     }
   });
   //const user = firebase.auth().currentUser;
-  function logout() {
+  /*function logout() {
     firebase.auth().signOut();
-  }
+  }*/
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -153,6 +153,7 @@ export const Navbar = () => {
                   <a
                     href={urlCarteMassages}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className={classes.liens}
                   >
                     <ListItemText secondary="Carte des massages" />

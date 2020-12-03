@@ -52,7 +52,12 @@ export const MassagesView = () => {
     <div className={classes.root}>
       <h1 className={classes.title}>Les différents massages</h1>
       <div className={classes.buttonMassages}>
-        <a href={urlCarteMassages} target="_blank" className={classes.liens}>
+        <a
+          href={urlCarteMassages}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes.liens}
+        >
           <Button
             variant="contained"
             color="default"

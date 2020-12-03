@@ -2,7 +2,6 @@ import {
   Button,
   createStyles,
   makeStyles,
-  TextareaAutosize,
   TextField,
   Theme,
 } from "@material-ui/core";
@@ -38,6 +37,19 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: "auto",
       marginLeft: "auto",
       marginTop: "100px",
+    },
+    form: {
+      "& label.Mui-focused": {
+        color: "#D19D8E",
+      },
+      "& .MuiInput-underline:after": {
+        borderBottomColor: "#D19D8E",
+      },
+      "& .MuiOutlinedInput-root": {
+        "&.Mui-focused fieldset": {
+          borderColor: "#D19D8E",
+        },
+      },
     },
   })
 );
@@ -107,6 +119,7 @@ export const MassageForm = (props: MassageFormProps) => {
             e.stopPropagation();
             handleSubmit();
           }}
+          className={classes.form}
         >
           <TextField
             id="name"
@@ -117,17 +130,18 @@ export const MassageForm = (props: MassageFormProps) => {
             size="medium"
           />
           <br />
-          <p style={{ color: "rgba(0, 0, 0, 0.4)" }}>
-            <b>Description</b>
-          </p>
-          <TextareaAutosize
-            rowsMin={3}
+
+          <TextField
+            label="Description"
+            multiline
+            rows={6}
             id="description"
             value={massage.description}
             onChange={(e) =>
               setMassage({ ...massage, description: e.target.value })
             }
             style={{ width: "100%" }}
+            fullWidth
           />
           <TextField
             id="resume"

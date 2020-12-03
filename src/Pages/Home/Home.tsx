@@ -22,6 +22,7 @@ export const Home = () => {
     MassageService.getMassages().then((massages: Massage[]) => {
       context.setMassages(massages);
     });
+    // eslint-disable-next-line
   }, []);
 
   return (

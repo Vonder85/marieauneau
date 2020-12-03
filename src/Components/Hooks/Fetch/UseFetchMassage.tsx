@@ -15,5 +15,6 @@ export const useFetchMassages = () => {
   useEffect(() => {
     context.setMassages([]);
     getMassages();
+    // eslint-disable-next-line
   }, []);
 };

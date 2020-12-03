@@ -1,10 +1,4 @@
-import {
-  Button,
-  makeStyles,
-  TextareaAutosize,
-  TextField,
-  Theme,
-} from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
 import { Supplement } from "../../../Models/Supplement";
@@ -22,6 +16,17 @@ const useStyles = makeStyles({
   },
   form: {
     fontFamily: theme.fontFamily,
+    "& label.Mui-focused": {
+      color: "#D19D8E",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#D19D8E",
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#D19D8E",
+      },
+    },
   },
 });
 
@@ -64,15 +69,15 @@ export const AjoutSupplement = (props: AjoutSupplementProps) => {
           handleSubmit();
         }}
       >
-        <label htmlFor="description" style={{ color: "rgba(0, 0, 0, 0.5)" }}>
-          Description
-        </label>
-        <TextareaAutosize
-          rowsMin={3}
+        <TextField
+          multiline
+          rows={5}
+          label="Description"
           id="description"
           value={supp.description}
           onChange={(e) => setSupp({ ...supp, description: e.target.value })}
           style={{ width: "100%" }}
+          fullWidth
         />
         <TextField
           id="duree"
