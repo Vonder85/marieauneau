@@ -1,8 +1,5 @@
 import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
-import MassageContext from "../../Components/Context/MassageContext";
-import MassageService from "../../Components/Services/MassageService";
-import { Massage } from "../../Models/Massage";
+import React from "react";
 import { HomeDesktop } from "./Desktop/HomeDesktop";
 import { HomeMobile } from "./Mobile/HomeMobile";
 
@@ -16,14 +13,6 @@ export const Home = () => {
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
   const classes = useStyles();
-  const context = useContext(MassageContext);
-
-  useEffect(() => {
-    MassageService.getMassages().then((massages: Massage[]) => {
-      context.setMassages(massages);
-    });
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <div className={classes.root}>

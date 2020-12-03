@@ -1,4 +1,5 @@
 import { Supplement } from "./Supplement";
+import { Type } from "./Type";
 
 export interface Massage {
   id: string;
@@ -11,7 +12,7 @@ export interface Massage {
   prix: number;
   image: string;
   bienFaits: string[];
-  actions: string[];
-  contreIndications: string[];
+  actions: Type[];
+  contreIndications: Type[];
   supplement?: Supplement;
 }

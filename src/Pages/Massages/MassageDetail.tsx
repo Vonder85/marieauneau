@@ -8,6 +8,7 @@ import { Massage } from "../../Models/Massage";
 
 import logo from "../../Images/homePage/fond1.png";
 import photoMassage from "../../Images/Massages/massage.jpg";
+import { Type } from "../../Models/Type";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -44,6 +45,8 @@ const useStyles = makeStyles({
 
 export const MassageDetail = () => {
   const classes = useStyles();
+
+  //Récupération du nom du massage dans l'url
   const nomMassage: any = useParams();
 
   const [massage, setMassage] = useState<Massage>({
@@ -99,8 +102,8 @@ export const MassageDetail = () => {
           <div>
             <h2 style={{ fontFamily: theme.fontFamily }}>Les actions</h2>
             <ul className={classes.liste}>
-              {massage.actions?.map((action: string, index: number) => (
-                <li key={index}>{action}</li>
+              {massage.actions?.map((action: Type, index: number) => (
+                <li key={index}>{action.texte}</li>
               ))}
             </ul>
           </div>
@@ -108,8 +111,8 @@ export const MassageDetail = () => {
             <h2>Les contre-indications</h2>
             <ul className={classes.liste}>
               {massage.contreIndications?.map(
-                (contreIndication: string, index: number) => (
-                  <li key={index}>{contreIndication}</li>
+                (contreIndication: Type, index: number) => (
+                  <li key={index}>{contreIndication.texte}</li>
                 )
               )}
             </ul>

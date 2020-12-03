@@ -6,8 +6,9 @@ import MassageService from "../../Services/MassageService";
 export const useFetchMassages = () => {
   const context = useContext(MassageContext);
 
-  const getMassages = () => {
-    MassageService.getMassages().then((massages: Massage[]) => {
+  const getMassages = async () => {
+    await MassageService.getMassages().then((massages: Massage[]) => {
+      console.log(massages);
       context.setMassages(massages);
     });
   };

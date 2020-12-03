@@ -29,7 +29,7 @@ class MassageService {
    */
   async getMassages() {
     const initMassages: Massage[] = [];
-    this.db.ref("/massages").on("value", function (snapshot) {
+    await this.db.ref("/massages").on("value", function (snapshot) {
       snapshot.forEach(function (_massage) {
         initMassages.push(_massage.val());
       });

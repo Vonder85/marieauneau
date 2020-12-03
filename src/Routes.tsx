@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { Home } from "./Pages/Home/Home";
 import { LoginPage } from "./Pages/LoginPage/LoginPage";
 import HomeAdmin from "./Pages/Admin/HomeAdmin/HomeAdmin";
@@ -10,11 +10,13 @@ import { MassageDetail } from "./Pages/Massages/MassageDetail";
 import { MassageForm } from "./Pages/Admin/HomeAdmin/Soins/NewMassage/MassageForm";
 import { FAQ } from "./Pages/FAQ";
 import { Contact } from "./Pages/Contact";
-
+import { useFetchMassages } from "./Components/Hooks/Fetch/UseFetchMassage";
 function Routes() {
+  useFetchMassages();
+
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/Home">
         <Home />
       </Route>
 
@@ -43,9 +45,13 @@ function Routes() {
       <Route exact path="/Admin">
         <HomeAdmin />
       </Route>
-      <Route path="/Admin/Edition">
+      <Route exact path="/Admin/Edition">
         <MassageForm />
       </Route>
+      <Route path="/Admin/Edition/:nom">
+        <MassageForm />
+      </Route>
+      <Redirect to="/Home" />
     </Switch>
   );
 }

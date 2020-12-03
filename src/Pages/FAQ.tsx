@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -16,6 +17,11 @@ const useStyles = makeStyles({
   question: {
     color: "rgb(209, 157, 142)",
   },
+  liens: {
+    textDecoration: "none",
+    fontWeight: "bold",
+    color: "black",
+  },
 });
 
 export const FAQ = () => {
@@ -29,10 +35,12 @@ export const FAQ = () => {
       <br />
       <h3 className={classes.question}>Comment prendre rendez-vous ?</h3>
       Il vous suffit de me contacter par email à <b>auneau.m@gmail.com</b> ou
-      via mon formulaire de contact ou bien encore par téléphone au{" "}
-      <b>0629382455</b>
-      en me laissant vos coordonnées, en m’indiquant le soin de votre choix et
-      vos disponibilités.
+      via mon{" "}
+      <Link to="/Contact" className={classes.liens}>
+        formulaire de contact
+      </Link>{" "}
+      ou bien encore par téléphone au <b>0629382455</b> en me laissant vos
+      coordonnées, en m’indiquant le soin de votre choix et vos disponibilités.
       <br />
       <h2 className={classes.title}>Les prestations Marie Auneau Facialiste</h2>
       <h3 className={classes.question}>Quel soin me conseillez-vous ?</h3>

@@ -70,8 +70,7 @@ const useStyles = makeStyles({
 export const HomeDesktop = () => {
   const classes = useStyles();
   const context = useContext(MassageContext);
-
-  const { massages } = context;
+  console.log(context);
 
   return (
     <div className={classes.root}>
@@ -119,9 +118,9 @@ export const HomeDesktop = () => {
             et repulpé.
             <br />
             <br />
-            Je vous propose {massages.length} massages :
+            Je vous propose {context.massages.length} massages :
             <ul>
-              {massages?.map((massage: Massage) => (
+              {context.massages.map((massage: Massage) => (
                 <Link
                   to={`/Massages/${massage?.nom}`}
                   className={classes.liens}

@@ -1,65 +1,71 @@
-import {
-  Button,
-  createStyles,
-  makeStyles,
-  TextField,
-  Theme,
-} from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
+//Models
 import { Massage } from "../../../../../Models/Massage";
+import { Supplement } from "../../../../../Models/Supplement";
+import { Type } from "../../../../../Models/Type";
 
+//Context
 import MassageContext from "../../../../../Components/Context/MassageContext";
 
+//Service
 import MassageService from "../../../../../Components/Services/MassageService";
 
+//Components
 import { AjoutListeString } from "../../../../../Components/Table/EditableTable/AjoutListeString";
 import SuppModal from "../../../../../Components/Modal/SuppModal";
-import { Supplement } from "../../../../../Models/Supplement";
+import { EditableTableActionsContreIndic } from "../../../../../Components/Table/EditableTable/EditableTableActionsContreIndic";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      marginLeft: "5px",
-      backgroundColor: "#D19D8E",
-      color: "white",
-      marginTop: "10px",
-      "&:hover": {
-        backgroundColor: "rgba(209, 157, 142, 0.6)",
+const useStyles = makeStyles({
+  button: {
+    marginLeft: "5px",
+    backgroundColor: "#D19D8E",
+    color: "white",
+    marginTop: "10px",
+    "&:hover": {
+      backgroundColor: "rgba(209, 157, 142, 0.6)",
+    },
+  },
+  bienfaits: {
+    display: "inline-flex",
+  },
+  root: {
+    width: "70%",
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginTop: "100px",
+  },
+  form: {
+    "& label.Mui-focused": {
+      color: "#D19D8E",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#D19D8E",
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#D19D8E",
       },
     },
-    bienfaits: {
-      display: "inline-flex",
-    },
-    root: {
-      width: "70%",
-      marginRight: "auto",
-      marginLeft: "auto",
-      marginTop: "100px",
-    },
-    form: {
-      "& label.Mui-focused": {
-        color: "#D19D8E",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "#D19D8E",
-      },
-      "& .MuiOutlinedInput-root": {
-        "&.Mui-focused fieldset": {
-          borderColor: "#D19D8E",
-        },
-      },
-    },
-  })
-);
+  },
+});
 
-interface MassageFormProps {
-  massage?: Massage;
-}
-export const MassageForm = (props: MassageFormProps) => {
+export const MassageForm = () => {
   const classes = useStyles();
+
+  //Récupération du nom du massage dans l'url
+  const nomMassage: any = useParams();
+
+  /**
+   * Récupération du context
+   */
   const context = useContext(MassageContext);
+
+  /**
+   * Permet de faire la redirection
+   */
   const history = useHistory();
 
   /**
@@ -80,18 +86,21 @@ export const MassageForm = (props: MassageFormProps) => {
     contreIndications: [],
     supplement: { description: "", prix: 0, duree: 0 },
   });
+  useEffect(() => {
+    if (nomMassage.nom !== undefined && nomMassage.nom !== null) {
+      MassageService.getMassageByName(nomMassage.nom).then(
+        (result: Massage[]) => {
+          setMassage(result[0]);
+        }
+      );
+    }
+  }, [nomMassage]);
 
   /**
-   * Attribue(s'il y en un) le massage passé en props
+   * Soumission / Ajout d'un massage
    */
-  useEffect(() => {
-    if (props.massage) {
-      setMassage(props.massage);
-    }
-  }, [props.massage]);
-
   const handleSubmit = () => {
-    if (props.massage !== undefined) {
+    if (nomMassage.nom !== undefined && nomMassage.nom !== null) {
       MassageService.updateMassage(massage).then((result) => {
         MassageService.getMassages().then((massages: Massage[]) => {
           context.setMassages(massages);
@@ -108,10 +117,25 @@ export const MassageForm = (props: MassageFormProps) => {
     }
   };
 
+  /**
+   * Permet de revenir à la page précédente
+   */
+  function handleBack() {
+    history.push("/Admin");
+  }
+
   return (
     <>
       <div className={classes.root}>
-        <h2>{props.massage ? "Modification" : "Nouveau massage"} :</h2>
+        <Button className={classes.button} onClick={handleBack}>
+          Retour
+        </Button>
+        <h2>
+          {nomMassage.nom !== undefined && nomMassage.nom !== null
+            ? "Modification"
+            : "Nouveau massage"}{" "}
+          :
+        </h2>
         <form
           noValidate
           onSubmit={(e) => {
@@ -129,8 +153,24 @@ export const MassageForm = (props: MassageFormProps) => {
             fullWidth
             size="medium"
           />
-          <br />
-
+          <TextField
+            id="adjectif"
+            label="Adjectif"
+            value={massage.adjectif}
+            onChange={(e) =>
+              setMassage({ ...massage, adjectif: e.target.value })
+            }
+            fullWidth
+            size="medium"
+          />
+          <TextField
+            id="zone"
+            label="Zone"
+            value={massage.zone}
+            onChange={(e) => setMassage({ ...massage, zone: e.target.value })}
+            fullWidth
+            size="medium"
+          />
           <TextField
             label="Description"
             multiline
@@ -186,20 +226,21 @@ export const MassageForm = (props: MassageFormProps) => {
               setMassage({ ...massage, bienFaits: value })
             }
           />
-          <AjoutListeString
+          <EditableTableActionsContreIndic
             datas={massage.contreIndications}
             label="Contre indications"
-            handleChange={(value: string[]) =>
+            handleChange={(value: Type[]) =>
               setMassage({ ...massage, contreIndications: value })
             }
           />
-          <AjoutListeString
+          <EditableTableActionsContreIndic
             datas={massage.actions}
             label="Actions"
-            handleChange={(value: string[]) =>
+            handleChange={(value: Type[]) =>
               setMassage({ ...massage, actions: value })
             }
           />
+
           {massage.supplement && massage.supplement.description}
           <SuppModal
             handleUpdate={(value: Supplement) =>

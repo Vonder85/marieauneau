@@ -11,9 +11,8 @@ import {
   Toolbar,
   withStyles,
 } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import * as firebase from "firebase";
 import Menu, { MenuProps } from "@material-ui/core/Menu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
@@ -80,19 +79,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Navbar = () => {
   const classes = useStyles();
-  const [user, setUser] = useState<boolean>(false);
   const context = useContext(MassageContext);
 
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
-  firebase.auth().onAuthStateChanged(function (User) {
-    if (User) {
-      setUser(true); // User is signed in.
-    } else {
-      setUser(false);
-    }
-  });
   //const user = firebase.auth().currentUser;
   /*function logout() {
     firebase.auth().signOut();
@@ -172,7 +163,7 @@ export const Navbar = () => {
               <Link to="/Offrir" className={classes.liens}>
                 <Tab label="Offrir" />
               </Link>
-              <Link to="/">
+              <Link to="/Home">
                 <img src={Logo} alt="logo" className={classes.logo} />
               </Link>
 
@@ -182,11 +173,10 @@ export const Navbar = () => {
               <Link to="/Contact" className={classes.liens}>
                 <Tab label="Contact" />
               </Link>
-              {user && (
-                <Link to="/Admin" className={classes.liens}>
-                  <Tab label="Admin" />
-                </Link>
-              )}
+
+              <Link to="/Admin" className={classes.liens}>
+                <Tab label="Admin" />
+              </Link>
             </Tabs>
           ) : (
             <Link to="/">

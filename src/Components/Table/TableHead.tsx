@@ -8,7 +8,7 @@ export const TableHeadAdmin = (props: TableHeadProps) => {
   const { libelles } = props;
 
   return (
-    <TableHead>
+    <TableHead style={{ width: "100%" }}>
       <TableRow>
         {libelles.map((libelle: string, index: number) => (
           <TableCell key={index}>

@@ -19,6 +19,7 @@ import MassageContext from "../Context/MassageContext";
 
 import MassageService from "../Services/MassageService";
 import { Link } from "react-router-dom";
+import { Type } from "../../Models/Type";
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -173,7 +174,7 @@ export const Tableau = () => {
                 <StyledTableCell>
                   <ul>
                     {massage.contreIndications?.map(
-                      (contreIndication: string, index: number) => (
+                      (contreIndication: Type, index: number) => (
                         <li
                           key={index}
                           style={{
@@ -183,7 +184,7 @@ export const Tableau = () => {
                             width: "100%",
                           }}
                         >
-                          {contreIndication}
+                          {contreIndication.texte}
                         </li>
                       )
                     )}
@@ -191,7 +192,7 @@ export const Tableau = () => {
                 </StyledTableCell>
                 <StyledTableCell>
                   <ul>
-                    {massage.actions?.map((action: string, index: number) => (
+                    {massage.actions?.map((action: Type, index: number) => (
                       <li
                         key={index}
                         style={{
@@ -201,7 +202,7 @@ export const Tableau = () => {
                           textOverflow: "ellipsis",
                         }}
                       >
-                        {action}
+                        {action.texte}
                       </li>
                     ))}
                   </ul>
@@ -212,14 +213,19 @@ export const Tableau = () => {
                     : "Non"}
                 </StyledTableCell>
                 <StyledTableCell>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    size="small"
-                    className={classes.button}
+                  <Link
+                    to={`/Admin/Edition/${massage.nom}`}
+                    className={classes.liens}
                   >
-                    Modifier
-                  </Button>
+                    <Button
+                      variant="contained"
+                      color="default"
+                      size="small"
+                      className={classes.button}
+                    >
+                      Modifier
+                    </Button>
+                  </Link>
                   <Button
                     variant="contained"
                     color="default"
