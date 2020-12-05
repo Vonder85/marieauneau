@@ -122,7 +122,11 @@ export const HomeMobile = () => {
           </Grid>
         </Grid>
       </ScrollAnimation>
-      <ScrollAnimation animateIn="fadeIn" delay={100}>
+      <ScrollAnimation
+        animateIn="fadeIn"
+        delay={100}
+        style={{ marginBottom: "10px" }}
+      >
         <Carousel />
       </ScrollAnimation>
       <Footer />

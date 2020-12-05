@@ -104,7 +104,6 @@ export const Navbar = () => {
   return (
     <Grid container>
       <AppBar
-        position="static"
         style={{
           background: "#D19D8E",
           alignItems: "center",
