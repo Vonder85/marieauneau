@@ -17,6 +17,7 @@ import { Massage } from "../../../Models/Massage";
 
 //Component
 import { Footer } from "../../Footer";
+import { Carousel } from "../../../Components/Carousel/Carousel";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -70,6 +71,7 @@ const useStyles = makeStyles({
 export const HomeDesktop = () => {
   const classes = useStyles();
   const context = useContext(MassageContext);
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -162,6 +164,9 @@ export const HomeDesktop = () => {
             <img src={chezJune} alt="chezJune" className={classes.image} />
           </Grid>
         </Grid>
+      </ScrollAnimation>
+      <ScrollAnimation animateIn="fadeIn" delay={100}>
+        <Carousel />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <Footer />

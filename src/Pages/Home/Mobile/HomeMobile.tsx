@@ -9,6 +9,7 @@ import chezJune from "../../../Images/homePage/chezJune.jpg";
 
 //Component
 import { Footer } from "../../Footer";
+import { Carousel } from "../../../Components/Carousel/Carousel";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -120,6 +121,9 @@ export const HomeMobile = () => {
             <img src={chezJune} alt="chezJune" className={classes.image} />
           </Grid>
         </Grid>
+      </ScrollAnimation>
+      <ScrollAnimation animateIn="fadeIn" delay={100}>
+        <Carousel />
       </ScrollAnimation>
       <Footer />
     </div>
