@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import MobileStepper from "@material-ui/core/MobileStepper";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-
-//Icons
-import rightArrow from "../../Images/Icons/rightArrow.svg";
-import leftArrow from "../../Images/Icons/leftArrow.svg";
 
 //Images
 import materiel from "../../Images/Carousel/materiel.jpg";
