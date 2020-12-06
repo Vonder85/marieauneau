@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     bottom: 0,
     backgroundColor: "#D19D8E",
     height: "50px",
+    width: "100%",
   },
   liens: {
     textDecoration: "none",

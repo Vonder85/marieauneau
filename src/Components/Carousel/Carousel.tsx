@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     height: 400,
     display: "block",
     overflow: "hidden",
-    width: "80%",
+    maxWidth: "100%",
     marginRight: "auto",
     marginLeft: "auto",
   },
