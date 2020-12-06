@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   liste: {
     display: "inline-flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   liens: {
     textDecoration: "none",
