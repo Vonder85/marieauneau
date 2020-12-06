@@ -19,13 +19,13 @@ const useStyles = makeStyles({
     marginRight: "auto",
     marginLeft: "auto",
     textAlignLast: "start",
+    textIndent: 0,
   },
   liste: {
     display: "inline-flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
     marginLeft: "-10px",
-    listStylePosition: "inside",
   },
   liens: {
     textDecoration: "none",
@@ -84,7 +84,9 @@ export const MassagesView = () => {
             <MassageCard massage={massage} />
           </li>
         ))}
-        <MassageCard />
+        <li className={classes.card}>
+          <MassageCard />
+        </li>
       </ul>
     </div>
   );

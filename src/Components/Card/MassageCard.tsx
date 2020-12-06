@@ -42,11 +42,10 @@ export default function MassageCard(props: MassageCardProps) {
             <CardMedia
               className={classes.media}
               image={massage ? massagePicture : bonCadeau}
-              title="Contemplative Reptile"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {massage ? massage.nom : "BON CADEAU"}
+                {massage ? massage.nom : "Bon cadeau"}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 {massage ? massage.resume : "Le bon cadeau qui plaît !"}
