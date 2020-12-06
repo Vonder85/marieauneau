@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "space-between",
     marginLeft: "-10px",
+    listStylePosition: "inside",
   },
   liens: {
     textDecoration: "none",
