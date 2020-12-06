@@ -31,6 +31,7 @@ const useStyles = makeStyles({
     marginTop: "100px",
     textAlign: "center",
     fontFamily: theme.fontFamily,
+    overflowX: "hidden",
   },
   liste: {
     listStyleType: "none",
