@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
@@ -10,6 +10,7 @@ import chezJune from "../../../Images/homePage/chezJune.jpg";
 //Component
 import { Footer } from "../../Footer";
 import { Carousel } from "../../../Components/Carousel/Carousel";
+import ImageService from "../../../Components/Services/ImageService";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -62,6 +63,14 @@ const useStyles = makeStyles({
 
 export const HomeMobile = () => {
   const classes = useStyles();
+
+  const [imagesCaroussel, setImagesCaroussel] = useState<string[]>([]);
+
+  useEffect(() => {
+    ImageService.getImages("Carousel").then((result) =>
+      setImagesCaroussel(result)
+    );
+  }, []);
 
   return (
     <div>
@@ -127,7 +136,7 @@ export const HomeMobile = () => {
         delay={100}
         style={{ marginBottom: "10px" }}
       >
-        <Carousel />
+        <Carousel images={imagesCaroussel} />
       </ScrollAnimation>
       <Footer />
     </div>

@@ -4,8 +4,14 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Massage } from "./Models/Massage";
 import MassageContext from "./Components/Context/MassageContext";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import {
+  createMuiTheme,
+  ThemeProvider,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import Routes from "./Routes";
+import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
 
 const theme = createMuiTheme({
   typography: {
@@ -15,6 +21,8 @@ const theme = createMuiTheme({
 
 export const App = () => {
   const [massages, setMassages] = useState<Massage[]>([]);
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,6 +37,7 @@ export const App = () => {
             <Navbar />
 
             <Routes />
+            {smScreen && <AppbarMobile />}
           </MassageContext.Provider>
         </Router>
       </div>

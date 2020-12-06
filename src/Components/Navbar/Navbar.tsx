@@ -9,6 +9,7 @@ import {
   Tabs,
   Theme,
   Toolbar,
+  Typography,
   withStyles,
 } from "@material-ui/core";
 import React, { useContext } from "react";
@@ -17,10 +18,13 @@ import Menu, { MenuProps } from "@material-ui/core/Menu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
+//Images / icons
 import Logo from "../../Images/logo.png";
 
+//context
 import MassageContext from "../Context/MassageContext";
 
+//models
 import { Massage } from "../../Models/Massage";
 
 const StyledMenu = withStyles({
@@ -73,6 +77,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     logo: {
       width: "80px",
+    },
+    menuBurger: {
+      width: "50px",
     },
   })
 );
@@ -178,9 +185,13 @@ export const Navbar = () => {
               </Link>
             </Tabs>
           ) : (
-            <Link to="/">
-              <img src={Logo} alt="logo" className={classes.logo} />
-            </Link>
+            <>
+              <Typography>
+                <Link to="/">
+                  <img src={Logo} alt="logo" className={classes.logo} />
+                </Link>
+              </Typography>
+            </>
           )}
 
           {/*<Button color="inherit">

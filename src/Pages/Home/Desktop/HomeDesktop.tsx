@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
@@ -18,6 +18,7 @@ import { Massage } from "../../../Models/Massage";
 //Component
 import { Footer } from "../../Footer";
 import { Carousel } from "../../../Components/Carousel/Carousel";
+import ImageService from "../../../Components/Services/ImageService";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -71,6 +72,14 @@ const useStyles = makeStyles({
 export const HomeDesktop = () => {
   const classes = useStyles();
   const context = useContext(MassageContext);
+
+  const [imagesCaroussel, setImagesCaroussel] = useState<string[]>([]);
+
+  useEffect(() => {
+    ImageService.getImages("Carousel").then((result) =>
+      setImagesCaroussel(result)
+    );
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -166,7 +175,7 @@ export const HomeDesktop = () => {
         </Grid>
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <Carousel />
+        <Carousel images={imagesCaroussel} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <Footer />

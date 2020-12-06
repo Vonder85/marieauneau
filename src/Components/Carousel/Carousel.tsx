@@ -4,11 +4,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
-//Images
-import materiel from "../../Images/Carousel/materiel.jpg";
-import cabinetJune from "../../Images/Carousel/cabinetJune.png";
-import chezJune from "../../Images/Carousel/chezJune.jpg";
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles((theme) => ({
@@ -41,14 +36,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface CarouselProps {}
+interface CarouselProps {
+  //images à faire défiler dans le carousel
+  images: string[];
+}
 
 export const Carousel = (props: CarouselProps) => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const imagesCarousel: string[] = [materiel, chezJune, cabinetJune];
+  //Images à faire défiler dans le carousel
+  const imagesCarousel = props.images;
 
   const handleStepChange = (step: number) => {
     setActiveStep(step);
