@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const theme = { fontFamily: "BillySignature" };
@@ -26,6 +26,11 @@ const useStyles = makeStyles({
 
 export const FAQ = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>Prendre rendez-vous</h2>

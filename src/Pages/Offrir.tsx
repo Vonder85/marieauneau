@@ -1,5 +1,5 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 
 import bonCadeau from "../Images/Massages/bonCadeau.png";
 
@@ -34,6 +34,10 @@ const useStyles = makeStyles({
 });
 export const Offrir = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={classes.root}>

@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { Tableau } from "../../../../../Components/Table/Tableau";
 
 const useStyles = makeStyles({
@@ -16,6 +16,10 @@ const useStyles = makeStyles({
 
 export const ListeSoins = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <div className={classes.root}>

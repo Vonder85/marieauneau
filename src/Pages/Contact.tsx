@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { ContactForm } from "../Components/Forms/ContactForm/ContactForm";
 
 const theme = { fontFamily: "BillySignature" };
@@ -19,6 +19,10 @@ const useStyles = makeStyles({
 });
 export const Contact = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={classes.root}>

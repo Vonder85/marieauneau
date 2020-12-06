@@ -1,5 +1,5 @@
 import { Button, makeStyles } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MassageContext from "../../Components/Context/MassageContext";
 import { Massage } from "../../Models/Massage";
 import MassageCard from "../../Components/Card/MassageCard";
@@ -48,6 +48,10 @@ export const MassagesView = () => {
   const classes = useStyles();
   const context = useContext(MassageContext);
   const { massages } = context;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const urlCarteMassages =
     "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";

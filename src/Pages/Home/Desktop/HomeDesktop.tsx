@@ -79,6 +79,7 @@ export const HomeDesktop = () => {
     ImageService.getImages("Carousel").then((result) =>
       setImagesCaroussel(result)
     );
+    window.scrollTo(0, 0);
   }, []);
 
   return (

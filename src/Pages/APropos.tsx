@@ -1,5 +1,5 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import MassageContext from "../Components/Context/MassageContext";
@@ -43,6 +43,10 @@ export const APropos = () => {
   const context = useContext(MassageContext);
 
   const { massages } = context;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={classes.root}>
       <Grid container>

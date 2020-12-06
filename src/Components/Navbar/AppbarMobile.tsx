@@ -6,9 +6,11 @@ const useStyles = makeStyles({
   appBar: {
     bottom: 0,
     backgroundColor: "white",
-    height: "50px",
     width: "100%",
-    boxShadow: "0px -3px #D19D8E",
+    webkitBoxShadow: "0px -3px 12px 0px rgba(0,0,0,0.33)",
+    mozBoxShadow: "0px -3px 12px 0px rgba(0,0,0,0.33)",
+    boxShadow: "0px -1px 12px 0px rgba(0,0,0,0.33)",
+    height: "60px",
   },
   liens: {
     textDecoration: "none",
@@ -23,7 +25,13 @@ export const AppbarMobile = () => {
     <>
       <CssBaseline />
       <AppBar position="sticky" color="primary" className={classes.appBar}>
-        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            minHeight: "60px",
+          }}
+        >
           <Link to="/Massages" className={classes.liens}>
             Massages
           </Link>

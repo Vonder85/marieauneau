@@ -19,6 +19,7 @@ function Routes() {
     MassageService.getMassages().then((result) => {
       context.setMassages(result);
     });
+    window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);
 

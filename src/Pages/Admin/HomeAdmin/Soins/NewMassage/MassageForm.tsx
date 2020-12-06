@@ -95,6 +95,7 @@ export const MassageForm = () => {
         }
       );
     }
+    window.scrollTo(0, 0);
   }, [nomMassage]);
 
   /**
