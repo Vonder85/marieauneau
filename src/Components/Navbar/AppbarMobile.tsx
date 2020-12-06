@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   appBar: {
     bottom: 0,
-    backgroundColor: "#D19D8E",
+    backgroundColor: "white",
     height: "50px",
     width: "100%",
+    boxShadow: "0px -3px #D19D8E",
   },
   liens: {
     textDecoration: "none",
-    color: "rgba(255, 255, 255, 0.8)",
+    color: "#D19D8E",
     fontSize: "20px",
   },
 });
