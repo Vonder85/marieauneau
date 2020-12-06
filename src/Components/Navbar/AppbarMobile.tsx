@@ -18,6 +18,7 @@ const useStyles = makeStyles({
   liens: {
     textDecoration: "none",
     color: "rgba(255, 255, 255, 0.8)",
+    fontSize: "20px",
   },
 });
 
@@ -27,26 +28,22 @@ export const AppbarMobile = () => {
     <>
       <CssBaseline />
       <AppBar position="sticky" color="primary" className={classes.appBar}>
-        <Toolbar style={{ justifyContent: "center" }}>
+        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Link to="/Massages" className={classes.liens}>
-            <Tab
-              label="Massages"
-              aria-controls="customized-menu"
-              aria-haspopup="true"
-            />
+            Massages
           </Link>
           <Link to="/APropos" className={classes.liens}>
-            <Tab label="A propos" />
+            A propos{" "}
           </Link>
           <Link to="/Offrir" className={classes.liens}>
-            <Tab label="Offrir" />
+            Offrir{" "}
           </Link>
 
           <Link to="/FAQ" className={classes.liens}>
-            <Tab label="FAQ" />
+            FAQ{" "}
           </Link>
           <Link to="/Contact" className={classes.liens}>
-            <Tab label="Contact" />
+            Contact{" "}
           </Link>
         </Toolbar>
       </AppBar>
