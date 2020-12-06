@@ -16,6 +16,9 @@ const useStyles = makeStyles({
   },
   card: {
     listStyleType: "none",
+    marginRight: "auto",
+    marginLeft: "auto",
+    textAlignLast: "start",
   },
   liste: {
     display: "inline-flex",
