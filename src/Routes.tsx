@@ -24,7 +24,7 @@ function Routes() {
 
   return (
     <Switch>
-      <Route exact path="/Home">
+      <Route exact path="/">
         <Home />
       </Route>
 
@@ -59,7 +59,7 @@ function Routes() {
       <Route path="/Admin/Edition/:nom">
         <MassageForm />
       </Route>
-      <Redirect to="/Home" />
+      <Redirect to="/" />
     </Switch>
   );
 }

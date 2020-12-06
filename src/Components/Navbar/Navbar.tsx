@@ -169,7 +169,7 @@ export const Navbar = () => {
               <Link to="/Offrir" className={classes.liens}>
                 <Tab label="Offrir" />
               </Link>
-              <Link to="/Home">
+              <Link to="/">
                 <img src={Logo} alt="logo" className={classes.logo} />
               </Link>
 
