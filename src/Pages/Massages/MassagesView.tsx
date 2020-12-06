@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     display: "inline-flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
+    marginLeft: "-10px",
   },
   liens: {
     textDecoration: "none",
