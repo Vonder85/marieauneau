@@ -1,15 +1,15 @@
 import { Grid, makeStyles } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-//Images
-import photoMassage from "../../Images/Massages/massage.jpg";
 
 //Models
 import { Type } from "../../Models/Type";
 
 //Context
 import MassageContext from "../../Components/Context/MassageContext";
+
+//Service
+import ImageService from "../../Components/Services/ImageService";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -66,13 +66,23 @@ export const MassageDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (massage) {
+      getUrl(massage.image);
+    }
+  }, [massage]);
+
+  const [urlImage, setUrlImage] = useState<string>("");
   if (!massage) return null;
+  function getUrl(nom: string) {
+    ImageService.getDownloadUrlImage("Massages", nom).then((res) => {
+      setUrlImage(res);
+    });
+  }
   return (
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12} sm={12} md={6} lg={6}>
-          <img src={photoMassage} alt="photoMassage" className={classes.img} />
+          <img src={urlImage} alt="photoMassage" className={classes.img} />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={5}>
           <h1>{massage?.nom}</h1>

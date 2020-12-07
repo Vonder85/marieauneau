@@ -21,6 +21,7 @@ const theme = createMuiTheme({
 
 export const App = () => {
   const [massages, setMassages] = useState<Massage[]>([]);
+  const [imagesCarousel, setImagesCarousel] = useState<string[]>([]);
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
@@ -32,6 +33,8 @@ export const App = () => {
             value={{
               massages,
               setMassages,
+              imagesCarousel,
+              setImagesCarousel,
             }}
           >
             <Navbar />

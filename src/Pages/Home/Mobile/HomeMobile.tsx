@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
@@ -10,7 +10,9 @@ import chezJune from "../../../Images/homePage/chezJune.jpg";
 //Component
 import { Footer } from "../../Footer";
 import { Carousel } from "../../../Components/Carousel/Carousel";
-import ImageService from "../../../Components/Services/ImageService";
+
+//Context
+import MassageContext from "../../../Components/Context/MassageContext";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -63,13 +65,9 @@ const useStyles = makeStyles({
 
 export const HomeMobile = () => {
   const classes = useStyles();
-
-  const [imagesCaroussel, setImagesCaroussel] = useState<string[]>([]);
+  const context = useContext(MassageContext);
 
   useEffect(() => {
-    ImageService.getImages("Carousel").then((result) =>
-      setImagesCaroussel(result)
-    );
     window.scrollTo(0, 0);
   }, []);
 
@@ -137,7 +135,7 @@ export const HomeMobile = () => {
         delay={100}
         style={{ marginBottom: "10px" }}
       >
-        <Carousel images={imagesCaroussel} />
+        <Carousel images={context.imagesCarousel} />
       </ScrollAnimation>
       <Footer />
     </div>

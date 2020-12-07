@@ -12,6 +12,7 @@ import { FAQ } from "./Pages/FAQ";
 import { Contact } from "./Pages/Contact";
 import MassageService from "./Components/Services/MassageService";
 import MassageContext from "./Components/Context/MassageContext";
+import ImageService from "./Components/Services/ImageService";
 function Routes() {
   const context = useContext(MassageContext);
 
@@ -19,6 +20,9 @@ function Routes() {
     MassageService.getMassages().then((result) => {
       context.setMassages(result);
     });
+    ImageService.getImages("Carousel").then((result) =>
+      context.setImagesCarousel(result)
+    );
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);

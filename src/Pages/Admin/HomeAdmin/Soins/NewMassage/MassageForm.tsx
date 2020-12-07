@@ -18,6 +18,9 @@ import { AjoutListeString } from "../../../../../Components/Table/EditableTable/
 import SuppModal from "../../../../../Components/Modal/SuppModal";
 import { EditableTableActionsContreIndic } from "../../../../../Components/Table/EditableTable/EditableTableActionsContreIndic";
 
+//Service
+import ImageService from "../../../../../Components/Services/ImageService";
+
 const useStyles = makeStyles({
   button: {
     marginLeft: "5px",
@@ -90,7 +93,6 @@ export const MassageForm = () => {
     if (nomMassage.nom !== undefined && nomMassage.nom !== null) {
       MassageService.getMassageByName(nomMassage.nom).then(
         (result: Massage[]) => {
-          console.log(result);
           setMassage(result[0]);
         }
       );
@@ -125,6 +127,18 @@ export const MassageForm = () => {
   function handleBack() {
     history.push("/Admin");
   }
+
+  /**
+   * Ajoute l'image du massage
+   */
+  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      const file = e.target.files[0];
+      ImageService.addImageMassage("Massages", file).then((res) => {
+        setMassage({ ...massage, image: file.name });
+      });
+    }
+  };
 
   return (
     <>
@@ -249,14 +263,7 @@ export const MassageForm = () => {
               setMassage({ ...massage, supplement: value })
             }
           />
-          {/*<ImageUploader
-          withIcon={true}
-          buttonText="Choisir une image"
-          //onChange={onDrop}
-          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-          maxFileSize={5242880}
-          singleImage
-        />*/}
+          <input type="file" onChange={(e) => uploadFile(e)} />
           <Button
             type="submit"
             variant="contained"
