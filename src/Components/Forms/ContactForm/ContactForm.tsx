@@ -59,6 +59,7 @@ export const ContactForm = () => {
     email: "",
     sujet: "",
     message: "",
+    date: "",
   });
 
   /**
@@ -91,16 +92,19 @@ export const ContactForm = () => {
    * Affichage de l'Alert si envoi échoue
    */
   const [openError, setOpenError] = React.useState(false);
-
   /**
    * Soumet le formulaire et envoie l'email
    */
   function handleSubmit(e: any) {
     e.preventDefault();
     e.stopPropagation();
+
+    console.log(message);
     emailjs.sendForm(serviceId, templateId, e.target, userId).then(
       (result) => {
         setOpenSuccess(true);
+
+        MessageService.createMessage(message);
         setMessage({
           id: "",
           nom: "",
@@ -108,8 +112,8 @@ export const ContactForm = () => {
           email: "",
           sujet: "",
           message: "",
+          date: "",
         });
-        MessageService.createMessage(message);
       },
       (error) => {
         setOpenError(true);
@@ -135,7 +139,7 @@ export const ContactForm = () => {
    * Vérifie si le format de l'email est bon
    */
   function verifEmail(email: string) {
-    const regexEmail = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g;
+    const regexEmail = /^[\w-.]+@([\w-]+.)+([a-zA-Z]{2,4})$/g;
     if (!regexEmail.test(email)) {
       setErrorEmail(true);
     } else {
@@ -185,7 +189,13 @@ export const ContactForm = () => {
           fullWidth={smScreen}
           className={classes.input}
           value={message.prenom}
-          onChange={(e) => setMessage({ ...message, prenom: e.target.value })}
+          onChange={(e) =>
+            setMessage({
+              ...message,
+              prenom: e.target.value,
+              date: new Date().toString(),
+            })
+          }
           required
         />
       </div>

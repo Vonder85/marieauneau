@@ -27,9 +27,31 @@ class MessageService {
     return initMessages;
   }
 
+  /**
+   * Fonction qui supprime un message
+   * @param id id du message à supprimer
+   */
   async deleteMessage(id: string) {
     this.db.ref("/messages/" + id).remove();
     this.getMessages();
+  }
+
+  /**
+   * Fonction qui récupère les messages grâce à l'id
+   */
+  async getMessagesById(id: string) {
+    return this.db
+      .ref("messages")
+      .orderByChild("id")
+      .equalTo(id)
+      .once("value")
+      .then((data) => {
+        const array: Message[] = [];
+        data.forEach(function (_message) {
+          array.push(_message.val());
+        });
+        return array;
+      });
   }
 }
 export default new MessageService();

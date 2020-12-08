@@ -5,4 +5,5 @@ export interface Message {
   email: string;
   sujet: string;
   message: string;
+  date: string;
 }

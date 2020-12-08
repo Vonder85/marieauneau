@@ -13,6 +13,10 @@ import { Contact } from "./Pages/Contact";
 import MassageService from "./Components/Services/MassageService";
 import MassageContext from "./Components/Context/MassageContext";
 import ImageService from "./Components/Services/ImageService";
+import Dashboard from "./Pages/Admin/HomeAdmin/Dashboard";
+import { AvisForm } from "./Components/Forms/AvisForm";
+import { LectureMessage } from "./Pages/Admin/HomeAdmin/Messages/LectureMesssage";
+
 function Routes() {
   const context = useContext(MassageContext);
 
@@ -58,11 +62,25 @@ function Routes() {
       <Route exact path="/Admin">
         <HomeAdmin />
       </Route>
-      <Route exact path="/Admin/Edition">
+      <Route exact path="/Admin/Dashboard">
+        <Dashboard />
+      </Route>
+      <Route exact path="/Admin/Dashboard/Massages/Edition">
         <MassageForm />
       </Route>
-      <Route path="/Admin/Edition/:nom">
+      <Route path="/Admin/Dashboard/Massages/Edition/:nom">
         <MassageForm />
+      </Route>
+
+      <Route exact path="/Admin/Dashboard/Avis/Edition">
+        <AvisForm />
+      </Route>
+      <Route path="/Admin/Dashboard/Avis/Edition/:titre">
+        <AvisForm />
+      </Route>
+
+      <Route path="/Admin/Dashboard/Messages/:id">
+        <LectureMessage />
       </Route>
       <Redirect to="/" />
     </Switch>
