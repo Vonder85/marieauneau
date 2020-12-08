@@ -214,7 +214,7 @@ export const Tableau = () => {
                 </StyledTableCell>
                 <StyledTableCell>
                   <Link
-                    to={`/Admin/Edition/${massage.nom}`}
+                    to={`/Admin/Dashboard/Massages/Edition/${massage.nom}`}
                     className={classes.liens}
                   >
                     <Button
