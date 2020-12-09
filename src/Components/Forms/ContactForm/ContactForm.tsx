@@ -6,7 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import emailjs from "emailjs-com";
 import { Alert } from "@material-ui/lab";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -14,6 +14,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 //Model
 import { Message } from "../../../Models/Message";
 import MessageService from "../../Services/MessageService";
+import MassageContext from "../../Context/MassageContext";
 
 const useStyles = makeStyles({
   root: {
@@ -49,6 +50,11 @@ const useStyles = makeStyles({
 
 export const ContactForm = () => {
   const classes = useStyles();
+
+  /**
+   * Récupération du context
+   */
+  const context = useContext(MassageContext);
 
   /**
    * Etat local des données du formulaire
@@ -119,7 +125,11 @@ export const ContactForm = () => {
       (result) => {
         setOpenSuccess(true);
 
-        MessageService.createMessage(message);
+        MessageService.createMessage(message).then((result) =>
+          MessageService.getMessages().then((res) => {
+            context.setMessages(res);
+          })
+        );
         setMessage({
           id: "",
           nom: "",

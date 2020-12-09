@@ -17,6 +17,7 @@ import Dashboard from "./Pages/Admin/HomeAdmin/Dashboard";
 import { AvisForm } from "./Components/Forms/AvisForm";
 import { LectureMessage } from "./Pages/Admin/HomeAdmin/Messages/LectureMesssage";
 import AvisService from "./Components/Services/AvisService";
+import MessageService from "./Components/Services/MessageService";
 
 function Routes() {
   const context = useContext(MassageContext);
@@ -30,6 +31,9 @@ function Routes() {
     );
     AvisService.getAvis().then((result) => {
       context.setAvis(result);
+    });
+    MessageService.getMessages().then((result) => {
+      context.setMessages(result);
     });
     window.scrollTo(0, 0);
     // eslint-disable-next-line

@@ -133,6 +133,8 @@ export const AvisForm = () => {
             size="medium"
           />
           <TextField
+            multiline
+            rows={6}
             id="texte"
             label="Texte"
             value={avis.texte}

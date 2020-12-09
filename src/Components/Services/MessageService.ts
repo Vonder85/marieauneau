@@ -11,7 +11,6 @@ class MessageService {
   async createMessage(data: Message) {
     const id = (await this.db.ref("/messages/" + data.id).push(data)).key;
     await this.db.ref("/messages/" + id).update({ id: id });
-    this.getMessages();
   }
 
   /**

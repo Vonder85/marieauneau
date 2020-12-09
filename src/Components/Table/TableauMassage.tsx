@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   createStyles,
   makeStyles,
@@ -20,12 +20,15 @@ import { Link } from "react-router-dom";
 //Component
 import { TableHeadAdmin } from "./TableHead";
 
-//Service
-import MessageService from "../Services/MessageService";
-
 //Model
-import { Message } from "../../Models/Message";
+import { Massage } from "../../Models/Massage";
+import { Type } from "../../Models/Type";
+
+//Context
 import MassageContext from "../Context/MassageContext";
+
+//Services
+import MassageService from "../Services/MassageService";
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -71,19 +74,41 @@ const useStyles = makeStyles({
   },
 });
 
-export const TableauMessages = () => {
+export const TableauMassage = () => {
   const classes = useStyles();
-  /**
-   * libellés du tableau
-   */
-  const libelles = ["Sujet", "Message", "Auteur", "Date", "Editer"];
 
+  /**
+   * Libellés des colonnes du tableau
+   */
+  const libelles = [
+    "Nom",
+    "Description",
+    "Résumé",
+    "Durée",
+    "Prix",
+    "Bienfaits",
+    "Contre indications",
+    "Actions",
+    "Supplément",
+    "Editer",
+  ];
   const context = useContext(MassageContext);
+
+  /**
+   * Fonction qui supprime un massage
+   * @param id id du massage à supprimer
+   */
+  const handleRemove = (id: string) => {
+    MassageService.deleteMassage(id);
+    MassageService.getMassages().then((massages: Massage[]) => {
+      context.setMassages(massages);
+    });
+  };
 
   /**
    * Pagination
    */
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
   const [page, setPage] = useState(0);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -95,31 +120,23 @@ export const TableauMessages = () => {
     setPage(0);
   };
 
-  /**
-   * Fonction qui supprime un message
-   * @param id id du message à supprimer
-   */
-  const handleRemove = (id: string) => {
-    MessageService.deleteMessage(id);
-    MessageService.getMessages().then((_messages: Message[]) => {
-      context.setMessages(_messages);
-    });
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <>
+      <div>
+        <Link to="/Admin/Dashboard/Massages/Edition" className={classes.liens}>
+          <Button variant="contained" size="large" className={classes.button}>
+            Ajouter un massage
+          </Button>
+        </Link>
+      </div>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHeadAdmin libelles={libelles} />
           <TableBody>
-            {context.messages
+            {context.massages
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((_message: Message) => (
-                <StyledTableRow key={_message.id}>
+              .map((massage: Massage) => (
+                <StyledTableRow key={massage.id}>
                   <StyledTableCell component="th" scope="row">
                     <p
                       style={{
@@ -129,7 +146,19 @@ export const TableauMessages = () => {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {_message.sujet}
+                      {massage.nom}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        height: "20px",
+                        width: "100%",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {massage.description}
                     </p>
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
@@ -141,10 +170,10 @@ export const TableauMessages = () => {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {_message.message}
+                      {massage.resume}
                     </p>
                   </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">
+                  <StyledTableCell component="th">
                     <p
                       style={{
                         overflow: "hidden",
@@ -153,24 +182,73 @@ export const TableauMessages = () => {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {_message.email}
+                      {massage.duree} min
                     </p>
                   </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">
-                    <p
-                      style={{
-                        overflow: "hidden",
-                        height: "20px",
-                        width: "100%",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {_message.date}
-                    </p>
+                  <StyledTableCell>{massage.prix} €</StyledTableCell>
+                  <StyledTableCell>
+                    <ul>
+                      {massage.bienFaits?.map(
+                        (bienfait: string, index: number) => (
+                          <li
+                            key={index}
+                            style={{
+                              overflow: "hidden",
+                              height: "20px",
+                              width: "100%",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {bienfait}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <ul>
+                      {massage.contreIndications?.map(
+                        (contreIndication: Type, index: number) => (
+                          <li
+                            key={index}
+                            style={{
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              height: "20px",
+                              width: "100%",
+                            }}
+                          >
+                            {contreIndication.texte}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <ul>
+                      {massage.actions?.map((action: Type, index: number) => (
+                        <li
+                          key={index}
+                          style={{
+                            overflow: "hidden",
+                            height: "20px",
+                            width: "100%",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {action.texte}
+                        </li>
+                      ))}
+                    </ul>
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    {massage.supplement?.description.trim() !== ""
+                      ? "Oui"
+                      : "Non"}
                   </StyledTableCell>
                   <StyledTableCell>
                     <Link
-                      to={`/Admin/Dashboard/Messages/${_message.id}`}
+                      to={`/Admin/Dashboard/Massages/Edition/${massage.nom}`}
                       className={classes.liens}
                     >
                       <Button
@@ -179,7 +257,7 @@ export const TableauMessages = () => {
                         size="small"
                         className={classes.button}
                       >
-                        Lire
+                        Modifier
                       </Button>
                     </Link>
                     <Button
@@ -187,7 +265,7 @@ export const TableauMessages = () => {
                       color="default"
                       size="small"
                       className={classes.button}
-                      onClick={() => handleRemove(_message.id)}
+                      onClick={() => handleRemove(massage.id)}
                     >
                       Supprimer
                     </Button>
@@ -197,12 +275,12 @@ export const TableauMessages = () => {
           </TableBody>
         </Table>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          labelRowsPerPage="Nombre de messages par page"
+          rowsPerPageOptions={[3, 5, 10]}
+          labelRowsPerPage="Nombre de massages par page"
           labelDisplayedRows={({ from, to, count }) =>
             ` ${from}-${to} sur ${count} - Page ${page + 1}`
           }
-          count={context.messages.length}
+          count={context.massages.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Massage } from "./Models/Massage";
-import MassageContext from "./Components/Context/MassageContext";
 import {
   createMuiTheme,
   ThemeProvider,
@@ -11,8 +9,17 @@ import {
   useTheme,
 } from "@material-ui/core";
 import Routes from "./Routes";
-import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
+
+//Models
+import { Massage } from "./Models/Massage";
 import { Avis } from "./Models/Avis";
+import { Message } from "./Models/Message";
+
+//Context
+import MassageContext from "./Components/Context/MassageContext";
+
+//Component
+import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
 
 const theme = createMuiTheme({
   typography: {
@@ -24,6 +31,7 @@ export const App = () => {
   const [massages, setMassages] = useState<Massage[]>([]);
   const [imagesCarousel, setImagesCarousel] = useState<string[]>([]);
   const [avis, setAvis] = useState<Avis[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
@@ -40,6 +48,8 @@ export const App = () => {
               setImagesCarousel,
               avis,
               setAvis,
+              messages,
+              setMessages,
             }}
           >
             <Navbar />

@@ -11,18 +11,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     flexGrow: 1,
   },
-  mobileStepper: {
-    "&.MuiMobileStepper-dots": {
-      color: "#D19D8E",
-    },
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
+
   img: {
     height: 400,
     display: "block",
@@ -30,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     marginRight: "auto",
     marginLeft: "auto",
-  },
-  icon: {
-    width: "20px",
   },
 }));
 

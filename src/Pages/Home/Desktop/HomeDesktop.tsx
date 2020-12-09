@@ -177,6 +177,9 @@ export const HomeDesktop = () => {
         <CarouselAvis avis={context.avis} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
+        <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>
+      </ScrollAnimation>
+      <ScrollAnimation animateIn="fadeIn" delay={100}>
         <Footer />
       </ScrollAnimation>
     </div>

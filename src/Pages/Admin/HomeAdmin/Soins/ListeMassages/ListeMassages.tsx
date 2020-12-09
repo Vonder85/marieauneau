@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
-import { Tableau } from "../../../../../Components/Table/Tableau";
+import { TableauMassage } from "../../../../../Components/Table/TableauMassage";
 
 const useStyles = makeStyles({
   modal: {
@@ -25,7 +25,7 @@ export const ListeSoins = () => {
     <div className={classes.root}>
       <h2>Les massages</h2>
 
-      <Tableau />
+      <TableauMassage />
     </div>
   );
 };

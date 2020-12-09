@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   createStyles,
   makeStyles,
@@ -9,7 +9,12 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import { Button, TableCell, TableRow } from "@material-ui/core";
+import {
+  Button,
+  TableCell,
+  TablePagination,
+  TableRow,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 //Component
@@ -73,6 +78,18 @@ export const TableauAvis = () => {
   //Récupération du context
   const context = useContext(MassageContext);
 
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   /**
    * Fonction qui supprime un avis
    * @param id id de l'avis à supprimer
@@ -101,84 +118,98 @@ export const TableauAvis = () => {
         <Table className={classes.table} aria-label="customized table">
           <TableHeadAdmin libelles={libelles} />
           <TableBody>
-            {context.avis?.map((_avis: Avis) => (
-              <StyledTableRow key={_avis.id}>
-                <StyledTableCell component="th" scope="row">
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      height: "20px",
-                      width: "100%",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {_avis.titre}
-                  </p>
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      height: "20px",
-                      width: "100%",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {_avis.texte}
-                  </p>
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      height: "20px",
-                      width: "100%",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {_avis.auteur}
-                  </p>
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      height: "20px",
-                      width: "100%",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {_avis.date}
-                  </p>
-                </StyledTableCell>
-                <StyledTableCell>
-                  <Link
-                    to={`/Admin/Dashboard/Avis/Edition/${_avis.titre}`}
-                    className={classes.liens}
-                  >
+            {context.avis
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((_avis: Avis) => (
+                <StyledTableRow key={_avis.id}>
+                  <StyledTableCell component="th" scope="row">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        height: "20px",
+                        width: "100%",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {_avis.titre}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        height: "20px",
+                        width: "100%",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {_avis.texte}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        height: "20px",
+                        width: "100%",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {_avis.auteur}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        height: "20px",
+                        width: "100%",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {_avis.date}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell>
+                    <Link
+                      to={`/Admin/Dashboard/Avis/Edition/${_avis.titre}`}
+                      className={classes.liens}
+                    >
+                      <Button
+                        variant="contained"
+                        color="default"
+                        size="small"
+                        className={classes.button}
+                      >
+                        Modifier
+                      </Button>
+                    </Link>
                     <Button
                       variant="contained"
                       color="default"
                       size="small"
                       className={classes.button}
+                      onClick={() => handleRemove(_avis.id)}
                     >
-                      Modifier
+                      Supprimer
                     </Button>
-                  </Link>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    size="small"
-                    className={classes.button}
-                    onClick={() => handleRemove(_avis.id)}
-                  >
-                    Supprimer
-                  </Button>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          labelRowsPerPage="Nombre d'avis par page"
+          labelDisplayedRows={({ from, to, count }) =>
+            ` ${from}-${to} sur ${count} - Page ${page + 1}`
+          }
+          count={context.avis.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </>
   );

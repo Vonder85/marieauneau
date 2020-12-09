@@ -82,7 +82,7 @@ export const MassageDetail = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} sm={12} md={6} lg={6}>
+        <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <img src={urlImage} alt="photoMassage" className={classes.img} />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={5}>
@@ -90,7 +90,8 @@ export const MassageDetail = () => {
           <div className={classes.sousTitre}>
             <h3 className={classes.adjectif}>{massage.adjectif}</h3>
             <h3>
-              {massage?.duree} min - {massage?.prix} €
+              {massage?.duree} min - {massage?.prix} €{" "}
+              {massage.nom === "Gua Sha" && "/ 30 min - 50€"}
             </h3>
           </div>
           <div className={classes.zone}>{massage.zone}</div>

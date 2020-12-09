@@ -11,31 +11,10 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "100%",
+    maxWidth: "60%",
     flexGrow: 1,
-  },
-  mobileStepper: {
-    "&.MuiMobileStepper-dots": {
-      color: "#D19D8E",
-    },
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 400,
-    display: "block",
-    overflow: "hidden",
-    maxWidth: "100%",
     marginRight: "auto",
     marginLeft: "auto",
-  },
-  icon: {
-    width: "20px",
   },
 }));
 
