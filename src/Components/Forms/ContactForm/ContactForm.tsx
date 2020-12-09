@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import { Alert } from "@material-ui/lab";
+import ReCAPTCHA from "react-google-recaptcha";
 
 //Model
 import { Message } from "../../../Models/Message";
@@ -88,6 +89,10 @@ export const ContactForm = () => {
     setOpenError(false);
   };
 
+  function onChange(value: any) {
+    console.log("Captcha value:", value);
+  }
+
   /**
    * Affichage de l'Alert si envoi échoue
    */
@@ -99,7 +104,6 @@ export const ContactForm = () => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log(message);
     emailjs.sendForm(serviceId, templateId, e.target, userId).then(
       (result) => {
         setOpenSuccess(true);
@@ -240,6 +244,11 @@ export const ContactForm = () => {
         onChange={(e) => setMessage({ ...message, message: e.target.value })}
         required
       />
+      <ReCAPTCHA
+        sitekey={"6Lf1S_8ZAAAAAHur1YoBEKpzJi7hT3CoY6siik8J"}
+        onChange={onChange}
+      />
+      ,
       <Button
         type="submit"
         variant="contained"
