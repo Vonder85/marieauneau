@@ -32,6 +32,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "space-between",
     marginLeft: "-10px",
+    listStyleType: "none",
   },
   liens: {
     textDecoration: "none",
