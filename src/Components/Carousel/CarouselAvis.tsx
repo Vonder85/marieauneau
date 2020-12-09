@@ -45,7 +45,7 @@ export const CarouselAvis = (props: CarouselProps) => {
           <div key={step.id}>
             {Math.abs(activeStep - index) <= props.avis.length - 1 ? (
               <>
-                <p style={{ textAlign: "center" }}>{step.texte}</p>
+                <p style={{ textAlign: "center" }}>"{step.texte}"</p>
                 <br />
                 <p style={{ float: "right", marginRight: "40px" }}>
                   {step.auteur}
