@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     textAlign: "center",
     marginTop: "-5px",
     paddingTop: "20px",
+    marginBottom: "-21px",
   },
   liens: {
     textDecoration: "none",
