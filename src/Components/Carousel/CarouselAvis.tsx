@@ -9,14 +9,14 @@ import { Avis } from "../../Models/Avis";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     maxWidth: "60%",
     flexGrow: 1,
     marginRight: "auto",
     marginLeft: "auto",
   },
-}));
+});
 
 interface CarouselProps {
   //avis à faire défiler dans le carousel

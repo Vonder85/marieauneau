@@ -1,15 +1,26 @@
+import classes from "*.module.css";
+import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { Type } from "../../Models/Type";
 
 const theme = { fontFamily: "BillySignature" };
+const useStyles = makeStyles({
+  root: {
+    "& ul": {
+      listStyleType: "none",
+    },
+  },
+});
 
 interface affichageContreIndicProps {
   contreIndications: Type[];
 }
 export const AffichageContreIndic = (props: affichageContreIndicProps) => {
   const { contreIndications } = props;
+
+  const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       <h2 style={{ fontFamily: theme.fontFamily }}>Les contre-indications</h2>
 
       {contreIndications.filter((result) => result.type === "générale").length >
@@ -62,6 +73,6 @@ export const AffichageContreIndic = (props: affichageContreIndicProps) => {
             ))}
         </ul>
       )}
-    </>
+    </div>
   );
 };

@@ -1,15 +1,26 @@
+import classes from "*.module.css";
+import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { Type } from "../../Models/Type";
 
 const theme = { fontFamily: "BillySignature" };
+const useStyles = makeStyles({
+  root: {
+    "& ul": {
+      listStyleType: "none",
+    },
+  },
+});
 
 interface affichageActionsProps {
   actions: Type[];
 }
 export const AffichageActions = (props: affichageActionsProps) => {
   const { actions } = props;
+
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <h2 style={{ fontFamily: theme.fontFamily }}>Les actions</h2>
       {actions.filter((result) => result.type === "générale").length > 0 && (
         <ul>
