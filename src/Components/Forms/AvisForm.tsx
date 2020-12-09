@@ -1,9 +1,10 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 //Service
 import { Avis } from "../../Models/Avis";
+import MassageContext from "../Context/MassageContext";
 import AvisService from "../Services/AvisService";
 import { DatePicker } from "./Components/DatePicker";
 
@@ -41,12 +42,11 @@ const useStyles = makeStyles({
   },
 });
 
-interface AvisFormProps {
-  handleChange?: (lesAvis: Avis[]) => void;
-}
-
-export const AvisForm = (props: AvisFormProps) => {
+export const AvisForm = () => {
   const classes = useStyles();
+
+  //Récupération du context
+  const context = useContext(MassageContext);
 
   //Récupération du nom du massage dans l'url
   const titreAvis: any = useParams();
@@ -82,14 +82,14 @@ export const AvisForm = (props: AvisFormProps) => {
     if (titreAvis.titre !== undefined && titreAvis.titre !== null) {
       AvisService.updateAvis(avis).then((result) => {
         AvisService.getAvis().then((_avis: Avis[]) => {
-          props.handleChange !== undefined && props.handleChange(_avis);
+          context.setAvis(_avis);
           history.push("/Admin/Dashboard");
         });
       });
     } else {
       AvisService.createAvis(avis).then((result) => {
         AvisService.getAvis().then((_avis: Avis[]) => {
-          props.handleChange !== undefined && props.handleChange(_avis);
+          context.setAvis(_avis);
           history.push("/Admin/Dashboard");
         });
       });

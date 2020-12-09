@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import Routes from "./Routes";
 import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
+import { Avis } from "./Models/Avis";
 
 const theme = createMuiTheme({
   typography: {
@@ -22,6 +23,8 @@ const theme = createMuiTheme({
 export const App = () => {
   const [massages, setMassages] = useState<Massage[]>([]);
   const [imagesCarousel, setImagesCarousel] = useState<string[]>([]);
+  const [avis, setAvis] = useState<Avis[]>([]);
+
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
@@ -35,6 +38,8 @@ export const App = () => {
               setMassages,
               imagesCarousel,
               setImagesCarousel,
+              avis,
+              setAvis,
             }}
           >
             <Navbar />

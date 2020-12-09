@@ -16,6 +16,7 @@ import ImageService from "./Components/Services/ImageService";
 import Dashboard from "./Pages/Admin/HomeAdmin/Dashboard";
 import { AvisForm } from "./Components/Forms/AvisForm";
 import { LectureMessage } from "./Pages/Admin/HomeAdmin/Messages/LectureMesssage";
+import AvisService from "./Components/Services/AvisService";
 
 function Routes() {
   const context = useContext(MassageContext);
@@ -27,6 +28,9 @@ function Routes() {
     ImageService.getImages("Carousel").then((result) =>
       context.setImagesCarousel(result)
     );
+    AvisService.getAvis().then((result) => {
+      context.setAvis(result);
+    });
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);

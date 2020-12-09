@@ -9,7 +9,8 @@ import chezJune from "../../../Images/homePage/chezJune.jpg";
 
 //Component
 import { Footer } from "../../Footer";
-import { Carousel } from "../../../Components/Carousel/Carousel";
+import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
+import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
 
 //Context
 import MassageContext from "../../../Components/Context/MassageContext";
@@ -135,7 +136,14 @@ export const HomeMobile = () => {
         delay={100}
         style={{ marginBottom: "10px" }}
       >
-        <Carousel images={context.imagesCarousel} />
+        <CarouselImages images={context.imagesCarousel} />
+      </ScrollAnimation>
+      <ScrollAnimation
+        animateIn="fadeIn"
+        delay={100}
+        style={{ marginBottom: "10px" }}
+      >
+        <CarouselAvis avis={context.avis} />
       </ScrollAnimation>
       <Footer />
     </div>

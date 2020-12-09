@@ -1,3 +1,4 @@
+import { Avis } from "../../Models/Avis";
 import { Massage } from "../../Models/Massage";
 
 export interface MassageState {
@@ -5,4 +6,6 @@ export interface MassageState {
   setMassages: (massages: Massage[]) => void;
   imagesCarousel: string[];
   setImagesCarousel: (urls: string[]) => void;
+  avis: Avis[];
+  setAvis: (avis: Avis[]) => void;
 }

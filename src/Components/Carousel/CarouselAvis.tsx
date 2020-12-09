@@ -4,6 +4,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
+//Model
+import { Avis } from "../../Models/Avis";
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const useStyles = makeStyles((theme) => ({
@@ -37,17 +40,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface CarouselProps {
-  //images à faire défiler dans le carousel
-  images: string[];
+  //avis à faire défiler dans le carousel
+  avis: Avis[];
 }
 
-export const Carousel = (props: CarouselProps) => {
+export const CarouselAvis = (props: CarouselProps) => {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-
-  //Images à faire défiler dans le carousel
-  const imagesCarousel = props.images;
 
   const handleStepChange = (step: number) => {
     setActiveStep(step);
@@ -60,11 +60,18 @@ export const Carousel = (props: CarouselProps) => {
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
+        interval={5000}
       >
-        {imagesCarousel.map((step, index) => (
-          <div key={step}>
-            {Math.abs(activeStep - index) <= imagesCarousel.length - 1 ? (
-              <img className={classes.img} src={step} alt={step} />
+        {props.avis.map((step, index) => (
+          <div key={step.id}>
+            {Math.abs(activeStep - index) <= props.avis.length - 1 ? (
+              <>
+                <p style={{ textAlign: "center" }}>{step.texte}</p>
+                <br />
+                <p style={{ float: "right", marginRight: "40px" }}>
+                  {step.auteur}
+                </p>
+              </>
             ) : null}
           </div>
         ))}

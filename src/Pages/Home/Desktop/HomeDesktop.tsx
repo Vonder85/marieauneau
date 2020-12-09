@@ -17,7 +17,8 @@ import { Massage } from "../../../Models/Massage";
 
 //Component
 import { Footer } from "../../Footer";
-import { Carousel } from "../../../Components/Carousel/Carousel";
+import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
+import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -170,7 +171,10 @@ export const HomeDesktop = () => {
         </Grid>
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <Carousel images={context.imagesCarousel} />
+        <CarouselImages images={context.imagesCarousel} />
+      </ScrollAnimation>
+      <ScrollAnimation animateIn="fadeIn" delay={100}>
+        <CarouselAvis avis={context.avis} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <Footer />

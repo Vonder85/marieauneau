@@ -91,7 +91,7 @@ export const Tableau = () => {
   return (
     <>
       <div>
-        <Link to="/Admin/Edition" className={classes.liens}>
+        <Link to="/Admin/Dashboard/Massages/Edition" className={classes.liens}>
           <Button variant="contained" size="large" className={classes.button}>
             Ajouter un massage
           </Button>

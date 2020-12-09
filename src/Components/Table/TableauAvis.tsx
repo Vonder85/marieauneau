@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   createStyles,
   makeStyles,
@@ -20,6 +20,7 @@ import AvisService from "../Services/AvisService";
 
 //Model
 import { Avis } from "../../Models/Avis";
+import MassageContext from "../Context/MassageContext";
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
@@ -69,21 +70,23 @@ export const TableauAvis = () => {
   const classes = useStyles();
   const libelles = ["Titre", "Texte", "Auteur", "Date", "Editer"];
 
-  const [avis, setAvis] = useState<Avis[]>([]);
+  //Récupération du context
+  const context = useContext(MassageContext);
 
+  /**
+   * Fonction qui supprime un avis
+   * @param id id de l'avis à supprimer
+   */
   const handleRemove = (id: string) => {
     AvisService.deleteAvis(id);
     AvisService.getAvis().then((_avis: Avis[]) => {
-      setAvis(_avis);
+      context.setAvis(_avis);
     });
   };
 
   useEffect(() => {
-    AvisService.getAvis().then((result) => {
-      setAvis(result);
-      window.scrollTo(0, 0);
-    });
-  }, [avis]);
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -98,7 +101,7 @@ export const TableauAvis = () => {
         <Table className={classes.table} aria-label="customized table">
           <TableHeadAdmin libelles={libelles} />
           <TableBody>
-            {avis?.map((_avis: Avis) => (
+            {context.avis?.map((_avis: Avis) => (
               <StyledTableRow key={_avis.id}>
                 <StyledTableCell component="th" scope="row">
                   <p

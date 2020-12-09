@@ -61,6 +61,7 @@ export const AddType = (props: AddTypeProps) => {
     { label: "générale", value: "générale" },
     { label: "relative", value: "relative" },
     { label: "absolue", value: "absolue" },
+    { label: "non-réalisable", value: "non-realisable" },
   ];
   /**
    * Etat pour afficher le message d'erreur

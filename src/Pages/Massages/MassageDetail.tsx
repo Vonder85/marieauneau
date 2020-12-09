@@ -2,14 +2,15 @@ import { Grid, makeStyles } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-//Models
-import { Type } from "../../Models/Type";
-
 //Context
 import MassageContext from "../../Components/Context/MassageContext";
 
 //Service
 import ImageService from "../../Components/Services/ImageService";
+
+//Component
+import { AffichageActions } from "../../Components/Massages/AffichageActions";
+import { AffichageContreIndic } from "../../Components/Massages/AffichageContreIndic";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -93,172 +94,17 @@ export const MassageDetail = () => {
             </h3>
           </div>
           <div className={classes.zone}>{massage.zone}</div>
-          <div>
-            <h2>En quoi consiste ce soin</h2>
-            <p style={{ whiteSpace: "pre-wrap" }}>{massage?.description}</p>
-          </div>
-          <div>
-            <h2>Les bienfaits</h2>
-            <ul className={classes.liste}>
-              {massage?.bienFaits?.map((bienfait: string, index: number) => (
-                <li key={index}>{bienfait}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 style={{ fontFamily: theme.fontFamily }}>Les actions</h2>
-            {massage.actions.filter((result) => result.type === "générale")
-              .length > 0 && (
-              <ul>
-                <b>
-                  Générale
-                  {massage.actions.filter(
-                    (result) => result.type === "générale"
-                  ).length > 1 && "s"}{" "}
-                  :
-                </b>
-              </ul>
-            )}
-            {massage.actions
-              .filter((result) => result.type === "générale")
-              .map((action: Type, index: number) => (
-                <li key={index}>{action.texte}</li>
-              ))}
-          </div>
-          <div>
-            {massage.actions.filter((result) => result.type === "drainante")
-              .length > 0 && (
-              <ul>
-                <b>
-                  Drainante
-                  {massage.actions.filter(
-                    (result) => result.type === "drainante"
-                  ).length > 1 && "s"}{" "}
-                  :
-                </b>
-              </ul>
-            )}
-            {massage.actions
-              .filter((result) => result.type === "drainante")
-              .map((action: Type, index: number) => (
-                <li key={index}>{action.texte}</li>
-              ))}
-          </div>
-          <div>
-            {massage.actions.filter((result) => result.type === "immunitaire")
-              .length > 0 && (
-              <ul>
-                <b>
-                  Immunitaire
-                  {massage.actions.filter(
-                    (result) => result.type === "immunitaire"
-                  ).length > 1 && "s"}{" "}
-                  :
-                </b>
-              </ul>
-            )}
-            {massage.actions
-              .filter((result) => result.type === "immunitaire")
-              .map((action: Type, index: number) => (
-                <li key={index}>{action.texte}</li>
-              ))}
-          </div>
-          <div>
-            {massage.actions.filter((result) => result.type === "musculaire")
-              .length > 0 && (
-              <ul>
-                <b>
-                  Musculaire
-                  {massage.actions.filter(
-                    (result) => result.type === "musculaire"
-                  ).length > 1 && "s"}{" "}
-                  :
-                </b>
-              </ul>
-            )}
-            {massage.actions
-              .filter((result) => result.type === "musculaire")
-              .map((action: Type, index: number) => (
-                <li key={index}>{action.texte}</li>
-              ))}
-          </div>
-          <div>
-            {massage.actions.filter(
-              (result) => result.type === "sur le système nerveux"
-            ).length && (
-              <ul>
-                <b>Sur le système nerveux :</b>
-              </ul>
-            )}
-            {massage.actions
-              .filter((result) => result.type === "sur le système nerveux")
-              .map((action: Type, index: number) => (
-                <li key={index}>{action.texte}</li>
-              ))}
-          </div>
-          <div>
-            <h2>Les contre-indications</h2>
-            <div>
-              {massage.contreIndications.filter(
-                (result) => result.type === "générale"
-              ).length > 0 && (
-                <ul>
-                  <b>
-                    Générale
-                    {massage.contreIndications.filter(
-                      (result) => result.type === "générale"
-                    ).length > 1 && "s"}{" "}
-                    :
-                  </b>
-                </ul>
-              )}
-              {massage.contreIndications
-                .filter((result) => result.type === "générale")
-                .map((contreIndic: Type, index: number) => (
-                  <li key={index}>{contreIndic.texte}</li>
-                ))}
-            </div>
-            <div>
-              {massage.contreIndications.filter(
-                (result) => result.type === "relative"
-              ).length > 0 && (
-                <ul>
-                  <b>
-                    Relative
-                    {massage.contreIndications.filter(
-                      (result) => result.type === "relative"
-                    ).length > 1 && "s"}{" "}
-                    :
-                  </b>
-                </ul>
-              )}
-              {massage.contreIndications
-                .filter((result) => result.type === "relative")
-                .map((contreIndic: Type, index: number) => (
-                  <li key={index}>{contreIndic.texte}</li>
-                ))}
-            </div>
-            <div>
-              {massage.contreIndications.filter(
-                (result) => result.type === "absolue"
-              ).length > 0 && (
-                <ul>
-                  <b>
-                    Absolue
-                    {massage.contreIndications.filter(
-                      (result) => result.type === "absolue"
-                    ).length > 1 && "s"}{" "}
-                    :
-                  </b>
-                </ul>
-              )}
-              {massage.contreIndications
-                .filter((result) => result.type === "absolue")
-                .map((contreIndic: Type, index: number) => (
-                  <li key={index}>{contreIndic.texte}</li>
-                ))}
-            </div>
-          </div>
+          <h2>En quoi consiste ce soin</h2>
+          <p style={{ whiteSpace: "pre-wrap" }}>{massage?.description}</p>
+          <h2>Les bienfaits</h2>
+          <ul className={classes.liste}>
+            {massage?.bienFaits?.map((bienfait: string, index: number) => (
+              <li key={index}>{bienfait}</li>
+            ))}
+          </ul>
+
+          <AffichageActions actions={massage.actions} />
+          <AffichageContreIndic contreIndications={massage.contreIndications} />
         </Grid>
       </Grid>
     </div>
