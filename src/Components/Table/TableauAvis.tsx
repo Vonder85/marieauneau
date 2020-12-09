@@ -78,6 +78,7 @@ export const TableauAvis = () => {
   //Récupération du context
   const context = useContext(MassageContext);
 
+  //Pagination
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -172,7 +173,7 @@ export const TableauAvis = () => {
                   </StyledTableCell>
                   <StyledTableCell>
                     <Link
-                      to={`/Admin/Dashboard/Avis/Edition/${_avis.titre}`}
+                      to={`/Admin/Dashboard/Avis/Edition/${_avis.id}`}
                       className={classes.liens}
                     >
                       <Button

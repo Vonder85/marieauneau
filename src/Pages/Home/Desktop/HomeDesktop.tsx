@@ -16,7 +16,6 @@ import MassageContext from "../../../Components/Context/MassageContext";
 import { Massage } from "../../../Models/Massage";
 
 //Component
-import { Footer } from "../../Footer";
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
 import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
 
@@ -31,19 +30,7 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  button: {
-    backgroundColor: "#D19D8E",
-    color: "white",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "rgba(209, 157, 142, 0.6)",
-    },
-    width: "200px",
-    height: "70px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    borderRadius: "50px",
-  },
+
   logo: {
     height: "300PX",
     marginRight: "auto",
@@ -178,9 +165,6 @@ export const HomeDesktop = () => {
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>
-      </ScrollAnimation>
-      <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <Footer />
       </ScrollAnimation>
     </div>
   );

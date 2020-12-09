@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -18,6 +18,10 @@ import {
 import { ListeSoins } from "./Soins/ListeMassages/ListeMassages";
 import { ListeAvis } from "./Avis/ListeAvis";
 import { ListeMessages } from "./Messages/ListeMessages";
+import { Route, useHistory } from "react-router-dom";
+import { LectureMessage } from "./Messages/LectureMesssage";
+import { AvisForm } from "../../../Components/Forms/AvisForm";
+import { MassageForm } from "./Soins/NewMassage/MassageForm";
 
 const drawerWidth = 120;
 
@@ -69,6 +73,7 @@ export interface TabsItem {
   route: string;
   render?: any;
   exact?: boolean;
+  showOnMenu: boolean;
 }
 
 export default function Dashboard(props: Props) {
@@ -76,47 +81,86 @@ export default function Dashboard(props: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const history = useHistory();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const tabsItems: TabsItem[] = [
     {
+      label: "Massage",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Massages/Edition",
+      exact: true,
+      render: MassageForm,
+    },
+    {
+      label: "Massage",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Massages/Edition/:nom",
+      exact: true,
+      render: MassageForm,
+    },
+    {
       label: "Massages",
+      showOnMenu: true,
       route: "/Admin/Dashboard/Massages",
       exact: true,
-      render: <ListeSoins />,
+      render: ListeSoins,
     },
     {
       label: "Avis",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Avis/Edition/:id",
+      exact: true,
+      render: AvisForm,
+    },
+    {
+      label: "Avis",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Avis/Edition/",
+      exact: true,
+      render: AvisForm,
+    },
+    {
+      label: "Avis",
+      showOnMenu: true,
       route: "/Admin/Dashboard/Avis",
       exact: true,
-      render: <ListeAvis />,
+      render: ListeAvis,
+    },
+
+    {
+      label: "Messages",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Messages/:id",
+      exact: true,
+      render: LectureMessage,
     },
     {
       label: "Messages",
+      showOnMenu: true,
       route: "/Admin/Dashboard/Messages",
       exact: true,
-      render: <ListeMessages />,
+      render: ListeMessages,
     },
   ];
-
-  const [element, setElement] = useState<JSX.Element>();
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {tabsItems.map((item, index) => (
-          <ListItem button key={index}>
-            <ListItemText
-              primary={item.label}
-              onClick={() => setElement(item.render)}
-            />
-          </ListItem>
-        ))}
+        {tabsItems
+          .filter((item) => item.showOnMenu)
+          .map((item, index) => (
+            <ListItem button key={index}>
+              <ListItemText
+                primary={item.label}
+                onClick={() => history.push(item.route)}
+              />
+            </ListItem>
+          ))}
       </List>
     </div>
   );
@@ -161,7 +205,16 @@ export default function Dashboard(props: Props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {element}
+        {tabsItems.map((item) => {
+          return (
+            <Route
+              key={item.label}
+              path={item.route}
+              exact={item.exact}
+              component={() => React.createElement(item.render, {})}
+            />
+          );
+        })}
       </main>
     </div>
   );

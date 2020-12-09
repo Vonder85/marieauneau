@@ -50,13 +50,13 @@ class AvisService {
   }
 
   /**
-   * Fonction qui récupère les avis par titre
+   * Fonction qui récupère les avis par l'id
    */
-  async getAvisByTitre(titre: string) {
+  async getAvisById(id: string) {
     return this.db
       .ref("avis")
-      .orderByChild("titre")
-      .equalTo(titre)
+      .orderByChild("id")
+      .equalTo(id)
       .once("value")
       .then((data) => {
         const array: Avis[] = [];

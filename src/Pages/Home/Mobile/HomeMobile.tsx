@@ -8,7 +8,6 @@ import cabinetJune from "../../../Images/homePage/cabinetJune.png";
 import chezJune from "../../../Images/homePage/chezJune.jpg";
 
 //Component
-import { Footer } from "../../Footer";
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
 import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
 
@@ -148,7 +147,6 @@ export const HomeMobile = () => {
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>
       </ScrollAnimation>
-      <Footer />
     </div>
   );
 };

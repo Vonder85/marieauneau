@@ -7,15 +7,12 @@ import { MassagesView } from "./Pages/Massages/MassagesView";
 import { APropos } from "./Pages/APropos";
 import { Offrir } from "./Pages/Offrir";
 import { MassageDetail } from "./Pages/Massages/MassageDetail";
-import { MassageForm } from "./Pages/Admin/HomeAdmin/Soins/NewMassage/MassageForm";
 import { FAQ } from "./Pages/FAQ";
 import { Contact } from "./Pages/Contact";
 import MassageService from "./Components/Services/MassageService";
 import MassageContext from "./Components/Context/MassageContext";
 import ImageService from "./Components/Services/ImageService";
 import Dashboard from "./Pages/Admin/HomeAdmin/Dashboard";
-import { AvisForm } from "./Components/Forms/AvisForm";
-import { LectureMessage } from "./Pages/Admin/HomeAdmin/Messages/LectureMesssage";
 import AvisService from "./Components/Services/AvisService";
 import MessageService from "./Components/Services/MessageService";
 
@@ -70,26 +67,10 @@ function Routes() {
       <Route exact path="/Admin">
         <HomeAdmin />
       </Route>
-      <Route exact path="/Admin/Dashboard">
+      <Route path="/Admin/Dashboard">
         <Dashboard />
       </Route>
-      <Route exact path="/Admin/Dashboard/Massages/Edition">
-        <MassageForm />
-      </Route>
-      <Route path="/Admin/Dashboard/Massages/Edition/:nom">
-        <MassageForm />
-      </Route>
 
-      <Route exact path="/Admin/Dashboard/Avis/Edition">
-        <AvisForm />
-      </Route>
-      <Route path="/Admin/Dashboard/Avis/Edition/:titre">
-        <AvisForm />
-      </Route>
-
-      <Route path="/Admin/Dashboard/Messages/:id">
-        <LectureMessage />
-      </Route>
       <Redirect to="/" />
     </Switch>
   );

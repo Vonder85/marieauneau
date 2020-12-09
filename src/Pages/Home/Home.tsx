@@ -1,5 +1,8 @@
 import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
+
+//Components
+import { Footer } from "../Footer";
 import { HomeDesktop } from "./Desktop/HomeDesktop";
 import { HomeMobile } from "./Mobile/HomeMobile";
 
@@ -17,6 +20,7 @@ export const Home = () => {
   return (
     <div className={classes.root}>
       {smScreen ? <HomeMobile /> : <HomeDesktop />}
+      <Footer />
     </div>
   );
 };

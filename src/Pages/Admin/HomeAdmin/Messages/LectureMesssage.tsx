@@ -86,7 +86,7 @@ export const LectureMessage = () => {
    * Permet de revenir à la page précédente
    */
   function handleBack() {
-    history.push("/Admin/Dashboard");
+    history.push("/Admin/Dashboard/Messages");
   }
 
   /**

@@ -23,7 +23,7 @@ import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ["BillySignature", "cursive"].join(","),
+    fontFamily: ["Dancing Script", "BillySignature", "cursive"].join(","),
   },
 });
 

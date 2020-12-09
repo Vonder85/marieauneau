@@ -108,7 +108,7 @@ export const MassageForm = () => {
       MassageService.updateMassage(massage).then((result) => {
         MassageService.getMassages().then((massages: Massage[]) => {
           context.setMassages(massages);
-          history.push("/Admin");
+          history.push("/Admin/Dashboard/Massages");
         });
       });
     } else {
@@ -116,7 +116,7 @@ export const MassageForm = () => {
         MassageService.getMassages().then((massages: Massage[]) => {
           context.setMassages(massages);
         });
-        history.push("/Admin");
+        history.push("/Admin/Dashboard/Massages");
       });
     }
   };
@@ -125,7 +125,7 @@ export const MassageForm = () => {
    * Permet de revenir à la page précédente
    */
   function handleBack() {
-    history.push("/Admin");
+    history.push("/Admin/Dashboard/Massages");
   }
 
   /**

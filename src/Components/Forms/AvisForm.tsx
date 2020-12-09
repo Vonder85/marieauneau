@@ -48,8 +48,8 @@ export const AvisForm = () => {
   //Récupération du context
   const context = useContext(MassageContext);
 
-  //Récupération du nom du massage dans l'url
-  const titreAvis: any = useParams();
+  //Récupération de l'id de l'avis dans l'url
+  const idAvis: any = useParams();
 
   /**
    * Permet de faire la redirection
@@ -67,30 +67,30 @@ export const AvisForm = () => {
     date: "",
   });
   useEffect(() => {
-    if (titreAvis.titre !== undefined && titreAvis.titre !== null) {
-      AvisService.getAvisByTitre(titreAvis.titre).then((result: Avis[]) => {
+    if (idAvis.id !== undefined && idAvis.id !== null) {
+      AvisService.getAvisById(idAvis.id).then((result: Avis[]) => {
         setAvis(result[0]);
       });
     }
     window.scrollTo(0, 0);
-  }, [titreAvis]);
+  }, [idAvis]);
 
   /**
    * Soumission / Ajout d'un avis
    */
   const handleSubmit = () => {
-    if (titreAvis.titre !== undefined && titreAvis.titre !== null) {
+    if (idAvis.id !== undefined && idAvis.id !== null) {
       AvisService.updateAvis(avis).then((result) => {
         AvisService.getAvis().then((_avis: Avis[]) => {
           context.setAvis(_avis);
-          history.push("/Admin/Dashboard");
+          history.push("/Admin/Dashboard/Avis");
         });
       });
     } else {
       AvisService.createAvis(avis).then((result) => {
         AvisService.getAvis().then((_avis: Avis[]) => {
           context.setAvis(_avis);
-          history.push("/Admin/Dashboard");
+          history.push("/Admin/Dashboard/Avis");
         });
       });
     }
@@ -100,7 +100,7 @@ export const AvisForm = () => {
    * Permet de revenir à la page précédente
    */
   function handleBack() {
-    history.push("/Admin/Dashboard");
+    history.push("/Admin/Dashboard/Avis");
   }
 
   return (
@@ -110,7 +110,7 @@ export const AvisForm = () => {
           Retour
         </Button>
         <h2>
-          {titreAvis.titre !== undefined && titreAvis.titre !== null
+          {idAvis.id !== undefined && idAvis.id !== null
             ? "Modification"
             : "Nouvel avis"}{" "}
           :

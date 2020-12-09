@@ -56,6 +56,9 @@ const useStyles = makeStyles({
   zone: {
     marginTop: "-17px",
   },
+  nom: {
+    fontFamily: "Abril Fatface",
+  },
 });
 
 export const MassageDetail = () => {
@@ -108,7 +111,7 @@ export const MassageDetail = () => {
           <img src={urlImage} alt="photoMassage" className={classes.img} />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={5}>
-          <h1>{massage?.nom}</h1>
+          <h1 className={classes.nom}>{massage?.nom}</h1>
           <div className={classes.sousTitre}>
             <h3 className={classes.adjectif}>{massage.adjectif}</h3>
             <h3>

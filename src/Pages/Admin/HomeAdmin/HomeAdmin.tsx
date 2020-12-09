@@ -23,5 +23,5 @@ export default function HomeAdmin() {
     return <LoginPage />;
   }
 
-  return <>{history.push("/Admin/Dashboard")}</>;
+  return <>{history.push("/Admin/Dashboard/Massages")}</>;
 }

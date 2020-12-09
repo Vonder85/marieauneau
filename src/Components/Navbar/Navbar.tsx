@@ -78,9 +78,6 @@ const useStyles = makeStyles((theme: Theme) =>
     logo: {
       width: "80px",
     },
-    menuBurger: {
-      width: "50px",
-    },
   })
 );
 
@@ -180,9 +177,10 @@ export const Navbar = () => {
                 <Tab label="Contact" />
               </Link>
 
-              <Link to="/Admin" className={classes.liens}>
-                <Tab label="Admin" />
-              </Link>
+              <Tab
+                label="Admin"
+                style={{ color: "#D19D8E", cursor: "default" }}
+              />
             </Tabs>
           ) : (
             <>
