@@ -166,7 +166,7 @@ export const ContactForm = () => {
    * Vérifie si le format de l'email est bon
    */
   function verifEmail(email: string) {
-    const regexEmail = /^[\w-.]+@([\w-]+.)+([a-zA-Z]{2,4})$/g;
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/g;
     if (!regexEmail.test(email)) {
       setErrorEmail(true);
     } else {
@@ -267,6 +267,7 @@ export const ContactForm = () => {
         onChange={(e) => setMessage({ ...message, message: e.target.value })}
         required
       />
+
       <ReCAPTCHA
         sitekey={process.env.REACT_APP_SITEKEY as string}
         onChange={onChange}
