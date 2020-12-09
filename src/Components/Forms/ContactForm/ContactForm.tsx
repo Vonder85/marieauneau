@@ -89,8 +89,19 @@ export const ContactForm = () => {
     setOpenError(false);
   };
 
-  function onChange(value: any) {
-    console.log("Captcha value:", value);
+  /**
+   * Etat local du captcha
+   */
+  const [captcha, setCaptcha] = useState<boolean>(false);
+
+  /**
+   * Valide le captcha ou non
+   * @param value retour du captcha
+   */
+  function onChange(value: string | null) {
+    if (value !== null && value.trim() !== "") {
+      setCaptcha(true);
+    }
   }
 
   /**
@@ -118,6 +129,7 @@ export const ContactForm = () => {
           message: "",
           date: "",
         });
+        setCaptcha(false);
       },
       (error) => {
         setOpenError(true);
@@ -133,7 +145,8 @@ export const ContactForm = () => {
     message.prenom.trim() !== "" &&
     message.email.trim() !== "" &&
     message.sujet.trim() !== "" &&
-    message.message.trim() !== "";
+    message.message.trim() !== "" &&
+    captcha;
 
   /**
    * Etat local de l'erreur si le format de l'email n'est pas bon
@@ -245,10 +258,10 @@ export const ContactForm = () => {
         required
       />
       <ReCAPTCHA
-        sitekey={"6Lf1S_8ZAAAAAHur1YoBEKpzJi7hT3CoY6siik8J"}
+        sitekey={process.env.REACT_APP_SITEKEY as string}
         onChange={onChange}
       />
-      ,
+
       <Button
         type="submit"
         variant="contained"

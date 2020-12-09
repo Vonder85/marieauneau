@@ -110,7 +110,13 @@ export const MassageDetail = () => {
             {massage.actions.filter((result) => result.type === "générale")
               .length > 0 && (
               <ul>
-                <b>Générales :</b>
+                <b>
+                  Générale
+                  {massage.actions.filter(
+                    (result) => result.type === "générale"
+                  ).length > 1 && "s"}{" "}
+                  :
+                </b>
               </ul>
             )}
             {massage.actions
@@ -123,7 +129,13 @@ export const MassageDetail = () => {
             {massage.actions.filter((result) => result.type === "drainante")
               .length > 0 && (
               <ul>
-                <b>Drainantes :</b>
+                <b>
+                  Drainante
+                  {massage.actions.filter(
+                    (result) => result.type === "drainante"
+                  ).length > 1 && "s"}{" "}
+                  :
+                </b>
               </ul>
             )}
             {massage.actions
@@ -136,7 +148,13 @@ export const MassageDetail = () => {
             {massage.actions.filter((result) => result.type === "immunitaire")
               .length > 0 && (
               <ul>
-                <b>Immunitaire :</b>
+                <b>
+                  Immunitaire
+                  {massage.actions.filter(
+                    (result) => result.type === "immunitaire"
+                  ).length > 1 && "s"}{" "}
+                  :
+                </b>
               </ul>
             )}
             {massage.actions
@@ -149,7 +167,13 @@ export const MassageDetail = () => {
             {massage.actions.filter((result) => result.type === "musculaire")
               .length > 0 && (
               <ul>
-                <b>Musculaire :</b>
+                <b>
+                  Musculaire
+                  {massage.actions.filter(
+                    (result) => result.type === "musculaire"
+                  ).length > 1 && "s"}{" "}
+                  :
+                </b>
               </ul>
             )}
             {massage.actions
@@ -179,7 +203,13 @@ export const MassageDetail = () => {
                 (result) => result.type === "générale"
               ).length > 0 && (
                 <ul>
-                  <b>Générales :</b>
+                  <b>
+                    Générale
+                    {massage.contreIndications.filter(
+                      (result) => result.type === "générale"
+                    ).length > 1 && "s"}{" "}
+                    :
+                  </b>
                 </ul>
               )}
               {massage.contreIndications
@@ -193,7 +223,13 @@ export const MassageDetail = () => {
                 (result) => result.type === "relative"
               ).length > 0 && (
                 <ul>
-                  <b>Relatives :</b>
+                  <b>
+                    Relative
+                    {massage.contreIndications.filter(
+                      (result) => result.type === "relative"
+                    ).length > 1 && "s"}{" "}
+                    :
+                  </b>
                 </ul>
               )}
               {massage.contreIndications
@@ -207,7 +243,13 @@ export const MassageDetail = () => {
                 (result) => result.type === "absolue"
               ).length > 0 && (
                 <ul>
-                  <b>Absolues :</b>
+                  <b>
+                    Absolue
+                    {massage.contreIndications.filter(
+                      (result) => result.type === "absolue"
+                    ).length > 1 && "s"}{" "}
+                    :
+                  </b>
                 </ul>
               )}
               {massage.contreIndications
