@@ -7,11 +7,11 @@ const useStyles = makeStyles({
     height: "150px",
     backgroundColor: "rgb(209, 157, 142)",
     color: "white",
+    justifyContent: "space-around",
     fontWeight: "bold",
     fontSize: "1em",
     marginTop: "-5px",
     paddingTop: "20px",
-    marginBottom: "-21px",
   },
   liens: {
     textDecoration: "none",
@@ -60,7 +60,10 @@ export const Footer = () => {
               </Link>
               <br />
               <br />
-              Ou contactez moi <br />
+              <Link to="/Contact" className={classes.liens}>
+                Ou contactez moi
+              </Link>{" "}
+              <br />
               hello@marieauneau.fr
             </div>
           </Grid>
