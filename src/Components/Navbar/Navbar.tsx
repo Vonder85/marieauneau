@@ -62,11 +62,16 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     liens: {
       textDecoration: "none",
-      color: "rgba(255, 255, 255, 0.8)",
+      color: "white",
       marginTop: "14px",
     },
     root: {
-      flexGrow: 1,
+      background: "#D19D8E",
+      alignItems: "center",
+      position: "fixed",
+      "& .MuiTab-textColorInherit": {
+        opacity: 1,
+      },
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -107,14 +112,7 @@ export const Navbar = () => {
     "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";
   return (
     <Grid container>
-      <AppBar
-        style={{
-          background: "#D19D8E",
-          alignItems: "center",
-          position: "fixed",
-        }}
-        onMouseLeave={handleClose}
-      >
+      <AppBar className={classes.root} onMouseLeave={handleClose}>
         <Toolbar>
           {!smScreen ? (
             <Tabs>

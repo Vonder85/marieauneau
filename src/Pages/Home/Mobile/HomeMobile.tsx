@@ -9,10 +9,10 @@ import chezJune from "../../../Images/homePage/chezJune.jpg";
 
 //Component
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
-import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
 
 //Context
 import MassageContext from "../../../Components/Context/MassageContext";
+import { AffichageAvis } from "../../../Components/Avis/AffichageAvis";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -137,12 +137,8 @@ export const HomeMobile = () => {
       >
         <CarouselImages images={context.imagesCarousel} />
       </ScrollAnimation>
-      <ScrollAnimation
-        animateIn="fadeIn"
-        delay={100}
-        style={{ marginBottom: "10px" }}
-      >
-        <CarouselAvis avis={context.avis} />
+      <ScrollAnimation animateIn="fadeIn" delay={100}>
+        <AffichageAvis />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>

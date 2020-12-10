@@ -17,7 +17,7 @@ import { Massage } from "../../../Models/Massage";
 
 //Component
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
-import { CarouselAvis } from "../../../Components/Carousel/CarouselAvis";
+import { AffichageAvis } from "../../../Components/Avis/AffichageAvis";
 
 const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
@@ -161,7 +161,7 @@ export const HomeDesktop = () => {
         <CarouselImages images={context.imagesCarousel} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <CarouselAvis avis={context.avis} />
+        <AffichageAvis />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>

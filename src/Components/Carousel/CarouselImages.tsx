@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import { MobileStepper } from "@material-ui/core";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -19,6 +20,13 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     marginRight: "auto",
     marginLeft: "auto",
+  },
+  stepper: {
+    justifyContent: "center",
+    backgroundColor: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#D19D8E",
+    },
   },
 }));
 
@@ -55,6 +63,15 @@ export const CarouselImages = (props: CarouselProps) => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
+      <MobileStepper
+        steps={imagesCarousel.length}
+        position="static"
+        variant="dots"
+        activeStep={activeStep}
+        nextButton={undefined}
+        backButton={undefined}
+        className={classes.stepper}
+      />
     </div>
   );
 };
