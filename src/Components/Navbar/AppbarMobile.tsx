@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   appBar: {
-    fontSize: "20px",
     bottom: 0,
     backgroundColor: "white",
     width: "100%",
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
   liens: {
     textDecoration: "none",
     color: "#D19D8E",
-    fontSize: "20px",
+    fontSize: "10px",
   },
 });
 

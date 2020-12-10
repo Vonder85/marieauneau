@@ -116,7 +116,8 @@ export const HomeMobile = () => {
         <AffichageAvis />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>
+        {/*<div className="powr-social-feed" id="0acd955f_1607613877"></div>{" "}*/}
+        <div className="elfsight-app-408082e8-a0f2-4d53-9287-7abdae8d3c02"></div>
       </ScrollAnimation>
     </div>
   );
