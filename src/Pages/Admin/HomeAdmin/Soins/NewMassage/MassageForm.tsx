@@ -134,7 +134,7 @@ export const MassageForm = () => {
   const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       const file = e.target.files[0];
-      ImageService.addImageMassage("Massages", file).then((res) => {
+      ImageService.addImage("Massages", file).then((res) => {
         setMassage({ ...massage, image: file.name });
       });
     }

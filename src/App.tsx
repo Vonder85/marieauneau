@@ -29,7 +29,9 @@ const theme = createMuiTheme({
 
 export const App = () => {
   const [massages, setMassages] = useState<Massage[]>([]);
-  const [imagesCarousel, setImagesCarousel] = useState<string[]>([]);
+  const [imagesCarousel, setImagesCarousel] = useState<
+    firebase.storage.Reference[]
+  >([]);
   const [avis, setAvis] = useState<Avis[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
 

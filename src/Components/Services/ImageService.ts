@@ -11,11 +11,9 @@ class ImageService {
       .ref(folder)
       .listAll()
       .then((result) => {
-        const listImages: string[] = [];
+        const listImages: firebase.storage.Reference[] = [];
         for (let i = 0; i < result.items.length; i++) {
-          result.items[i].getDownloadURL().then((res) => {
-            listImages.push(res);
-          });
+          listImages.push(result.items[i]);
         }
         return listImages;
       });
@@ -24,7 +22,7 @@ class ImageService {
   /**
    * Ajouter une photo dans un dossier
    */
-  async addImageMassage(folder: string, file: File) {
+  async addImage(folder: string, file: File) {
     const storageRef = this.storage.ref();
     const fileRef = storageRef.child(folder + "/" + file.name);
     fileRef.put(file);
@@ -41,6 +39,14 @@ class ImageService {
         let url: string = result;
         return url;
       });
+  }
+
+  /**
+   * Fonction qui supprime une photo
+   * @param path path de la photo à supprimer
+   */
+  async deleteImage(path: string) {
+    this.storage.ref(path).delete();
   }
 }
 export default new ImageService();

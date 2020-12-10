@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { MobileStepper } from "@material-ui/core";
+import { AffichageImage } from "./AffichageImage";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -11,15 +12,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     flexGrow: 1,
-  },
-
-  img: {
-    height: 400,
-    display: "block",
-    overflow: "hidden",
-    maxWidth: "100%",
-    marginRight: "auto",
-    marginLeft: "auto",
   },
   stepper: {
     justifyContent: "center",
@@ -32,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface CarouselProps {
   //images à faire défiler dans le carousel
-  images: string[];
+  images: firebase.storage.Reference[];
 }
 
 export const CarouselImages = (props: CarouselProps) => {
@@ -56,9 +48,9 @@ export const CarouselImages = (props: CarouselProps) => {
         enableMouseEvents
       >
         {imagesCarousel.map((step, index) => (
-          <div key={step}>
+          <div key={step.fullPath}>
             {Math.abs(activeStep - index) <= imagesCarousel.length - 1 ? (
-              <img className={classes.img} src={step} alt={step} />
+              <AffichageImage image={step} />
             ) : null}
           </div>
         ))}

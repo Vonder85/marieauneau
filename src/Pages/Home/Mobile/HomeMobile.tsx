@@ -25,30 +25,7 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  button: {
-    backgroundColor: "#D19D8E",
-    color: "white",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "rgba(209, 157, 142, 0.6)",
-    },
-    width: "200px",
-    height: "70px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    borderRadius: "50px",
-  },
-  logo: {
-    height: "300PX",
-    marginRight: "auto",
-    marginLeft: "auto",
-  },
-  divLogo: {
-    width: "100%",
-    display: "flex",
-    marginTop: "40px",
-  },
-  title: { textAlign: "center", padding: "20%", color: "rgb(209, 157, 142)" },
+
   root: {
     backgroundColor: "white",
   },

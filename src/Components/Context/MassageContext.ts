@@ -11,7 +11,7 @@ export default React.createContext<MassageState>({
   massages: [],
   setMassages: (massages: Massage[]) => [],
   imagesCarousel: [],
-  setImagesCarousel: (urls: string[]) => [],
+  setImagesCarousel: (urls: firebase.storage.Reference[]) => [],
   avis: [],
   setAvis: (avis: Avis[]) => [],
   messages: [],

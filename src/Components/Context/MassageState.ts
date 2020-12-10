@@ -5,8 +5,8 @@ import { Message } from "../../Models/Message";
 export interface MassageState {
   massages: Massage[];
   setMassages: (massages: Massage[]) => void;
-  imagesCarousel: string[];
-  setImagesCarousel: (urls: string[]) => void;
+  imagesCarousel: firebase.storage.Reference[];
+  setImagesCarousel: (urls: firebase.storage.Reference[]) => void;
   avis: Avis[];
   setAvis: (avis: Avis[]) => void;
   messages: Message[];

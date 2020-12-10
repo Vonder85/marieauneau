@@ -22,6 +22,7 @@ import { Route, useHistory } from "react-router-dom";
 import { LectureMessage } from "./Messages/LectureMesssage";
 import { AvisForm } from "../../../Components/Forms/AvisForm";
 import { MassageForm } from "./Soins/NewMassage/MassageForm";
+import { ListeImagesCarousel } from "./ImagesCarousel/ListeImagesCarousel";
 
 const drawerWidth = 120;
 
@@ -143,6 +144,13 @@ export default function Dashboard(props: Props) {
       route: "/Admin/Dashboard/Messages",
       exact: true,
       render: ListeMessages,
+    },
+    {
+      label: "Carousel",
+      showOnMenu: true,
+      route: "/Admin/Dashboard/Carousel",
+      exact: true,
+      render: ListeImagesCarousel,
     },
   ];
 
