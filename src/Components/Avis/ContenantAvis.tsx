@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   quote: {
     width: "130px",
-    marginLeft: "-42px",
+    marginLeft: "-32px",
     marginTop: "-38px",
   },
   contenu: {

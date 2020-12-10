@@ -11,6 +11,8 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "space-around ",
     marginTop: "20px",
+    marginLeft: "20px",
+    marginRight: "20px",
   },
   pagination: {
     "& .MuiPagination-ul": {
