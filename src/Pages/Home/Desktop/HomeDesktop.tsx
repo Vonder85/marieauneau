@@ -46,6 +46,8 @@ const useStyles = makeStyles({
   imageProfil: {
     width: "100%",
     height: "550px",
+    paddingLeft: "40px",
+    paddingRight: "40px",
   },
 
   liens: {
@@ -65,7 +67,7 @@ export const HomeDesktop = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item sm={6} md={6} xl={6}>
+        <Grid item sm={6} md={6} xl={6} className={classes.imageProfil}>
           <img src={profil} alt="profil" className={classes.imageProfil} />
         </Grid>
         <Grid item sm={6} md={5} xl={6}>

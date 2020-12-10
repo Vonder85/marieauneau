@@ -56,6 +56,7 @@ export const AffichageAvis = () => {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
+          interval={5000}
         >
           {context.avis?.map((_avis) => (
             <div className={classes.avis}>
