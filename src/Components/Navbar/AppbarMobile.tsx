@@ -29,6 +29,7 @@ export const AppbarMobile = () => {
           style={{
             display: "flex",
             justifyContent: "space-between",
+            alignContent: "center",
             minHeight: "60px",
           }}
         >

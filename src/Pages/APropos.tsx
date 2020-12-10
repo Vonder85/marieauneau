@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     marginTop: "100px",
     marginBottom: "30px",
   },
-  photo: {
+  photoProfil: {
     width: "400px",
     height: "520px",
     borderRadius: "20px",
@@ -50,7 +50,7 @@ export const APropos = () => {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12} md={6} sm={6} className={classes.divPhoto}>
-          <img src={profil} alt="profil" className={classes.photo} />
+          <img src={profil} alt="profil" className={classes.photoProfil} />
         </Grid>
         <Grid item xs={12} md={6} sm={6}>
           <div className={classes.presentation}>
