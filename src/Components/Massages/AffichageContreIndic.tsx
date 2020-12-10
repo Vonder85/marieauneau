@@ -8,6 +8,9 @@ const useStyles = makeStyles({
       listStyleType: "none",
     },
   },
+  titre: {
+    textAlign: "left",
+  },
 });
 
 interface affichageContreIndicProps {
@@ -19,7 +22,7 @@ export const AffichageContreIndic = (props: affichageContreIndicProps) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <h2>Les contre-indications</h2>
+      <h2 className={classes.titre}>Les contre-indications</h2>
 
       {contreIndications.filter((result) => result.type === "générale").length >
         0 && (

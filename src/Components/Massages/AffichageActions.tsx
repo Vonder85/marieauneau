@@ -8,6 +8,9 @@ const useStyles = makeStyles({
       listStyleType: "none",
     },
   },
+  titre: {
+    textAlign: "left",
+  },
 });
 
 interface affichageActionsProps {
@@ -19,7 +22,7 @@ export const AffichageActions = (props: affichageActionsProps) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <h2>Les actions</h2>
+      <h2 className={classes.titre}>Les actions</h2>
       {actions.filter((result) => result.type === "générale").length > 0 && (
         <ul>
           <b>

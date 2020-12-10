@@ -13,16 +13,6 @@ import { AffichageActions } from "../../Components/Massages/AffichageActions";
 import { AffichageContreIndic } from "../../Components/Massages/AffichageContreIndic";
 
 const useStyles = makeStyles({
-  presentation: {
-    width: "70%",
-    color: "rgb(209, 157, 142)",
-    fontSize: "20px",
-    borderRadius: "10px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginTop: "20px",
-  },
-
   root: {
     height: "100%",
     marginTop: "100px",
@@ -47,6 +37,9 @@ const useStyles = makeStyles({
   },
   nom: {
     fontFamily: "Abril Fatface",
+  },
+  titre: {
+    textAlign: "left",
   },
 });
 
@@ -94,9 +87,13 @@ export const MassageDetail = () => {
             </h3>
           </div>
           <div className={classes.zone}>{massage.zone}</div>
-          <h2>En quoi consiste ce soin</h2>
-          <p style={{ whiteSpace: "pre-wrap" }}>{massage?.description}</p>
-          <h2>Les bienfaits</h2>
+
+          <h2 className={classes.titre}>En quoi consiste ce soin</h2>
+
+          <div>
+            <p>{massage?.description}</p>
+          </div>
+          <h2 className={classes.titre}>Les bienfaits</h2>
           <ul className={classes.liste}>
             {massage?.bienFaits?.map((bienfait: string, index: number) => (
               <li key={index}>{bienfait}</li>
