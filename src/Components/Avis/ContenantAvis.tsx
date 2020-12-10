@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     marginTop: "-38px",
   },
   contenu: {
-    marginTop: "-70px",
+    marginTop: "-75px",
   },
 });
 
