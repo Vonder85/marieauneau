@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { ContactForm } from "../Components/Forms/ContactForm/ContactForm";
 
@@ -24,8 +24,12 @@ export const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  //Détecte la taille de l'écran mobile
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
+
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ width: `${smScreen && "80%"}` }}>
       <h1 className={classes.title}>Formulaire de contact</h1>
       <br />
       <ContactForm />

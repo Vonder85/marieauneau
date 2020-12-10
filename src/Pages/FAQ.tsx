@@ -31,6 +31,7 @@ export const FAQ = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  //Détecte la taille de l'écran mobile
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
