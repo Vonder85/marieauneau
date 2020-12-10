@@ -166,7 +166,7 @@ export const ContactForm = () => {
    * Vérifie si le format de l'email est bon
    */
   function verifEmail(email: string) {
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/g;
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,4}$/g;
     if (!regexEmail.test(email)) {
       setErrorEmail(true);
     } else {
