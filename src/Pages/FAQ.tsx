@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -31,8 +31,14 @@ export const FAQ = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
+
   return (
-    <div className={classes.root}>
+    <div
+      className={`${classes.root}`}
+      style={{ width: `${smScreen && "80%"}` }}
+    >
       <h2 className={classes.title}>Prendre rendez-vous</h2>
       <h3 className={classes.question}>Où vous retrouver ?</h3>
       Je pratique tous les dimanches à l’appartement chez June en plein centre
