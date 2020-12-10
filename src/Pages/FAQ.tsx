@@ -2,11 +2,9 @@ import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   root: {
     width: "60%",
-    fontFamily: theme.fontFamily,
     fontSize: "1em",
     borderRadius: "10px",
     marginLeft: "auto",

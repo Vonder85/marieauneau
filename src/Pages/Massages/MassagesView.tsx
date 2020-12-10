@@ -10,11 +10,7 @@ import { Massage } from "../../Models/Massage";
 //Component
 import MassageCard from "../../Components/Card/MassageCard";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
-  root: {
-    fontFamily: theme.fontFamily,
-  },
   title: {
     textAlign: "center",
     marginTop: "100px",
@@ -65,7 +61,7 @@ export const MassagesView = () => {
     "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";
 
   return (
-    <div className={classes.root}>
+    <div>
       <h1 className={classes.title}>Les différents massages</h1>
       <div className={classes.buttonMassages}>
         <a

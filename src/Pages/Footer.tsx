@@ -2,13 +2,11 @@ import { Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   footer: {
     height: "150px",
     backgroundColor: "rgb(209, 157, 142)",
     color: "white",
-    fontFamily: theme.fontFamily,
     fontWeight: "bold",
     fontSize: "1em",
     textAlign: "center",

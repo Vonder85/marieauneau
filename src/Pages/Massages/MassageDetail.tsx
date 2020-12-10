@@ -12,7 +12,6 @@ import ImageService from "../../Components/Services/ImageService";
 import { AffichageActions } from "../../Components/Massages/AffichageActions";
 import { AffichageContreIndic } from "../../Components/Massages/AffichageContreIndic";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   presentation: {
     width: "70%",
@@ -36,7 +35,6 @@ const useStyles = makeStyles({
   root: {
     height: "100%",
     marginTop: "100px",
-    fontFamily: theme.fontFamily,
     overflowX: "hidden",
   },
   liste: {

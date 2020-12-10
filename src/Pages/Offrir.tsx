@@ -3,22 +3,17 @@ import React, { useEffect } from "react";
 
 import bonCadeau from "../Images/Massages/bonCadeau.png";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   presentation: {
     width: "70%",
     color: "rgb(209, 157, 142)",
-    fontFamily: theme.fontFamily,
     fontSize: "20px",
     borderRadius: "10px",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: "20px",
   },
-  liens: {
-    textDecoration: "none",
-    color: "rgb(209, 157, 142)",
-  },
+
   root: {
     height: "100%",
     marginTop: "100px",

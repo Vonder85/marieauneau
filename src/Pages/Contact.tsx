@@ -2,11 +2,9 @@ import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { ContactForm } from "../Components/Forms/ContactForm/ContactForm";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   title: {
     color: "rgb(209, 157, 142)",
-    fontFamily: theme.fontFamily,
     textAlign: "center",
   },
   root: {

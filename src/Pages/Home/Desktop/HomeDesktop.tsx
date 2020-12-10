@@ -19,12 +19,10 @@ import { Massage } from "../../../Models/Massage";
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
 import { AffichageAvis } from "../../../Components/Avis/AffichageAvis";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   presentation: {
     width: "60%",
     color: "rgb(209, 157, 142)",
-    fontFamily: theme.fontFamily,
     fontSize: "1em",
     borderRadius: "10px",
     marginLeft: "auto",

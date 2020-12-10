@@ -8,12 +8,10 @@ import { Massage } from "../Models/Massage";
 
 import profil from "../Images/APropos/profil.jpg";
 
-const theme = { fontFamily: "BillySignature" };
 const useStyles = makeStyles({
   presentation: {
     width: "70%",
     color: "rgb(209, 157, 142)",
-    fontFamily: theme.fontFamily,
     fontSize: "1em",
     borderRadius: "10px",
     marginLeft: "auto",
