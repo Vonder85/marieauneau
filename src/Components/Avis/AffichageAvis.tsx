@@ -50,7 +50,7 @@ export const AffichageAvis = () => {
   const context = useContext(MassageContext);
   return (
     <>
-      <div className={classes.avis}>
+      <div className={classes.avis} style={{ width: `${smScreen && "90%"}` }}>
         {context.avis
           ?.slice(
             (page - 1) * rowsPerPage,
