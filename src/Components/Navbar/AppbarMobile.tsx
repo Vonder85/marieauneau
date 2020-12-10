@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   liens: {
     textDecoration: "none",
     color: "#D19D8E",
-    fontSize: "16px",
+    fontSize: "18px",
   },
 });
 
