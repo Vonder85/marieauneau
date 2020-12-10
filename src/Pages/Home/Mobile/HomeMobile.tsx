@@ -13,14 +13,18 @@ import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
 import MassageContext from "../../../Components/Context/MassageContext";
 import { AffichageAvis } from "../../../Components/Avis/AffichageAvis";
 
+const theme = { fontFamily: "Poppins" };
+
 const useStyles = makeStyles({
   presentation: {
     width: "80%",
     color: "rgb(209, 157, 142)",
     fontSize: "1em",
+    fontFamily: theme.fontFamily,
     borderRadius: "10px",
     marginLeft: "auto",
     marginRight: "auto",
+    textAlign: "justify",
   },
 
   root: {

@@ -17,14 +17,17 @@ import { Massage } from "../../../Models/Massage";
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
 import { AffichageAvis } from "../../../Components/Avis/AffichageAvis";
 
+const theme = { fontFamily: "Poppins" };
 const useStyles = makeStyles({
   presentation: {
-    width: "60%",
+    width: "80%",
     color: "rgb(209, 157, 142)",
     fontSize: "1em",
+    fontFamily: theme.fontFamily,
     borderRadius: "10px",
     marginLeft: "auto",
     marginRight: "auto",
+    textAlign: "justify",
   },
 
   logo: {
@@ -131,7 +134,7 @@ export const HomeDesktop = () => {
         <AffichageAvis />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <div className="powr-instagram-feed" id="b4e6f43a_1607520520"></div>
+        <div className="powr-social-feed" id="0acd955f_1607613877"></div>{" "}
       </ScrollAnimation>
     </div>
   );

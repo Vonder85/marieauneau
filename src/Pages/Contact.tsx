@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     marginTop: "100px",
     marginRight: "auto",
     marginLeft: "auto",
+    marginBottom: "30px",
   },
 });
 export const Contact = () => {

@@ -4,6 +4,7 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   createMuiTheme,
+  makeStyles,
   ThemeProvider,
   useMediaQuery,
   useTheme,
@@ -20,6 +21,7 @@ import MassageContext from "./Components/Context/MassageContext";
 
 //Component
 import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
+import { Footer } from "./Pages/Footer";
 
 const theme = createMuiTheme({
   typography: {
@@ -27,7 +29,15 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles({
+  App: {
+    fontFamily: theme.typography.fontFamily,
+    textAlign: "justify",
+  },
+});
+
 export const App = () => {
+  const classes = useStyles();
   const [massages, setMassages] = useState<Massage[]>([]);
   const [imagesCarousel, setImagesCarousel] = useState<
     firebase.storage.Reference[]
@@ -40,7 +50,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className={classes.App}>
         <Router>
           <MassageContext.Provider
             value={{
@@ -57,6 +67,7 @@ export const App = () => {
             <Navbar />
 
             <Routes />
+            <Footer />
             {smScreen && <AppbarMobile />}
           </MassageContext.Provider>
         </Router>

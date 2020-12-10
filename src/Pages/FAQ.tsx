@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: "100px",
+    marginBottom: "30px",
   },
   title: {},
   question: {

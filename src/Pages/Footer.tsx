@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     color: "white",
     fontWeight: "bold",
     fontSize: "1em",
-    textAlign: "center",
     marginTop: "-5px",
     paddingTop: "20px",
     marginBottom: "-21px",

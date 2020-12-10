@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     height: "100%",
     backgroundColor: "white",
     marginTop: "100px",
+    marginBottom: "30px",
   },
   photo: {
     width: "400px",
