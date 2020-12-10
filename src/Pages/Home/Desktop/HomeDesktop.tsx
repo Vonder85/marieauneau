@@ -5,9 +5,7 @@ import "animate.css/animate.min.css";
 import { Link } from "react-router-dom";
 
 //Images
-import fond1 from "../../../Images/homePage/fond1.png";
-import cabinetJune from "../../../Images/homePage/cabinetJune.png";
-import chezJune from "../../../Images/homePage/chezJune.jpg";
+import profil from "../../../Images/APropos/profil.jpg";
 
 //Context
 import MassageContext from "../../../Components/Context/MassageContext";
@@ -34,18 +32,17 @@ const useStyles = makeStyles({
     marginRight: "auto",
     marginLeft: "auto",
   },
-  divLogo: {
-    width: "100%",
-    display: "flex",
-    marginTop: "40px",
-  },
   title: { textAlign: "center", padding: "20%", color: "rgb(209, 157, 142)" },
   root: {
     backgroundColor: "white",
   },
   image: {
     width: "100%",
-    height: "400px",
+    height: "500px",
+  },
+  imageProfil: {
+    width: "100%",
+    height: "550px",
   },
 
   liens: {
@@ -65,33 +62,8 @@ export const HomeDesktop = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <div className={classes.divLogo}>
-          <Grid item md={4} xl={4}>
-            <h1 className={classes.title}>Bien-être</h1>
-          </Grid>
-
-          <Grid
-            item
-            sm={12}
-            md={4}
-            xl={4}
-            style={{
-              textAlign: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            <img src={fond1} alt="fond1" className={classes.logo} />
-          </Grid>
-
-          <Grid item sm={false} md={4} xl={4}>
-            <h1 className={classes.title}>Sérennité</h1>
-          </Grid>
-        </div>
-      </Grid>
-      <Grid container>
         <Grid item sm={6} md={6} xl={6}>
-          <img src={cabinetJune} alt="cabinetJune" className={classes.image} />
+          <img src={profil} alt="profil" className={classes.imageProfil} />
         </Grid>
         <Grid item sm={6} md={5} xl={6}>
           <div className={classes.presentation}>
@@ -151,12 +123,9 @@ export const HomeDesktop = () => {
             </div>
           </Grid>
           <Grid item sm={6} md={6} xl={6}>
-            <img src={chezJune} alt="chezJune" className={classes.image} />
+            <CarouselImages images={context.imagesCarousel} />
           </Grid>
         </Grid>
-      </ScrollAnimation>
-      <ScrollAnimation animateIn="fadeIn" delay={100}>
-        <CarouselImages images={context.imagesCarousel} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <AffichageAvis />

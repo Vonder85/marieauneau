@@ -1,22 +1,33 @@
-import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
-import React, { useContext, useEffect, useState } from "react";
-import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles, MobileStepper, useTheme } from "@material-ui/core";
+import React, { useContext } from "react";
+import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
 
 import MassageContext from "../Context/MassageContext";
 import { ContenantAvis } from "./ContenantAvis";
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 const useStyles = makeStyles({
   avis: {
     display: "flex",
-    flexWrap: "wrap",
     justifyContent: "space-around ",
-    marginTop: "20px",
-    marginLeft: "20px",
-    marginRight: "20px",
+    marginTop: "40px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "90%",
   },
-  pagination: {
-    "& .MuiPagination-ul": {
-      justifyContent: "center",
+
+  root: {
+    maxWidth: "100%",
+    flexGrow: 1,
+    height: "100%",
+  },
+  stepper: {
+    justifyContent: "center",
+    backgroundColor: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#D19D8E",
     },
   },
 });
@@ -24,53 +35,44 @@ const useStyles = makeStyles({
 export const AffichageAvis = () => {
   const classes = useStyles();
 
-  const themeQueries = useTheme();
-  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
-
-  /**
-   * Pagination
-   */
-  const [rowsPerPage, setRowsPerPage] = useState(0);
-  const [page, setPage] = useState(1);
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  useEffect(() => {
-    if (smScreen) {
-      setRowsPerPage(1);
-    } else {
-      setRowsPerPage(3);
-    }
-  }, [smScreen]);
-
   /**
    * Récupération du context
    */
   const context = useContext(MassageContext);
+
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleStepChange = (step: number) => {
+    setActiveStep(step);
+  };
+
+  const theme = useTheme();
+
   return (
     <>
-      <div className={classes.avis} style={{ width: `${smScreen && "90%"}` }}>
-        {context.avis
-          ?.slice(
-            (page - 1) * rowsPerPage,
-            (page - 1) * rowsPerPage + rowsPerPage
-          )
-          .map((_avis) => (
-            <ContenantAvis avis={_avis} />
+      <div className={classes.root}>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {context.avis?.map((_avis) => (
+            <div className={classes.avis}>
+              <ContenantAvis avis={_avis} key={_avis.id} />
+            </div>
           ))}
+        </AutoPlaySwipeableViews>
+        <MobileStepper
+          steps={context.avis.length}
+          position="static"
+          variant="dots"
+          activeStep={activeStep}
+          nextButton={undefined}
+          backButton={undefined}
+          className={classes.stepper}
+        />
       </div>
-      <Pagination
-        count={
-          smScreen ? context.avis.length : Math.round(context.avis.length / 3)
-        }
-        siblingCount={0}
-        page={page}
-        defaultPage={1}
-        boundaryCount={2}
-        onChange={handleChangePage}
-        className={classes.pagination}
-      />
     </>
   );
 };

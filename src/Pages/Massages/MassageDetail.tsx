@@ -1,6 +1,6 @@
-import { Button, Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //Context
 import MassageContext from "../../Components/Context/MassageContext";
@@ -23,15 +23,6 @@ const useStyles = makeStyles({
     marginTop: "20px",
   },
 
-  button: {
-    marginLeft: "5px",
-    backgroundColor: "#D19D8E",
-    color: "white",
-    marginBottom: "10px",
-    "&:hover": {
-      backgroundColor: "rgba(209, 157, 142, 0.6)",
-    },
-  },
   root: {
     height: "100%",
     marginTop: "100px",
@@ -72,24 +63,12 @@ export const MassageDetail = () => {
     (massage) => massage.nom === nomMassage.nom
   );
 
-  /**
-   * Permet de faire la redirection
-   */
-  const history = useHistory();
-
   useEffect(() => {
     window.scrollTo(0, 0);
     if (massage) {
       getUrl(massage.image);
     }
   }, [massage]);
-
-  /**
-   * Permet de revenir à la page précédente
-   */
-  function handleBack() {
-    history.push("/Massages");
-  }
 
   const [urlImage, setUrlImage] = useState<string>("");
   if (!massage) return null;
@@ -101,9 +80,6 @@ export const MassageDetail = () => {
 
   return (
     <div className={classes.root}>
-      <Button className={classes.button} onClick={handleBack}>
-        Retour
-      </Button>
       <Grid container>
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <img src={urlImage} alt="photoMassage" className={classes.img} />

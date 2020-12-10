@@ -9,7 +9,7 @@ import doubleQuote from "../../Images/homePage/doubleQuote.png";
 
 const useStyles = makeStyles({
   conteneur: {
-    width: "400px",
+    width: "90%",
     minHeight: "200px",
     maxHeight: "300px",
     border: "4px dashed #D19D8E",

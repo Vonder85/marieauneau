@@ -72,6 +72,8 @@ const useStyles = makeStyles((theme: Theme) =>
       "& .MuiTab-textColorInherit": {
         opacity: 1,
       },
+      height: "100Px",
+      justifyContent: "space-around",
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -161,9 +163,7 @@ export const Navbar = () => {
               <Link to="/APropos" className={classes.liens}>
                 <Tab label="A propos" />
               </Link>
-              <Link to="/Offrir" className={classes.liens}>
-                <Tab label="Offrir" />
-              </Link>
+
               <Link to="/">
                 <img src={Logo} alt="logo" className={classes.logo} />
               </Link>
@@ -174,11 +174,6 @@ export const Navbar = () => {
               <Link to="/Contact" className={classes.liens}>
                 <Tab label="Contact" />
               </Link>
-
-              <Tab
-                label="Admin"
-                style={{ color: "#D19D8E", cursor: "default" }}
-              />
             </Tabs>
           ) : (
             <>

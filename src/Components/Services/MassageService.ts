@@ -36,8 +36,9 @@ class MassageService {
         data.forEach((item) => {
           array.push(item.val());
         });
-
-        return array;
+        return array.sort(function (a, b) {
+          return a.nom.localeCompare(b.nom);
+        });
       });
   }
 

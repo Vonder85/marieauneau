@@ -4,8 +4,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
 
 //Images
-import cabinetJune from "../../../Images/homePage/cabinetJune.png";
-import chezJune from "../../../Images/homePage/chezJune.jpg";
+import profil from "../../../Images/APropos/profil.jpg";
 
 //Component
 import { CarouselImages } from "../../../Components/Carousel/CarouselImages";
@@ -30,6 +29,10 @@ const useStyles = makeStyles({
   image: {
     width: "100%",
     height: "400px",
+  },
+  imageProfil: {
+    width: "100%",
+    height: "550px",
   },
 
   liens: {
@@ -67,7 +70,7 @@ export const HomeMobile = () => {
           </div>
         </Grid>
         <Grid item sm={6} md={6} xl={6}>
-          <img src={cabinetJune} alt="cabinetJune" className={classes.image} />
+          <img src={profil} alt="profil" className={classes.imageProfil} />
         </Grid>
       </Grid>
       <ScrollAnimation animateIn="fadeIn" delay={200}>
@@ -101,16 +104,9 @@ export const HomeMobile = () => {
             </div>
           </Grid>
           <Grid item sm={6} md={6} xl={6}>
-            <img src={chezJune} alt="chezJune" className={classes.image} />
+            <CarouselImages images={context.imagesCarousel} />
           </Grid>
         </Grid>
-      </ScrollAnimation>
-      <ScrollAnimation
-        animateIn="fadeIn"
-        delay={100}
-        style={{ marginBottom: "10px" }}
-      >
-        <CarouselImages images={context.imagesCarousel} />
       </ScrollAnimation>
       <ScrollAnimation animateIn="fadeIn" delay={100}>
         <AffichageAvis />

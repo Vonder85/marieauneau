@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     flexGrow: 1,
+    height: "100%",
   },
   stepper: {
     justifyContent: "center",
