@@ -2,6 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
+import { Link } from "react-router-dom";
+
+//Model
+import { Massage } from "../../../Models/Massage";
 
 //Images
 import profil from "../../../Images/APropos/profil.jpg";
@@ -71,6 +75,17 @@ export const HomeMobile = () => {
             et repulpé.
             <br />
             <br />
+            Je vous propose {context.massages.length} massages :
+            <ul>
+              {context.massages.map((massage: Massage) => (
+                <Link
+                  to={`/Massages/${massage?.nom}`}
+                  className={classes.liens}
+                >
+                  <li key={massage.id}>{massage.nom}</li>
+                </Link>
+              ))}
+            </ul>
           </div>
         </Grid>
         <Grid item sm={6} md={6} xl={6}>
