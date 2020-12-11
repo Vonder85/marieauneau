@@ -27,7 +27,7 @@ export const Footer = () => {
     <Grid
       container
       className={classes.footer}
-      style={{ marginBottom: `${smScreen && "15px"}` }}
+      style={{ marginBottom: `${smScreen && "0px"}` }}
     >
       <>
         <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
