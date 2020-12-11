@@ -32,7 +32,7 @@ export const Footer = () => {
             <br />
             06 29 38 24 55
             <br />
-            <span style={{ textAlign: "left" }}>7 rue des Cardeniers</span>
+            <span>7 rue des Cardeniers</span>
           </div>
         </Grid>
         <Grid item xs={7} sm={7} md={4} lg={4} xl={4}>
