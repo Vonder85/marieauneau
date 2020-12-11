@@ -28,11 +28,9 @@ export const Footer = () => {
       {smScreen ? (
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div>
-            Marie Auneau
-            <br />
+            Chez June
             <br />
             06 29 38 24 55
-            <br />
             <br />7 rue des Cardeniers
           </div>
         </Grid>
@@ -42,9 +40,7 @@ export const Footer = () => {
             <div>
               Marie Auneau
               <br />
-              <br />
               06 29 38 24 55
-              <br />
               <br />7 rue des Cardeniers
             </div>
           </Grid>
@@ -52,12 +48,10 @@ export const Footer = () => {
             <div>
               Une question, une remarque ?
               <br />
-              <br />
               Retrouvez notre{" "}
               <Link to="/FAQ" className={classes.liens}>
                 FAQ
               </Link>
-              <br />
               <br />
               <Link to="/Contact" className={classes.liens}>
                 Ou contactez moi
