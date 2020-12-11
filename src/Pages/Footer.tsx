@@ -24,14 +24,15 @@ export const Footer = () => {
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   return (
-    <Grid container className={classes.footer}>
+    <Grid container className={classes.footer} spacing={1}>
       <>
         <Grid item xs={5} sm={5} md={4} lg={4} xl={4}>
           <div>
             Chez June
             <br />
             06 29 38 24 55
-            <br />7 rue des Cardeniers
+            <br />
+            <span style={{ textAlign: "left" }}>7 rue des Cardeniers</span>
           </div>
         </Grid>
         <Grid item xs={7} sm={7} md={4} lg={4} xl={4}>
