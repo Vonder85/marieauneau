@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/Admin"
-  to = "www.marieauneau.com/Admin"
+  to = "www.marieauneau.com/"
   status = 301
   force = false
   query = {path = ":path"}
