@@ -1,4 +1,4 @@
-import { Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -20,13 +20,11 @@ const useStyles = makeStyles({
 
 export const Footer = () => {
   const classes = useStyles();
-  const themeQueries = useTheme();
-  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   return (
     <Grid container className={classes.footer}>
-      {smScreen ? (
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+      <>
+        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
           <div>
             Chez June
             <br />
@@ -34,42 +32,31 @@ export const Footer = () => {
             <br />7 rue des Cardeniers
           </div>
         </Grid>
-      ) : (
-        <>
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-            <div>
-              Marie Auneau
-              <br />
-              06 29 38 24 55
-              <br />7 rue des Cardeniers
-            </div>
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-            <div>
-              Une question, une remarque ?
-              <br />
-              Retrouvez notre{" "}
-              <Link to="/FAQ" className={classes.liens}>
-                FAQ
-              </Link>
-              <br />
-              <Link to="/Contact" className={classes.liens}>
-                Ou contactez moi
-                <br />
-                hello@marieauneau.fr
-              </Link>
-            </div>
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-            <Link
-              to="/APropos"
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              A propos
+        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+          <div>
+            Une question, une remarque ?
+            <br />
+            Retrouvez notre{" "}
+            <Link to="/FAQ" className={classes.liens}>
+              FAQ
             </Link>
-          </Grid>
-        </>
-      )}
+            <br />
+            <Link to="/Contact" className={classes.liens}>
+              Ou contactez moi
+              <br />
+              hello@marieauneau.fr
+            </Link>
+          </div>
+        </Grid>
+        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+          <Link
+            to="/APropos"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            A propos
+          </Link>
+        </Grid>
+      </>
     </Grid>
   );
 };

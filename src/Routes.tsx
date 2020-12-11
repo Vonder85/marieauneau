@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+
+//Pages
 import { Home } from "./Pages/Home/Home";
 import { LoginPage } from "./Pages/LoginPage/LoginPage";
 import HomeAdmin from "./Pages/Admin/HomeAdmin/HomeAdmin";
@@ -9,12 +11,17 @@ import { Offrir } from "./Pages/Offrir";
 import { MassageDetail } from "./Pages/Massages/MassageDetail";
 import { FAQ } from "./Pages/FAQ";
 import { Contact } from "./Pages/Contact";
-import MassageService from "./Components/Services/MassageService";
-import MassageContext from "./Components/Context/MassageContext";
-import ImageService from "./Components/Services/ImageService";
 import Dashboard from "./Pages/Admin/HomeAdmin/Dashboard";
+
+//Context
+import MassageContext from "./Components/Context/MassageContext";
+
+//Service
 import AvisService from "./Components/Services/AvisService";
 import MessageService from "./Components/Services/MessageService";
+import QuestionService from "./Components/Services/QuestionService";
+import ImageService from "./Components/Services/ImageService";
+import MassageService from "./Components/Services/MassageService";
 
 function Routes() {
   const context = useContext(MassageContext);
@@ -32,6 +39,9 @@ function Routes() {
     MessageService.getMessages().then((result) => {
       context.setMessages(result);
     });
+    QuestionService.getQuestions().then((result) =>
+      context.setQuestions(result)
+    );
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);

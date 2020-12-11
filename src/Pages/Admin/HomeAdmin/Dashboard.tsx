@@ -23,6 +23,8 @@ import { LectureMessage } from "./Messages/LectureMesssage";
 import { AvisForm } from "../../../Components/Forms/AvisForm";
 import { MassageForm } from "./Soins/NewMassage/MassageForm";
 import { ListeImagesCarousel } from "./ImagesCarousel/ListeImagesCarousel";
+import { ListeQuestions } from "./Questions/ListeQuestions";
+import { QuestionForm } from "../../../Components/Forms/QuestionForm";
 
 const drawerWidth = 120;
 
@@ -151,6 +153,27 @@ export default function Dashboard(props: Props) {
       route: "/Admin/Dashboard/Carousel",
       exact: true,
       render: ListeImagesCarousel,
+    },
+    {
+      label: "Questions",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Questions/Edition/:id",
+      exact: true,
+      render: QuestionForm,
+    },
+    {
+      label: "Questions",
+      showOnMenu: false,
+      route: "/Admin/Dashboard/Questions/Edition",
+      exact: true,
+      render: QuestionForm,
+    },
+    {
+      label: "Questions",
+      showOnMenu: true,
+      route: "/Admin/Dashboard/Questions",
+      exact: true,
+      render: ListeQuestions,
     },
   ];
 

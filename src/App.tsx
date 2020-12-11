@@ -22,6 +22,7 @@ import MassageContext from "./Components/Context/MassageContext";
 //Component
 import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
 import { Footer } from "./Pages/Footer";
+import { Question } from "./Models/Question";
 
 const theme = createMuiTheme({
   typography: {
@@ -44,6 +45,7 @@ export const App = () => {
   >([]);
   const [avis, setAvis] = useState<Avis[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
 
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
@@ -62,6 +64,8 @@ export const App = () => {
               setAvis,
               messages,
               setMessages,
+              questions,
+              setQuestions,
             }}
           >
             <Navbar />

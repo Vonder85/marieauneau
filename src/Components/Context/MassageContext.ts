@@ -4,6 +4,7 @@ import React from "react";
 import { Avis } from "../../Models/Avis";
 import { Massage } from "../../Models/Massage";
 import { Message } from "../../Models/Message";
+import { Question } from "../../Models/Question";
 
 import { MassageState } from "./MassageState";
 
@@ -16,4 +17,6 @@ export default React.createContext<MassageState>({
   setAvis: (avis: Avis[]) => [],
   messages: [],
   setMessages: (messages: Message[]) => [],
+  questions: [],
+  setQuestions: (questions: Question[]) => [],
 });
