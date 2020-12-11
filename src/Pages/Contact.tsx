@@ -29,7 +29,9 @@ export const Contact = () => {
 
   return (
     <div className={classes.root} style={{ width: `${smScreen && "80%"}` }}>
-      <h1 className={classes.title}>Formulaire de contact</h1>
+      <h1 className={classes.title}>
+        Contact: hello@marieauneau.com / 06 29 38 24 55
+      </h1>
       <br />
       <ContactForm />
     </div>

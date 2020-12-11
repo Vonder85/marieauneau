@@ -96,11 +96,6 @@ export const Navbar = () => {
   const themeQueries = useTheme();
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
-  //const user = firebase.auth().currentUser;
-  /*function logout() {
-    firebase.auth().signOut();
-  }*/
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -189,18 +184,6 @@ export const Navbar = () => {
               </Typography>
             </>
           )}
-
-          {/*<Button color="inherit">
-            {user ? (
-              <Link to="/" className={classes.liens} onClick={logout}>
-                Déconnexion
-              </Link>
-            ) : (
-              <Link to="/Connexion" className={classes.liens}>
-                Connexion
-              </Link>
-            )}
-            </Button>*/}
         </Toolbar>
       </AppBar>
     </Grid>

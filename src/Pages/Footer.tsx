@@ -32,7 +32,7 @@ export const Footer = () => {
             <br />
             06 29 38 24 55
             <br />
-            <span>7 rue des Cardeniers</span>
+            <span>7 rue des Cadeniers</span>
           </div>
         </Grid>
         {smScreen && <Grid item xs={1} sm={1}></Grid>}

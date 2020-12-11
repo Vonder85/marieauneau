@@ -7,7 +7,7 @@ import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import * as firebase from "firebase";
 import {
   makeStyles,
   useTheme,
@@ -88,6 +88,11 @@ export default function Dashboard(props: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  function logout() {
+    firebase.auth().signOut();
+    history.push("/");
+  }
 
   const tabsItems: TabsItem[] = [
     {
@@ -192,6 +197,9 @@ export default function Dashboard(props: Props) {
               />
             </ListItem>
           ))}
+        <ListItem button>
+          <ListItemText primary="Déconnexion" onClick={logout} />
+        </ListItem>
       </List>
     </div>
   );

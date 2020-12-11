@@ -1,10 +1,18 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import * as firebase from "firebase";
 import "./Login.css";
 import { useHistory, withRouter } from "react-router-dom";
 
+const useStyles = makeStyles({
+  root: {
+    marginTop: "150px",
+    height: "100px",
+  },
+});
+
 const Login = () => {
+  const classes = useStyles();
   let history = useHistory();
 
   const [email, setEmail] = useState("");
@@ -25,7 +33,7 @@ const Login = () => {
   const btn = email.trim() === "" && password.trim() === "";
 
   return (
-    <div>
+    <div className={classes.root}>
       <h2>Connectes-toi !</h2>
       <form
         noValidate
