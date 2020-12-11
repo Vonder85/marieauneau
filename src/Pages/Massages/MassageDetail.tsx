@@ -1,4 +1,4 @@
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   img: {
     height: "350px",
-    width: "450px",
+    width: "100%",
   },
   adjectif: {
     color: "rgb(209, 157, 142)",
@@ -44,6 +44,8 @@ const useStyles = makeStyles({
 });
 
 export const MassageDetail = () => {
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
   const classes = useStyles();
 
   //Récupération du nom du massage dans l'url
@@ -72,7 +74,7 @@ export const MassageDetail = () => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ padding: `${smScreen && "20px"}` }}>
       <Grid container>
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <img src={urlImage} alt="photoMassage" className={classes.img} />

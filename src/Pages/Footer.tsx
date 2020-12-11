@@ -55,9 +55,9 @@ export const Footer = () => {
               <br />
               <Link to="/Contact" className={classes.liens}>
                 Ou contactez moi
-              </Link>{" "}
-              <br />
-              hello@marieauneau.fr
+                <br />
+                hello@marieauneau.fr
+              </Link>
             </div>
           </Grid>
           <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>

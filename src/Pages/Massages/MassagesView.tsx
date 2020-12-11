@@ -1,4 +1,10 @@
-import { Button, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import React, { useContext, useEffect } from "react";
 
 //Context
@@ -27,7 +33,6 @@ const useStyles = makeStyles({
     display: "inline-flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    marginLeft: "-10px",
     listStyleType: "none",
   },
   liens: {
@@ -53,6 +58,9 @@ export const MassagesView = () => {
   const context = useContext(MassageContext);
   const { massages } = context;
 
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,8 +69,13 @@ export const MassagesView = () => {
     "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";
 
   return (
-    <div>
-      <h1 className={classes.title}>Les différents massages</h1>
+    <div style={{ marginLeft: `${smScreen && "-35px"}` }}>
+      <h1
+        className={classes.title}
+        style={{ marginLeft: `${smScreen && "30px"}` }}
+      >
+        Les différents massages
+      </h1>
       <div className={classes.buttonMassages}>
         <a
           href={urlCarteMassages}
@@ -82,14 +95,16 @@ export const MassagesView = () => {
       </div>
       <br />
       <ul className={classes.liste}>
-        {massages.map((massage: Massage) => (
+        <Grid container>
+          {massages.map((massage: Massage) => (
+            <li className={classes.card}>
+              <MassageCard massage={massage} />
+            </li>
+          ))}
           <li className={classes.card}>
-            <MassageCard massage={massage} />
+            <MassageCard />
           </li>
-        ))}
-        <li className={classes.card}>
-          <MassageCard />
-        </li>
+        </Grid>
       </ul>
     </div>
   );
