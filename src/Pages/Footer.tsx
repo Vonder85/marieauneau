@@ -35,7 +35,8 @@ export const Footer = () => {
             <span>7 rue des Cardeniers</span>
           </div>
         </Grid>
-        <Grid item xs={7} sm={7} md={4} lg={4} xl={4}>
+        {smScreen && <Grid item xs={1} sm={1}></Grid>}
+        <Grid item xs={6} sm={6} md={4} lg={4} xl={4}>
           <div>
             Une question, une remarque ?
             <br />
