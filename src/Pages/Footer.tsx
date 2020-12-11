@@ -30,7 +30,7 @@ export const Footer = () => {
       style={{ marginBottom: `${smScreen && "0px"}` }}
     >
       <>
-        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+        <Grid item xs={5} sm={5} md={4} lg={4} xl={4}>
           <div>
             Chez June
             <br />
@@ -38,7 +38,7 @@ export const Footer = () => {
             <br />7 rue des Cardeniers
           </div>
         </Grid>
-        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+        <Grid item xs={7} sm={7} md={4} lg={4} xl={4}>
           <div>
             Une question, une remarque ?
             <br />
@@ -54,14 +54,16 @@ export const Footer = () => {
             </Link>
           </div>
         </Grid>
-        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-          <Link
-            to="/APropos"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            A propos
-          </Link>
-        </Grid>
+        {!smScreen && (
+          <Grid item md={4} lg={4} xl={4}>
+            <Link
+              to="/APropos"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              A propos
+            </Link>
+          </Grid>
+        )}
       </>
     </Grid>
   );
