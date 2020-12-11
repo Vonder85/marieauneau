@@ -1,7 +1,7 @@
 {
   "name": "marieauneau",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@date-io/date-fns": "^2.10.6",
     "@google-cloud/storage": "^5.5.0",
