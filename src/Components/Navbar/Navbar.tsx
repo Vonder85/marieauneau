@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textDecoration: "none",
       color: "white",
       marginTop: "14px",
+      marginRight: "80px",
     },
     root: {
       background: "#D19D8E",
@@ -168,7 +169,11 @@ export const Navbar = () => {
                 <img src={Logo} alt="logo" className={classes.logo} />
               </Link>
 
-              <Link to="/FAQ" className={classes.liens}>
+              <Link
+                to="/FAQ"
+                className={classes.liens}
+                style={{ marginLeft: "80px" }}
+              >
                 <Tab label="FAQ" />
               </Link>
               <Link to="/Contact" className={classes.liens}>

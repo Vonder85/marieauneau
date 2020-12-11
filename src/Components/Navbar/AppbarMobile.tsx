@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   liens: {
     textDecoration: "none",
     color: "#D19D8E",
-    fontSize: "18px",
+    fontSize: "22px",
   },
 });
 
@@ -39,10 +39,6 @@ export const AppbarMobile = () => {
           <Link to="/APropos" className={classes.liens}>
             A propos{" "}
           </Link>
-          <Link to="/Offrir" className={classes.liens}>
-            Offrir{" "}
-          </Link>
-
           <Link to="/FAQ" className={classes.liens}>
             FAQ{" "}
           </Link>
