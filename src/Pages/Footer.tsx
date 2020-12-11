@@ -1,4 +1,4 @@
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -20,9 +20,15 @@ const useStyles = makeStyles({
 
 export const Footer = () => {
   const classes = useStyles();
+  const themeQueries = useTheme();
+  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   return (
-    <Grid container className={classes.footer}>
+    <Grid
+      container
+      className={classes.footer}
+      style={{ marginBottom: `${smScreen && "15px"}` }}
+    >
       <>
         <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
           <div>
