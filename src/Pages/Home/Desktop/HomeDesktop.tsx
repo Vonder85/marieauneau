@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     height: "500px",
   },
   imageProfil: {
-    width: "400px",
+    width: "450px",
     height: "550px",
     paddingLeft: "40px",
     paddingRight: "40px",
