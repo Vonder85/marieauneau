@@ -1,7 +1,7 @@
 {
   "name": "marieauneau",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@date-io/date-fns": "^2.10.6",
     "@google-cloud/storage": "^5.5.0",
@@ -45,7 +45,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && echo '/* /index.html 200'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
