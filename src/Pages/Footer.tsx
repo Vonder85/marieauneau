@@ -24,11 +24,7 @@ export const Footer = () => {
   const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
 
   return (
-    <Grid
-      container
-      className={classes.footer}
-      style={{ marginBottom: `${smScreen && "0px"}` }}
-    >
+    <Grid container className={classes.footer}>
       <>
         <Grid item xs={5} sm={5} md={4} lg={4} xl={4}>
           <div>
