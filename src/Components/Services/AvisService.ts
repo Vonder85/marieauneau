@@ -11,7 +11,6 @@ class AvisService {
   async createAvis(data: Avis) {
     const id = (await this.db.ref("/avis/" + data.id).push(data)).key;
     await this.db.ref("/avis/" + id).update({ id: id });
-    this.getAvis();
   }
 
   /**
@@ -20,7 +19,6 @@ class AvisService {
    */
   async updateAvis(data: Avis) {
     this.db.ref("/avis/" + data.id).update(data);
-    this.getAvis();
   }
 
   /**
@@ -46,7 +44,6 @@ class AvisService {
    */
   async deleteAvis(id: string) {
     this.db.ref("/avis/" + id).remove();
-    this.getAvis();
   }
 
   /**

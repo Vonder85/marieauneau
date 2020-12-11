@@ -32,7 +32,6 @@ class MessageService {
    */
   async deleteMessage(id: string) {
     this.db.ref("/messages/" + id).remove();
-    this.getMessages();
   }
 
   /**

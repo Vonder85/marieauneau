@@ -12,7 +12,6 @@ class MassageService {
   async createMassage(data: Massage) {
     const id = (await this.db.ref("/massages/" + data.id).push(data)).key;
     await this.db.ref("/massages/" + id).update({ id: id });
-    this.getMassages();
   }
 
   /**
@@ -21,7 +20,6 @@ class MassageService {
    */
   async updateMassage(data: Massage) {
     this.db.ref("/massages/" + data.id).update(data);
-    this.getMassages();
   }
 
   /**
@@ -44,7 +42,6 @@ class MassageService {
 
   async deleteMassage(id: string) {
     this.db.ref("/massages/" + id).remove();
-    this.getMassages();
   }
 
   /**
