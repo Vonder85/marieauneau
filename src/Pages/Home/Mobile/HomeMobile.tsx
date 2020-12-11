@@ -117,7 +117,7 @@ export const HomeMobile = () => {
               <b>Bienvenue chez June, bienvenue chez Vous.</b>
               <br />
               <br />
-              <b>Chez June</b>, 7, rue des Cadeniers, à Nantes
+              <b>Chez June</b>, 7 rue des Cadeniers 44000 Nantes
               <br />
               <br />
             </div>

@@ -124,7 +124,7 @@ export const HomeDesktop = () => {
               <b>Bienvenue chez June, bienvenue chez Vous.</b>
               <br />
               <br />
-              <b>Chez June</b>, 7, rue des Cadeniers, à Nantes
+              <b>Chez June</b>, 7 rue des Cadeniers 44000 Nantes
             </div>
           </Grid>
           <Grid item sm={6} md={6} xl={6}>
