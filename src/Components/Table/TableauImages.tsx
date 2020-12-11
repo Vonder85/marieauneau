@@ -78,11 +78,11 @@ export const TableauImages = () => {
         </Table>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
-          labelRowsPerPage="Nombre d'avis par page"
+          labelRowsPerPage="Nombre d'images par page"
           labelDisplayedRows={({ from, to, count }) =>
             ` ${from}-${to} sur ${count} - Page ${page + 1}`
           }
-          count={context.avis.length}
+          count={context.imagesCarousel.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

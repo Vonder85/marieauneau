@@ -192,11 +192,11 @@ export const TableauQestions = () => {
         </Table>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
-          labelRowsPerPage="Nombre d'avis par page"
+          labelRowsPerPage="Nombre de questions par page"
           labelDisplayedRows={({ from, to, count }) =>
             ` ${from}-${to} sur ${count} - Page ${page + 1}`
           }
-          count={context.avis.length}
+          count={context.questions.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
