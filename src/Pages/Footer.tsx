@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   footer: {
-    height: "150px",
+    height: "170px",
     backgroundColor: "rgb(209, 157, 142)",
     color: "white",
     fontWeight: "bold",
