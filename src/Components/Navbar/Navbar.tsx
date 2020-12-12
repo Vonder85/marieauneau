@@ -77,13 +77,13 @@ const useStyles = makeStyles((theme: Theme) =>
       "& .MuiTab-textColorInherit": {
         opacity: 1,
       },
+      justifyContent: "space-around",
       height: "100Px",
     },
     menuButton: {
       marginRight: theme.spacing(2),
       float: "left",
       position: "relative",
-      bottom: "30px",
     },
     title: {
       flexGrow: 1,
@@ -101,10 +101,13 @@ const useStyles = makeStyles((theme: Theme) =>
     divLogoResponsive: {
       marginRight: "auto",
       marginLeft: "auto",
-      paddingLeft: "60px",
     },
     menu: {
       width: "100%",
+    },
+    gridLogoResponsive: {
+      marginTop: "10px",
+      textAlign: "center",
     },
   })
 );
@@ -201,28 +204,41 @@ export const Navbar = () => {
             <>
               {!open ? (
                 <>
-                  <div className={classes.root2}>
-                    <IconButton
-                      edge="start"
-                      className={classes.menuButton}
-                      color="inherit"
-                      aria-label="menu"
+                  <Grid container>
+                    <Grid item xs={1} sm={1}>
+                      <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="menu"
+                      >
+                        <img
+                          src={MenuButtonIcon}
+                          style={{ width: "30px" }}
+                          onClick={() => setOpen(true)}
+                          alt="menuBurgerIcon"
+                        />
+                      </IconButton>{" "}
+                    </Grid>
+                    <Grid
+                      item
+                      xs={10}
+                      sm={10}
+                      className={classes.gridLogoResponsive}
                     >
-                      <img
-                        src={MenuButtonIcon}
-                        style={{ width: "30px" }}
-                        onClick={() => setOpen(true)}
-                        alt="menuBurgerIcon"
-                      />
-                    </IconButton>{" "}
-                  </div>
-                  <Typography>
-                    <div className={classes.divLogoResponsive}>
-                      <Link to="/">
-                        <img src={Logo} alt="logo" className={classes.logo} />
-                      </Link>
-                    </div>
-                  </Typography>{" "}
+                      <Typography>
+                        <div className={classes.divLogoResponsive}>
+                          <Link to="/">
+                            <img
+                              src={Logo}
+                              alt="logo"
+                              className={classes.logo}
+                            />
+                          </Link>
+                        </div>
+                      </Typography>{" "}
+                    </Grid>
+                  </Grid>
                 </>
               ) : (
                 <div id="outer-container">
