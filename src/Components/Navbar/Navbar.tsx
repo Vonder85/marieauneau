@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "left",
       position: "relative",
     },
-    toolbar: { marginRight: "auto", marginLeft: "auto" },
     title: {
       flexGrow: 1,
     },
@@ -137,70 +136,72 @@ export const Navbar = () => {
   return (
     <Grid container>
       <AppBar className={classes.root} onMouseLeave={handleClose}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar>
           {!smScreen ? (
-            <Tabs>
-              <Link to="/Massages" className={classes.liens}>
-                <Tab
-                  label="Les massages"
-                  aria-controls="customized-menu"
-                  aria-haspopup="true"
-                  onMouseEnter={handleClick}
-                />
-              </Link>
-              <StyledMenu
-                id="customized-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {context.massages.map((massage: Massage) => (
-                  <Link
-                    to={`/Massages/${massage?.nom}`}
-                    className={classes.liens}
-                  >
-                    <StyledMenuItem key={massage.id} onClick={handleClose}>
-                      <ListItemText secondary={massage.nom} />
+            <div style={{ marginRight: "auto", marginLeft: "auto" }}>
+              <Tabs>
+                <Link to="/Massages" className={classes.liens}>
+                  <Tab
+                    label="Les massages"
+                    aria-controls="customized-menu"
+                    aria-haspopup="true"
+                    onMouseEnter={handleClick}
+                  />
+                </Link>
+                <StyledMenu
+                  id="customized-menu"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {context.massages.map((massage: Massage) => (
+                    <Link
+                      to={`/Massages/${massage?.nom}`}
+                      className={classes.liens}
+                    >
+                      <StyledMenuItem key={massage.id} onClick={handleClose}>
+                        <ListItemText secondary={massage.nom} />
+                      </StyledMenuItem>
+                    </Link>
+                  ))}
+
+                  <StyledMenuItem onClick={handleClose}>
+                    <a
+                      href={urlCarteMassages}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classes.liens}
+                    >
+                      <ListItemText secondary="Carte des massages" />
+                    </a>
+                  </StyledMenuItem>
+
+                  <Link to={`/Offrir`} className={classes.liens}>
+                    <StyledMenuItem onClick={handleClose}>
+                      <ListItemText secondary="Bon cadeau" />
                     </StyledMenuItem>
                   </Link>
-                ))}
-
-                <StyledMenuItem onClick={handleClose}>
-                  <a
-                    href={urlCarteMassages}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={classes.liens}
-                  >
-                    <ListItemText secondary="Carte des massages" />
-                  </a>
-                </StyledMenuItem>
-
-                <Link to={`/Offrir`} className={classes.liens}>
-                  <StyledMenuItem onClick={handleClose}>
-                    <ListItemText secondary="Bon cadeau" />
-                  </StyledMenuItem>
+                </StyledMenu>
+                <Link to="/APropos" className={classes.liens}>
+                  <Tab label="A propos" />
                 </Link>
-              </StyledMenu>
-              <Link to="/APropos" className={classes.liens}>
-                <Tab label="A propos" />
-              </Link>
 
-              <Link to="/">
-                <img src={Logo} alt="logo" className={classes.logo} />
-              </Link>
+                <Link to="/">
+                  <img src={Logo} alt="logo" className={classes.logo} />
+                </Link>
 
-              <Link
-                to="/FAQ"
-                className={classes.liens}
-                style={{ marginLeft: "80px" }}
-              >
-                <Tab label="FAQ" />
-              </Link>
-              <Link to="/Contact" className={classes.liens}>
-                <Tab label="Contact" />
-              </Link>
-            </Tabs>
+                <Link
+                  to="/FAQ"
+                  className={classes.liens}
+                  style={{ marginLeft: "80px" }}
+                >
+                  <Tab label="FAQ" />
+                </Link>
+                <Link to="/Contact" className={classes.liens}>
+                  <Tab label="Contact" />
+                </Link>
+              </Tabs>
+            </div>
           ) : (
             <>
               {!open ? (
