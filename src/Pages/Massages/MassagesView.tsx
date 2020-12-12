@@ -74,7 +74,7 @@ export const MassagesView = () => {
         className={classes.title}
         style={{ marginLeft: `${smScreen && "30px"}` }}
       >
-        Les différents massages
+        Les massages
       </h1>
       <div className={classes.buttonMassages}>
         <a

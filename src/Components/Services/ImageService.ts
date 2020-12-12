@@ -35,7 +35,6 @@ class ImageService {
       .child(`${folder}/${name}`)
       .getDownloadURL()
       .then((result) => {
-        console.log(result);
         let url: string = result;
         return url;
       });

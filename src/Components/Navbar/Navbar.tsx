@@ -2,6 +2,7 @@ import {
   AppBar,
   createStyles,
   Grid,
+  IconButton,
   ListItemText,
   makeStyles,
   MenuItem,
@@ -18,6 +19,9 @@ import Menu, { MenuProps } from "@material-ui/core/Menu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
+//Images
+import MenuButtonIcon from "../../Images/Icons/menuButtonIcon.png";
+
 //Images / icons
 import Logo from "../../Images/logo.png";
 
@@ -26,6 +30,7 @@ import MassageContext from "../Context/MassageContext";
 
 //models
 import { Massage } from "../../Models/Massage";
+import { MenuNavbarResponsive } from "./MenuNavbarResponsive";
 
 const StyledMenu = withStyles({
   paper: {
@@ -68,23 +73,38 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     root: {
       background: "#D19D8E",
-      alignItems: "center",
       position: "fixed",
       "& .MuiTab-textColorInherit": {
         opacity: 1,
       },
       height: "100Px",
-      justifyContent: "space-around",
     },
     menuButton: {
       marginRight: theme.spacing(2),
       float: "left",
+      position: "relative",
+      bottom: "30px",
     },
     title: {
       flexGrow: 1,
     },
     logo: {
       width: "80px",
+    },
+    root2: {
+      height: 180,
+      marginTop: "200px",
+    },
+    container: {
+      display: "flex",
+    },
+    divLogoResponsive: {
+      marginRight: "auto",
+      marginLeft: "auto",
+      paddingLeft: "60px",
+    },
+    menu: {
+      width: "100%",
     },
   })
 );
@@ -105,6 +125,8 @@ export const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [open, setOpen] = React.useState(false);
 
   const urlCarteMassages =
     "https://firebasestorage.googleapis.com/v0/b/marieauneau-94c13.appspot.com/o/carteMassages.pdf?alt=media&token=7b11e86e-fe8d-4c59-ac28-e0ef73cec69f";
@@ -177,11 +199,39 @@ export const Navbar = () => {
             </Tabs>
           ) : (
             <>
-              <Typography>
-                <Link to="/">
-                  <img src={Logo} alt="logo" className={classes.logo} />
-                </Link>
-              </Typography>
+              {!open ? (
+                <>
+                  <div className={classes.root2}>
+                    <IconButton
+                      edge="start"
+                      className={classes.menuButton}
+                      color="inherit"
+                      aria-label="menu"
+                    >
+                      <img
+                        src={MenuButtonIcon}
+                        style={{ width: "30px" }}
+                        onClick={() => setOpen(true)}
+                        alt="menuBurgerIcon"
+                      />
+                    </IconButton>{" "}
+                  </div>
+                  <Typography>
+                    <div className={classes.divLogoResponsive}>
+                      <Link to="/">
+                        <img src={Logo} alt="logo" className={classes.logo} />
+                      </Link>
+                    </div>
+                  </Typography>{" "}
+                </>
+              ) : (
+                <div id="outer-container">
+                  <MenuNavbarResponsive
+                    open={open}
+                    onChange={(value: boolean) => setOpen(value)}
+                  />
+                </div>
+              )}
             </>
           )}
         </Toolbar>

@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core";
+import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import Routes from "./Routes";
 
 //Models
@@ -20,7 +14,6 @@ import { Message } from "./Models/Message";
 import MassageContext from "./Components/Context/MassageContext";
 
 //Component
-import { AppbarMobile } from "./Components/Navbar/AppbarMobile";
 import { Footer } from "./Pages/Footer";
 import { Question } from "./Models/Question";
 
@@ -47,9 +40,6 @@ export const App = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
 
-  const themeQueries = useTheme();
-  const smScreen = useMediaQuery(themeQueries.breakpoints.down("sm"));
-
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.App}>
@@ -72,7 +62,6 @@ export const App = () => {
 
             <Routes />
             <Footer />
-            {smScreen && <AppbarMobile />}
           </MassageContext.Provider>
         </Router>
       </div>
