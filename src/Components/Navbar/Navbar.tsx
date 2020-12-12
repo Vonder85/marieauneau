@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "left",
       position: "relative",
     },
+    toolbar: { marginRight: "auto", marginLeft: "auto" },
     title: {
       flexGrow: 1,
     },
@@ -136,7 +137,7 @@ export const Navbar = () => {
   return (
     <Grid container>
       <AppBar className={classes.root} onMouseLeave={handleClose}>
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           {!smScreen ? (
             <Tabs>
               <Link to="/Massages" className={classes.liens}>
